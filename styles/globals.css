@@ -1,10 +1,25 @@
 * {
   box-sizing: border-box;
+  font-family: system-ui;
 }
 
 html,
 body {
   padding: 0;
   margin: 0;
+  width: 100vw;
+  height: 100vh;
+  font-size: 10px;
 }
 
+#__next {
+  width: 100vw;
+  height: 100vh;
+}
+
+h1 {
+  flex-direction: column;
+  color: #4b4e6e;
+  justify-content: space-evenly;
+  background: linear-gradient(to bottom, #1F1C2C, #534f66);
+}
