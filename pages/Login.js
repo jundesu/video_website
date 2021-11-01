@@ -124,14 +124,11 @@ const SignUpLink = styled.a`
   }
 `;
 
-
-
-
 function Login () {
   return (
     <LoginPage>
       <p>Log in to your account</p>
-      <Form action="" method="post">
+      <Form action="/Home" method="post">
         <Label>
           E-mail
           <Input type="email" placeholder="enter your e-mail" required/>
