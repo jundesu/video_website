@@ -1,14 +1,19 @@
 import styled from "@emotion/styled";
+import Header from "../components/Header";
 
 const HomePage = styled.div`
-  background: pink;
+  background: #1b263b;
+  width: 100%;
+  height: 100%;
 
 `;
 
 function Home () {
 
   return (
-    <HomePage>Home</HomePage>
+    <HomePage>
+      <Header />
+    </HomePage>
   );
 }
 
