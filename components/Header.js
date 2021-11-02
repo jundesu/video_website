@@ -17,7 +17,6 @@ const Logo = styled.a`
   font-weight: 900;
   color: #ffffff;
   text-decoration: none;
-
 `;
 
 const SearchInput = styled.input`
@@ -25,7 +24,6 @@ const SearchInput = styled.input`
   height: 50px;
   outline: none;
   border: none;
-
 `;
 
 const SearchBtn = styled.button`
@@ -75,3 +73,4 @@ function Header() {
 }
 
 export default Header;
+
