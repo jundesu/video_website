@@ -7,6 +7,7 @@ export default function handler(req, res) {
     subscriptions.push({
       channelId: faker.datatype.uuid(),
       channelTitle: faker.name.title(),
+      channelIcon: faker.image.image(640, 480),
       unreadCount: faker.datatype.number(10)
     })
   }
