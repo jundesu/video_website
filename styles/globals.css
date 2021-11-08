@@ -16,3 +16,8 @@ body {
   width: 100vw;
   height: 100vh;
 }
+
+h6 {
+  border: 6px solid red;
+  justify-content: space-between;
+}

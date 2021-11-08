@@ -2,53 +2,78 @@ import styled from "@emotion/styled";
 import { useState, useEffect } from "react";
 
 const Contents = styled.main`
-  background: #355070;
-  width: calc(100% - 250px);
+  grid-area: main;
+   
+  background: #003566;  
+  width: 100%;
+  height: 100%;
   padding: 20px;
+
+  overflow-y: scroll;
 `;
 
 const VideoList = styled.ul`
   list-style: none;
   padding: 0;
   margin: 0;
+
   display: grid;
-  grid-template-columns: repeat(4, 20vw );
-  column-gap: 10px;
-  row-gap: 30px;
-  gap: 10px;
-  justify-content:space-between;
+  grid-template-columns: repeat(4, 19vw);
+  justify-content: space-between;
+
 `;
 
 const Video = styled.li`
-  display: flex; 
-  flex-wrap: wrap;
-`;
-
-const ChannelIcon = styled.img`
-  background: #c9ada7;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas: "thumbnail thumbnail thumbnail thumbnail"  
+                       "icon message message message";
+  row-gap: 10px;
 `;
 
 const Thumbnail = styled.img`
+grid-area: thumbnail;
+
   background-color: #a7a7a780; 
   width: 100%;
   height: 10vw;
+
+`;
+
+const ChannelIcon = styled.img`
+grid-area: icon;
+
+  background: #c9ada7;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
 `;
 
 const VideoMessage = styled.section`
+grid-area: message;
 
+  display: flex;
+  flex-direction: column;
 
 & > h3 {
   color: #ffffff;
   font-size: 1.8rem;
+  font-weight: 400;
+  margin: 0;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+ 
 }
 
 & > h4 {
   color: #a7a7a7;
   font-size: 1.5rem;
   font-weight: 300;
+  margin: 0;
 }
 `;
 

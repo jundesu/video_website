@@ -1,21 +1,26 @@
 import styled from "@emotion/styled";
 
 const VideoHeader = styled.header`
-  width: 100%;
+  grid-area: header;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+
+  background-color: #001d3d; 
+  width:100%;
   height: 80px;
-  border: 1px solid black;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 30px;
-  background-color: #4a4e69; 
 `;
 
 const Logo = styled.a`
   height: 50px;
   font-size: 4rem;
   font-weight: 900;
-  color: #ffffff;
+  color: #fca311;
   text-decoration: none;
 `;
 

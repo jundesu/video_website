@@ -4,11 +4,14 @@ import Sidebar from "../components/Sidebar";
 import VideoContents from "../components/VideoContents";
 
 const HomePage = styled.div`
-  background: #1b263b;
+  background: black;
   width: 100%;
   height: 100%;
-  display: flex; 
-  flex-wrap:wrap;
+  display: grid;
+  grid-template-columns: 1fr 100px 4fr;
+  grid-template-rows: 80px 100%;
+  grid-template-areas: "header header header header header"  
+                       "sidebar main main main main";
   overflow-y: scroll;
 `;
 

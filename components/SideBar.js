@@ -2,10 +2,9 @@ import styled from "@emotion/styled";
 import { useEffect, useState } from "react";
 
 const Subscriptions = styled.aside`
-  width: 250px;
-  height: 100%;
-  border-right: 1px solid rgba(138, 138, 138, 0.63);
-  overflow-y : scroll;
+  grid-area: sidebar;
+
+  overflow-y: scroll;
 
   & > h1 {
     text-transform: capitalize;
@@ -19,7 +18,7 @@ const ChannelList = styled.ul`
   list-style: none;
   padding: 0;
   margin: 0;
-  line-height: 4rem;
+  line-height: 3rem;
 `;
 
 const ChannelLink = styled.a`
@@ -40,7 +39,7 @@ const ChannelLink = styled.a`
     color: #ffffff;
     font-size: 1.5rem;
     font-weight: 300;
-    width: 70%;
+    width: 150px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
