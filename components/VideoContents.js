@@ -18,7 +18,7 @@ const VideoList = styled.ul`
   margin: 0;
 
   display: grid;
-  grid-template-columns: repeat(4, 19vw);
+  grid-template-columns: repeat(4, 18vw);
   justify-content: space-between;
 
 `;
@@ -33,12 +33,10 @@ const Video = styled.li`
 `;
 
 const Thumbnail = styled.img`
-grid-area: thumbnail;
+  grid-area: thumbnail;
 
-  background-color: #a7a7a780; 
   width: 100%;
   height: 10vw;
-
 `;
 
 const ChannelIcon = styled.img`
@@ -73,7 +71,7 @@ grid-area: message;
   color: #a7a7a7;
   font-size: 1.5rem;
   font-weight: 300;
-  margin: 0;
+  margin: 10px 0 0 0;
 }
 `;
 
@@ -99,7 +97,7 @@ function VideoContents() {
         {cards.map((card) => {
           return (
             <Video>
-              <Thumbnail />
+              <Thumbnail src={card.thumbnailUrl} alt="thumbnail" />
               <ChannelIcon/>
               <VideoMessage>
                 <h3>{card.title}</h3>

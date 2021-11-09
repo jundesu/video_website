@@ -2,10 +2,10 @@ import styled from "@emotion/styled";
 
 const VideoHeader = styled.header`
   grid-area: header;
+  
   position: fixed;
   top: 0;
   left: 0;
-
 
   background-color: #001d3d; 
   width:100%;

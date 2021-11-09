@@ -37,7 +37,7 @@ const ChannelLink = styled.a`
 
   & > h2 {
     color: #ffffff;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: 300;
     width: 150px;
     white-space: nowrap;
