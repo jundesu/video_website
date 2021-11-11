@@ -23,18 +23,34 @@ async function fetchVideos (){
 }
 
 function VideoContents() {
-  const [cards, setCards] = useState([]);
+  const [videos, setVideos] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState('all');
 
   useEffect(() => {
-    fetchVideos().then((cards) => {
-      setCards(cards);
+    fetchVideos().then((videoList) => {
+      setVideos(videoList);
     })
   }, []);
+
+  const categories = videos.map((video) => {
+    return video.category
+  });
+  const uniqueCategories = [...new Set(categories)];
+
+  let newVideos = videos;
   
+  if(selectedCategory !== 'all') {
+    newVideos = newVideos.filter((video) => {
+      return video.category === selectedCategory
+    }) 
+  } 
+
+
   return (
     <Contents>
-      <VideoCategory cards={cards} />
-      <GridView cards={cards} />
+      <VideoCategory uniqueCategories={uniqueCategories}
+                     changeCategory={(selected) => setSelectedCategory(selected)} />
+      <GridView videos={newVideos} />
     </Contents>
   );
 }

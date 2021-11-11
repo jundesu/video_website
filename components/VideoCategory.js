@@ -26,22 +26,17 @@ const FilterBar = styled.ul`
 `;
 
 
-function VideoCategory ({cards}) {
-  const categories = cards.map((card) => {
-    return card.category
-  });
-  const uniqueCategories = [...new Set(categories)];
-
+function VideoCategory ({uniqueCategories, changeCategory}) {
+  
   return (
     <FilterBar>
-      <li className ="all">all</li>
-      {uniqueCategories.map((x) => {
+      <li className ="all" onClick={() => {changeCategory('all')}}>all</li>
+      {uniqueCategories.map((tagName) => {
         return (
-          <li className="tag-name">{x}</li>
+          <li className="tag-name" onClick={() => {changeCategory(tagName)}}>{tagName}</li>
         )
       })}
     </FilterBar>
-
   );
 }
 

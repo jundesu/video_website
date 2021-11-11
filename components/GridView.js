@@ -63,18 +63,19 @@ grid-area: message;
 }
 `;
 
-function GridView ({cards}){
+function GridView ({videos}){
   return (
       <GridLayout>
-        {cards.map((card, index) => {
+        {videos.map((video, index) => {
           return (
             <Video key={index}>
-              <Thumbnail src={card.thumbnailUrl} alt="thumbnail" />
+              <Thumbnail src={video.thumbnailUrl} alt="thumbnail" />
               <ChannelIcon/>
               <VideoMessage>
-                <h3>{card.title}</h3>
-                <h4>{card.channelTitle}</h4>
-                <h4>{card.viewCount} views</h4>
+                <h3>{video.title}</h3>
+                <h4>{video.channelTitle}</h4>
+                <h4>{video.viewCount} views</h4>
+                <span>{video.category}</span>
               </VideoMessage>
             </Video>
           )
