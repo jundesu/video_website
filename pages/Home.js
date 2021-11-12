@@ -21,8 +21,8 @@ function Home () {
   return (
     <HomePage>
       <Header />
-      <Sidebar />
-      <VideoContents/>
+      {/* <Sidebar /> */}
+      {/* <VideoContents/> */}
     </HomePage>
   );
 }

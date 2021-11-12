@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import PopUpProfile from "./PopUpProfile";
 
 const VideoHeader = styled.header`
   grid-area: header;
@@ -24,6 +25,11 @@ const Logo = styled.a`
   text-decoration: none;
 `;
 
+const SearchBar = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 const SearchInput = styled.input`
   width: 500px;
   height: 50px;
@@ -44,33 +50,37 @@ const LayoutBtn = styled.button`
   border: none;
 `;
 
-const AvatarIcon = styled.button`
+const AvatarIcon = styled.img`
   width: 50px;
   height: 50px;
-  border: none;
   border-radius: 50%;
+  background: pink;
 `; 
 
 const Masthead = styled.div`
   display: flex;
   align-items: center;
+  position: relative;
 `;
+
+
 
 function Header() {
   return (
     <VideoHeader>
         <Logo href="#">LOGO</Logo>
 
-        <Masthead>
+        <SearchBar>
           <label for="search"></label>
           <SearchInput type="search" id="search" placeholder="Type to search" name="search"></SearchInput>
           <SearchBtn type="button">S</SearchBtn>
-        </Masthead>
+        </SearchBar>
        
         <Masthead>
           <LayoutBtn>G</LayoutBtn>
           <LayoutBtn>T</LayoutBtn>
           <AvatarIcon/>
+          <PopUpProfile />
         </Masthead>
 
     </VideoHeader>
@@ -78,4 +88,5 @@ function Header() {
 }
 
 export default Header;
+export {AvatarIcon};
 
