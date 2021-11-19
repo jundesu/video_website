@@ -1,11 +1,12 @@
 import styled from '@emotion/styled';
+import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 const LoginPage = styled.main`
   display: flex;
   width: 100%;
   height:100%;
   background: linear-gradient(to bottom,#928DAB, #1F1C2C);
-
 
   p {
     width: 50%;
@@ -124,14 +125,33 @@ const SignUpLink = styled.a`
   }
 `;
 
-function Login () {
+function Login() {
+  const [email, setEmail] = useState('');
+  const router = useRouter();
+
+  const handleChange = (e)=> {
+    console.log(e.target.value);
+    setEmail(e.target.value);
+  };
+
+  const handleClick = (e) => {
+    e.preventDefault()
+    router.push({
+      pathname:'/Home',
+      query: { email: email },
+    },
+    '/hohoh')
+  };
+
+
+
   return (
     <LoginPage>
       <p>Log in to your account</p>
-      <Form action="/Home" method="post">
+      <Form>
         <Label>
           E-mail
-          <Input type="email" placeholder="enter your e-mail" required/>
+          <Input type="email" placeholder="enter your e-mail" value={email} onChange={handleChange} required/>
         </Label>
         
         <Label>
@@ -141,7 +161,7 @@ function Login () {
 
         <ForgotPassword href="#">Forgot password ?</ForgotPassword>
 
-        <Submit>Log in</Submit>
+        <Submit onClick={handleClick}>Log in</Submit>
 
         <SignUpText>or sign up using</SignUpText>
 

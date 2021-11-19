@@ -8,7 +8,7 @@ const VideoHeader = styled.header`
   top: 0;
   left: 0;
 
-  background-color: #001d3d; 
+  border: 1px solid #b7b7a4;
   width:100%;
   height: 80px;
   display: flex;
@@ -65,13 +65,13 @@ const Masthead = styled.div`
 
 
 
-function Header() {
+function Header({userEmail}) {
   return (
     <VideoHeader>
         <Logo href="#">LOGO</Logo>
 
         <SearchBar>
-          <label for="search"></label>
+          <label htmlFor="search"></label>
           <SearchInput type="search" id="search" placeholder="Type to search" name="search"></SearchInput>
           <SearchBtn type="button">S</SearchBtn>
         </SearchBar>
@@ -80,7 +80,7 @@ function Header() {
           <LayoutBtn>G</LayoutBtn>
           <LayoutBtn>T</LayoutBtn>
           <AvatarIcon/>
-          <PopUpProfile />
+          <PopUpProfile userEmail={userEmail}/>
         </Masthead>
 
     </VideoHeader>
