@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import PopUpProfile from "./PopUpProfile";
-import { useImperativeHandle, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const VideoHeader = styled.header`
   grid-area: header;
@@ -55,6 +55,7 @@ const AvatarBtn = styled.button`
   width: 50px;
   height: 50px;
   border-radius: 50%;
+  border: none;
   background: pink;
 `; 
 
@@ -68,9 +69,22 @@ const Masthead = styled.div`
 
 function Header({userEmail}) {
   const [open, setOpen] = useState(false);  
+  const node = useRef();
 
+  const handleClickoutside = (e) => {
+    if(node.current.contains(e.target)){
+      return
+    }
+    setOpen(false);
+  }; 
 
-   
+  useEffect(() => {
+    if(open){
+      document.addEventListener("click", handleClickoutside);
+    }
+    return () => {document.removeEventListener("click", handleClickoutside)}
+  }, [open])
+
   return (
     <VideoHeader>
         <Logo href="#">LOGO</Logo>
@@ -81,15 +95,15 @@ function Header({userEmail}) {
           <SearchBtn type="button">S</SearchBtn>
         </SearchBar>
        
-        <Masthead>
+        <Masthead ref={node}>
           <LayoutBtn>G</LayoutBtn>
           <LayoutBtn>T</LayoutBtn>
-          <AvatarBtn type="button" onClick={() => {setOpen(!open)}}></AvatarBtn>
+          <AvatarBtn type="button" onClick={() => {setOpen(!open)}} ></AvatarBtn>
           {open && (
-            <PopUpProfile userEmail={userEmail}/>
-          )}
+              <PopUpProfile userEmail={userEmail}/>
+              )}
+          
         </Masthead>
-
     </VideoHeader>
   );
 }
