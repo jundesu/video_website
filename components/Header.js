@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import PopUpProfile from "./PopUpProfile";
+import { useImperativeHandle, useState } from "react";
 
 const VideoHeader = styled.header`
   grid-area: header;
@@ -50,7 +51,7 @@ const LayoutBtn = styled.button`
   border: none;
 `;
 
-const AvatarIcon = styled.img`
+const AvatarBtn = styled.button`
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -66,6 +67,10 @@ const Masthead = styled.div`
 
 
 function Header({userEmail}) {
+  const [open, setOpen] = useState(false);  
+
+
+   
   return (
     <VideoHeader>
         <Logo href="#">LOGO</Logo>
@@ -79,8 +84,10 @@ function Header({userEmail}) {
         <Masthead>
           <LayoutBtn>G</LayoutBtn>
           <LayoutBtn>T</LayoutBtn>
-          <AvatarIcon/>
-          <PopUpProfile userEmail={userEmail}/>
+          <AvatarBtn type="button" onClick={() => {setOpen(!open)}}></AvatarBtn>
+          {open && (
+            <PopUpProfile userEmail={userEmail}/>
+          )}
         </Masthead>
 
     </VideoHeader>
@@ -88,5 +95,5 @@ function Header({userEmail}) {
 }
 
 export default Header;
-export {AvatarIcon};
+
 

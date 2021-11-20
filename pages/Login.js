@@ -140,7 +140,7 @@ function Login() {
       pathname:'/Home',
       query: { email: email },
     },
-    '/hohoh')
+    '/home')
   };
 
 

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { AvatarIcon } from "./Header";
+
 
 const PopupContainer = styled.div`
   width: 300px;
@@ -8,12 +8,7 @@ const PopupContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
   padding: 50px 20px;
-
-  
-  
-
   position: absolute;
   top: 70px;
   right: 0px;
@@ -28,6 +23,8 @@ const Profile = styled.div`
   & > img {
     width: 70px;
     height: 70px;
+    border-radius: 50%;
+    background: pink;
     grid-column-start: 1;
     grid-column-end: 2;
     grid-row-start: span 2;
@@ -119,7 +116,7 @@ function PopUpProfile({userEmail}){
   return (
     <PopupContainer>
       <Profile>
-        <AvatarIcon/>
+        <img src="" alt="avatar" />
         <Name>Abcdefg Hijkl</Name>
         <Account>{userEmail}</Account>
       </Profile>
