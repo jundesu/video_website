@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 const VideoHeader = styled.header`
   grid-area: header;
-  
+
   position: fixed;
   top: 0;
   left: 0;
@@ -57,7 +57,14 @@ const AvatarBtn = styled.button`
   border-radius: 50%;
   border: none;
   background: pink;
-`; 
+  padding: 0;
+
+  & > img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  }
+`;
 
 const Masthead = styled.div`
   display: flex;
@@ -65,25 +72,36 @@ const Masthead = styled.div`
   position: relative;
 `;
 
-
+async function fetchProfile() {
+  const response = await fetch('http://localhost:3000/api/profile');
+  const jsonResponse = await response.json();
+  return jsonResponse
+}
 
 function Header({userEmail}) {
-  const [open, setOpen] = useState(false);  
+  const [open, setOpen] = useState(false);
   const node = useRef();
+  const [profile, setProfile] = useState({});
 
   const handleClickoutside = (e) => {
     if(node.current.contains(e.target)){
       return
     }
     setOpen(false);
-  }; 
+  };
 
   useEffect(() => {
     if(open){
       document.addEventListener("click", handleClickoutside);
     }
     return () => {document.removeEventListener("click", handleClickoutside)}
-  }, [open])
+  }, [open]);
+
+  useEffect(() => {
+    fetchProfile().then((profile) => {
+      setProfile(profile);
+    })
+  }, []);
 
   return (
     <VideoHeader>
@@ -94,20 +112,20 @@ function Header({userEmail}) {
           <SearchInput type="search" id="search" placeholder="Type to search" name="search"></SearchInput>
           <SearchBtn type="button">S</SearchBtn>
         </SearchBar>
-       
+
         <Masthead ref={node}>
           <LayoutBtn>G</LayoutBtn>
           <LayoutBtn>T</LayoutBtn>
-          <AvatarBtn type="button" onClick={() => {setOpen(!open)}} ></AvatarBtn>
+          <AvatarBtn type="button" onClick={() => {setOpen(!open)}} >
+            <img src={profile.avatar}/>
+          </AvatarBtn>
           {open && (
-              <PopUpProfile userEmail={userEmail}/>
+              <PopUpProfile userEmail={userEmail} profile={profile}/>
               )}
-          
+
         </Masthead>
     </VideoHeader>
   );
 }
 
 export default Header;
-
-

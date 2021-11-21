@@ -111,16 +111,16 @@ const SignOut = styled.a`
 
 `;
 
-function PopUpProfile({userEmail}){
+function PopUpProfile({userEmail, profile}){
 
   return (
     <PopupContainer>
       <Profile>
-        <img src="" alt="avatar" />
-        <Name>Abcdefg Hijkl</Name>
+        <img src={profile.avatar} alt="avatar" />
+        <Name>{profile.name}</Name>
         <Account>{userEmail}</Account>
       </Profile>
-      
+
       <ManagementLink href="#">Manage your account</ManagementLink>
 
       <DarkMode for="dark-mode">
