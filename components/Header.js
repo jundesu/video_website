@@ -1,13 +1,15 @@
 import styled from "@emotion/styled";
+import PopUpProfile from "./PopUpProfile";
+import { useEffect, useRef, useState } from "react";
 
 const VideoHeader = styled.header`
   grid-area: header;
-  
+
   position: fixed;
   top: 0;
   left: 0;
 
-  background-color: #001d3d; 
+  border: 1px solid #b7b7a4;
   width:100%;
   height: 80px;
   display: flex;
@@ -22,6 +24,11 @@ const Logo = styled.a`
   font-weight: 900;
   color: #fca311;
   text-decoration: none;
+`;
+
+const SearchBar = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 const SearchInput = styled.input`
@@ -44,38 +51,81 @@ const LayoutBtn = styled.button`
   border: none;
 `;
 
-const AvatarIcon = styled.button`
+const AvatarBtn = styled.button`
   width: 50px;
   height: 50px;
-  border: none;
   border-radius: 50%;
-`; 
+  border: none;
+  background: pink;
+  padding: 0;
+
+  & > img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  }
+`;
 
 const Masthead = styled.div`
   display: flex;
   align-items: center;
+  position: relative;
 `;
 
-function Header() {
+async function fetchProfile() {
+  const response = await fetch('http://localhost:3000/api/profile');
+  const jsonResponse = await response.json();
+  return jsonResponse
+}
+
+function Header({userEmail}) {
+  const [open, setOpen] = useState(false);
+  const node = useRef();
+  const [profile, setProfile] = useState({});
+
+  const handleClickoutside = (e) => {
+    if(node.current.contains(e.target)){
+      return
+    }
+    setOpen(false);
+  };
+
+  useEffect(() => {
+    if(open){
+      document.addEventListener("click", handleClickoutside);
+    }
+    return () => {document.removeEventListener("click", handleClickoutside)}
+  }, [open]);
+
+  useEffect(() => {
+    fetchProfile().then((profile) => {
+      setProfile(profile);
+    })
+  }, []);
+
   return (
     <VideoHeader>
         <Logo href="#">LOGO</Logo>
 
-        <Masthead>
-          <label for="search"></label>
+        <SearchBar>
+          <label htmlFor="search"></label>
           <SearchInput type="search" id="search" placeholder="Type to search" name="search"></SearchInput>
           <SearchBtn type="button">S</SearchBtn>
-        </Masthead>
-       
-        <Masthead>
+        </SearchBar>
+
+        <Masthead ref={node}>
           <LayoutBtn>G</LayoutBtn>
           <LayoutBtn>T</LayoutBtn>
-          <AvatarIcon/>
-        </Masthead>
+          <AvatarBtn type="button" onClick={() => {setOpen(!open)}} >
+            <img src={profile.avatar}/>
+          </AvatarBtn>
+          {open && (
+              <PopUpProfile userEmail={userEmail} profile={profile}/>
+              )}
 
+        </Masthead>
     </VideoHeader>
   );
 }
 
 export default Header;
-

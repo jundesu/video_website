@@ -2,9 +2,9 @@ import styled from "@emotion/styled";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import VideoContents from "../components/VideoContents";
+import { useRouter } from 'next/router';
 
 const HomePage = styled.div`
-  background: black;
   width: 100%;
   height: 100%;
 
@@ -17,12 +17,14 @@ const HomePage = styled.div`
 `;
 
 function Home () {
+  const router = useRouter();
+
 
   return (
     <HomePage>
-      <Header />
-      <Sidebar />
-      <VideoContents/>
+      <Header userEmail={router.query?.email}/>
+      {/* <Sidebar /> */}
+      {/* <VideoContents/> */}
     </HomePage>
   );
 }
