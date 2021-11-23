@@ -29,6 +29,8 @@ const Logo = styled.a`
 const SearchBar = styled.div`
   display: flex;
   align-items: center;
+  border: 1px solid #dee2e6;
+
 `;
 
 const SearchInput = styled.input`
@@ -36,6 +38,12 @@ const SearchInput = styled.input`
   height: 50px;
   outline: none;
   border: none;
+  padding: 10px;
+
+  &::placeholder {
+    color: #adb5bd;
+    
+  }
 `;
 
 const SearchBtn = styled.button`
@@ -109,7 +117,7 @@ function Header({userEmail}) {
 
         <SearchBar>
           <label htmlFor="search"></label>
-          <SearchInput type="search" id="search" placeholder="Type to search" name="search"></SearchInput>
+          <SearchInput type="search" id="search" placeholder="Search" name="search"></SearchInput>
           <SearchBtn type="button">S</SearchBtn>
         </SearchBar>
 
