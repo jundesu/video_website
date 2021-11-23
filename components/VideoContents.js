@@ -5,13 +5,13 @@ import VideoCategory from "./VideoCategory";
 
 const Contents = styled.main`
   grid-area: main;
-  
+
   overflow-y: scroll;
 
-  background: #003566;  
+  background: #ffffff;  
   width: 100%;
   height: 100%;
-  padding: 20px;
+  padding: 0px;
 
 `;
 

@@ -5,9 +5,8 @@ const FilterBar = styled.ul`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  border: 1px solid red;
   margin: 0;
-  padding: 20px 0;
+  padding: 10px 0;
 
   overflow-x: auto;
 
@@ -17,17 +16,20 @@ const FilterBar = styled.ul`
 
   & > li {
     font-size: 1.5rem;
-    color: #ffffff;
-    background-color: black;
+    color: #000000;
+    background-color: #e9ecef;
     border-radius: 20px;
     padding: 10px 20px;
     margin-right: 20px;
+    text-transform: capitalize;
   }
+
+
 `;
 
 
 function VideoCategory ({uniqueCategories, changeCategory}) {
-  
+
   return (
     <FilterBar>
       <li className ="all" onClick={() => {changeCategory('all')}}>all</li>

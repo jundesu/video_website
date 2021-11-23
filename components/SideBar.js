@@ -3,12 +3,11 @@ import { useEffect, useState } from "react";
 
 const Subscriptions = styled.aside`
   grid-area: sidebar;
-
   overflow-y: scroll;
 
   & > h1 {
-    text-transform: capitalize;
-    color: #ffffff;
+    text-transform: uppercase;
+    color: #6c757d;
     font-size: 2rem;
     margin: 20px 0 20px 30px;
   }
@@ -29,14 +28,14 @@ const ChannelLink = styled.a`
   padding: 0 30px;
 
   & > img {
-    background: #c9ada7;
+    background: #000000;
     border-radius: 50%;
     width: 30px;
     height: 30px;
   }
 
   & > h2 {
-    color: #ffffff;
+    color: #000000;
     font-size: 1.2rem;
     font-weight: 300;
     width: 150px;
