@@ -14,28 +14,31 @@ const FilterBar = styled.ul`
     display: none;
   }
 
-  & > li {
-    font-size: 1.5rem;
-    color: #000000;
-    background-color: #e9ecef;
-    border-radius: 20px;
-    padding: 10px 20px;
-    margin-right: 20px;
-    text-transform: capitalize;
-  }
-
-
+`;
+const Category = styled.li`
+  font-size: 1.5rem;
+  color: ${({selected}) => selected ? '#ffffff' : '#000000' };
+  background-color: ${({selected}) => selected ? '#000000' : '#e9ecef' };
+  border-radius: 20px;
+  padding: 10px 20px;
+  margin-right: 20px;
+  text-transform: capitalize;
 `;
 
 
-function VideoCategory ({uniqueCategories, changeCategory}) {
-
+function VideoCategory ({uniqueCategories, changeCategory, selectedCategory}) {
+   
   return (
     <FilterBar>
-      <li className ="all" onClick={() => {changeCategory('all')}}>all</li>
+      <Category onClick={() => {changeCategory('all')}} selected={selectedCategory === 'all'}>all</Category>
       {uniqueCategories.map((tagName) => {
         return (
-          <li className="tag-name" onClick={() => {changeCategory(tagName)}}>{tagName}</li>
+          <Category 
+            onClick={() => {changeCategory(tagName)}} 
+            selected={selectedCategory === tagName}
+          >
+            {tagName}
+          </Category>
         )
       })}
     </FilterBar>

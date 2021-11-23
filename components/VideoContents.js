@@ -5,16 +5,12 @@ import VideoCategory from "./VideoCategory";
 
 const Contents = styled.main`
   grid-area: main;
-
   overflow-y: scroll;
-
   background: #ffffff;  
   width: 100%;
   height: 100%;
   padding: 0px;
-
 `;
-
 
 async function fetchVideos (){
   const response = await fetch('http://localhost:3000/api/videos');
@@ -49,7 +45,8 @@ function VideoContents() {
   return (
     <Contents>
       <VideoCategory uniqueCategories={uniqueCategories}
-                     changeCategory={(selected) => setSelectedCategory(selected)} />
+                     changeCategory={(selected) => setSelectedCategory(selected)}
+                     selectedCategory={selectedCategory} />
       <GridView videos={newVideos} />
     </Contents>
   );
