@@ -8,6 +8,7 @@ export default function handler(req, res) {
       thumbnailUrl: faker.image.image(640, 480),
       title: faker.lorem.sentence(),
       channelId: faker.datatype.uuid(),
+      channelIcon: faker.image.image(640, 480),
       channelTitle: faker.name.title(),
       viewCount: faker.datatype.number(),
       category: faker.commerce.department()

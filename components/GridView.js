@@ -2,8 +2,9 @@ import styled from "@emotion/styled";
 
 const GridLayout = styled.ul`
   list-style: none;
-  padding: 0;
+  padding: 20px;
   margin: 0;
+  background-color: #e9ecef;
 
   display: grid;
   grid-template-columns: repeat(4, 18vw);
@@ -30,10 +31,11 @@ const Thumbnail = styled.img`
 const ChannelIcon = styled.img`
 grid-area: icon;
 
-  background: #c9ada7;
+  background: #000000;
   border-radius: 50%;
   width: 40px;
   height: 40px;
+
 `;
 
 const VideoMessage = styled.section`
@@ -43,7 +45,7 @@ grid-area: message;
   flex-direction: column;
 
 & > h3 {
-  color: #ffffff;
+  color: #000000;
   font-size: 1.8rem;
   font-weight: 400;
   margin: 0;
@@ -56,7 +58,7 @@ grid-area: message;
 }
 
 & > h4 {
-  color: #a7a7a7;
+  color: #495057;
   font-size: 1.5rem;
   font-weight: 300;
   margin: 10px 0 0 0;
@@ -70,12 +72,12 @@ function GridView ({videos}){
           return (
             <Video key={index}>
               <Thumbnail src={video.thumbnailUrl} alt="thumbnail" />
-              <ChannelIcon/>
+              <ChannelIcon src={video.channelIcon}/>
               <VideoMessage>
                 <h3>{video.title}</h3>
                 <h4>{video.channelTitle}</h4>
                 <h4>{video.viewCount} views</h4>
-                <span>{video.category}</span>
+                {/* <span>{video.category}</span> */}
               </VideoMessage>
             </Video>
           )

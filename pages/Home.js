@@ -23,8 +23,8 @@ function Home () {
   return (
     <HomePage>
       <Header userEmail={router.query?.email}/>
-      {/* <Sidebar /> */}
-      {/* <VideoContents/> */}
+      <Sidebar />
+      <VideoContents/>
     </HomePage>
   );
 }
