@@ -1,20 +1,21 @@
 import styled from "@emotion/styled";
 import PopUpProfile from "./PopUpProfile";
 import { useEffect, useRef, useState } from "react";
+import Search from "../svgs/search_icon.svg"; 
 
 const VideoHeader = styled.header`
   grid-area: header;
 
   position: fixed;
   top: 0;
-  left: 0;
 
-  width:100%;
+  width: 100%;
   height: 80px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 30px;
+  background-color: #ffffff;
 `;
 
 const Logo = styled.a`
@@ -49,6 +50,13 @@ const SearchBtn = styled.button`
   width: 50px;
   height: 50px;
   border: none;
+  padding: auto;
+`;
+
+const SearchIcon = styled(Search)`
+ width: 60%;
+ height: 60%;
+
 `;
 
 const LayoutBtn = styled.button`
@@ -117,7 +125,9 @@ function Header({userEmail}) {
         <SearchBar>
           <label htmlFor="search"></label>
           <SearchInput type="search" id="search" placeholder="Search" name="search"></SearchInput>
-          <SearchBtn type="button">S</SearchBtn>
+          <SearchBtn type="button">
+            <SearchIcon/>
+          </SearchBtn>
         </SearchBar>
 
         <Masthead ref={node}>

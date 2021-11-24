@@ -73,9 +73,9 @@ function Sidebar () {
     <Subscriptions>
       <h1>subscriptions</h1>
       <ChannelList>
-        {channels.map((channel) => {
+        {channels.map((channel, index) => {
           return (
-            <li>
+            <li key={index}>
               <ChannelLink href="#">
                 <img src={channel.channelIcon} alt="channel image"/>
                 <h2>{channel.channelTitle}</h2>
