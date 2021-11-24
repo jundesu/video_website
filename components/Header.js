@@ -1,11 +1,13 @@
 import styled from "@emotion/styled";
 import PopUpProfile from "./PopUpProfile";
 import { useEffect, useRef, useState } from "react";
-import Search from "../svgs/search_icon.svg"; 
+import SearchImg from "../svgs/search_icon.svg"; 
+import AvatarImg from "../svgs/avatar_icon.svg";
+import GridImg from "../svgs/grid_view.svg";
+import TableImg from "../svgs/table_view.svg";
 
 const VideoHeader = styled.header`
   grid-area: header;
-
   position: fixed;
   top: 0;
 
@@ -53,17 +55,29 @@ const SearchBtn = styled.button`
   padding: auto;
 `;
 
-const SearchIcon = styled(Search)`
+const SearchIcon = styled(SearchImg)`
  width: 60%;
  height: 60%;
 
 `;
 
 const LayoutBtn = styled.button`
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   margin-right: 20px;
   border: none;
+  padding: 0;
+  background: none;
+`;
+
+const GridIcon = styled(GridImg)`
+  width: 100%;
+  height: 100%;
+`;
+
+const TableIcon = styled(TableImg)`
+  width: 100%;
+  height: 100%;
 `;
 
 const AvatarBtn = styled.button`
@@ -71,14 +85,14 @@ const AvatarBtn = styled.button`
   height: 50px;
   border-radius: 50%;
   border: none;
-  background: pink;
+  background: #fca311;
   padding: 0;
 
-  & > img {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-  }
+`;
+
+const AvatarIcon = styled(AvatarImg)`
+  width: 100%;
+  height: 100%;
 `;
 
 const Masthead = styled.div`
@@ -131,10 +145,16 @@ function Header({userEmail}) {
         </SearchBar>
 
         <Masthead ref={node}>
-          <LayoutBtn>G</LayoutBtn>
-          <LayoutBtn>T</LayoutBtn>
+          <LayoutBtn> 
+            <GridIcon/>
+          </LayoutBtn>
+
+          <LayoutBtn>
+            <TableIcon/>
+          </LayoutBtn>
+
           <AvatarBtn type="button" onClick={() => {setOpen(!open)}} >
-            <img src={profile.avatar}/>
+            <AvatarIcon/>
           </AvatarBtn>
           {open && (
               <PopUpProfile userEmail={userEmail} profile={profile}/>
