@@ -31,11 +31,12 @@ function VideoCategory ({uniqueCategories, changeCategory, selectedCategory}) {
   return (
     <FilterBar>
       <Category onClick={() => {changeCategory('all')}} selected={selectedCategory === 'all'}>all</Category>
-      {uniqueCategories.map((tagName) => {
+      {uniqueCategories.map((tagName, index) => {
         return (
           <Category 
             onClick={() => {changeCategory(tagName)}} 
             selected={selectedCategory === tagName}
+            key={index}
           >
             {tagName}
           </Category>
