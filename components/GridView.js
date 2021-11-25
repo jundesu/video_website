@@ -4,12 +4,12 @@ const GridLayout = styled.ul`
   list-style: none;
   padding: 20px;
   margin: 0;
-  background-color: #e9ecef;
-
+  
   display: grid;
   grid-template-columns: repeat(4, 18vw);
   justify-content: space-between;
 
+  overflow-y: scroll;
 `;
 
 const Video = styled.li`
@@ -87,3 +87,5 @@ function GridView ({videos}){
 }
 
 export default GridView; 
+
+

@@ -9,7 +9,7 @@ const HomePage = styled.div`
   height: 100vh;
 
   display: grid;
-  grid-template-columns: 1fr 5fr;
+  grid-template-columns: 300px 1fr;
   grid-template-rows: 80px 100%;
   grid-template-areas: "header header"  
                        "sidebar main";
