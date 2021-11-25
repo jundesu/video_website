@@ -1,6 +1,11 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import AppleImg from "../svgs/apple_icon.svg";
+import FacebookImg from "../svgs/facebook_icon.svg";
+import GoogleImg from "../svgs/google_icon.svg";
+
+
 
 const LoginPage = styled.main`
   display: flex;
@@ -109,12 +114,28 @@ const ThirdParty = styled.section`
   width: 50%;
 `;
 
-const Social = styled.div`
+const Social = styled.button`
   width: 60px;
   height: 60px;
-  background-color: #fca311;
+  background-color: #ffffff;
   border-radius: 50%;
+  border: none;
+  padding: 0;
 `;
+
+const AppleIcon = styled(AppleImg)`
+  width: 100%;
+  height: 100%;
+`;
+const FacebookIcon = styled(FacebookImg)`
+  width: 100%;
+  height: 100%;
+`;
+const GoogleIcon = styled(GoogleImg)`
+  width: 90%;
+  height: 90%;
+`;
+
 const SignUpLink = styled.a`
   text-decoration: none;
   color: #adadad;
@@ -166,9 +187,15 @@ function Login() {
         <SignUpText>or sign up using</SignUpText>
 
         <ThirdParty>
-          <Social/>
-          <Social/>
-          <Social/>          
+          <Social>
+              <AppleIcon/>
+          </Social>
+          <Social>
+            <FacebookIcon/>
+          </Social>
+          <Social>
+            <GoogleIcon/>
+          </Social>
         </ThirdParty>
 
         <SignUpText>
