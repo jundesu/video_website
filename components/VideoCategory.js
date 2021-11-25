@@ -7,8 +7,11 @@ const FilterBar = styled.ul`
   justify-content: space-between;
   margin: 0;
   padding: 10px 0;
+  background-color: #ffffff;
+  overflow-x: scroll;
 
-  overflow-x: auto;
+  position: sticky;
+  top: 0px;
 
   &::-webkit-scrollbar {
     display: none;

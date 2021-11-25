@@ -9,7 +9,7 @@ const Subscriptions = styled.aside`
     text-transform: uppercase;
     color: #6c757d;
     font-size: 2rem;
-    margin: 20px 0 20px 30px;
+    margin: 20px 0 20px 20px;
   }
 `;
 
