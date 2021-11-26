@@ -6,7 +6,7 @@ import VideoCategory from "./VideoCategory";
 const Contents = styled.main`
 grid-area: main;
 
-background-color: #e9ecef;
+background-color: #f8f9fa;
 width: 100%;
 height: 100%;
 padding: 0px;

@@ -1,12 +1,15 @@
 import styled from "@emotion/styled";
 import PopUpProfile from "./PopUpProfile";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import SearchImg from "../svgs/search_icon.svg"; 
 import AvatarImg from "../svgs/avatar_icon.svg";
 import GridImg from "../svgs/grid_view.svg";
 import TableImg from "../svgs/table_view.svg";
 
-const VideoHeader = styled.header`
+import { ThemeContext } from "../theme/palette";
+
+
+const Container = styled.header`
   grid-area: header;
   position: fixed;
   top: 0;
@@ -18,7 +21,7 @@ const VideoHeader = styled.header`
   align-items: center;
   justify-content: space-between;
   padding: 0 30px;
-  background-color: #ffffff;
+  background-color: ${({backgroundColor}) => backgroundColor};
 `;
 
 const Logo = styled.a`
@@ -42,6 +45,7 @@ const SearchInput = styled.input`
   outline: none;
   border: none;
   padding: 10px;
+  background-color: #ffffff;
 
   &::placeholder {
     color: #adb5bd;
@@ -54,31 +58,35 @@ const SearchBtn = styled.button`
   height: 50px;
   border: none;
   padding: auto;
+  background-color: #e9ecef;
 `;
 
 const SearchIcon = styled(SearchImg)`
  width: 60%;
  height: 60%;
-
+ fill: #000000;
 `;
 
 const LayoutBtn = styled.button`
   width: 50px;
   height: 50px;
   margin-right: 20px;
-  border: none;
   padding: 0;
+  border: none;
   background: none;
 `;
 
 const GridIcon = styled(GridImg)`
   width: 100%;
   height: 100%;
+  fill: #000000;
 `;
 
 const TableIcon = styled(TableImg)`
   width: 100%;
   height: 100%;
+  fill: #000000;
+
 `;
 
 const AvatarBtn = styled.button`
@@ -113,6 +121,9 @@ function Header({userEmail}) {
   const node = useRef();
   const [profile, setProfile] = useState({});
 
+  const {theme} = useContext(ThemeContext);
+
+
   const handleClickoutside = (e) => {
     if(node.current.contains(e.target)){
       return
@@ -134,7 +145,7 @@ function Header({userEmail}) {
   }, []);
 
   return (
-    <VideoHeader>
+    <Container backgroundColor={theme.headerBackgroundColor}>
         <Logo href="#">LOGO</Logo>
 
         <SearchBar>
@@ -154,7 +165,7 @@ function Header({userEmail}) {
             <TableIcon/>
           </LayoutBtn>
 
-          <AvatarBtn type="button" onClick={() => {setOpen(!open)}} >
+          <AvatarBtn type="button" onClick={() => {setOpen((prev) => !prev)}} >
             <AvatarIcon/>
           </AvatarBtn>
           {open && (
@@ -162,7 +173,7 @@ function Header({userEmail}) {
               )}
 
         </Masthead>
-    </VideoHeader>
+    </Container>
   );
 }
 

@@ -21,7 +21,8 @@ const FilterBar = styled.ul`
 const Category = styled.li`
   font-size: 1.5rem;
   color: ${({selected}) => selected ? '#ffffff' : '#000000' };
-  background-color: ${({selected}) => selected ? '#000000' : '#e9ecef' };
+  background-color: ${({selected}) => selected ? '#000000' : '#f8f9fa' };
+  border: ${({selected}) => selected ? '1px solid #000000' : '1px solid #ced4da' };
   border-radius: 20px;
   padding: 10px 20px;
   margin-right: 20px;

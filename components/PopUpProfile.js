@@ -3,6 +3,8 @@ import SignOutImg from "../svgs/signOut_icon.svg";
 import DarkImg from "../svgs/darkMode_icon.svg";
 import AvatarImg from "../svgs/avatar_icon.svg";
 
+import { ThemeContext } from "../theme/palette";
+import { useContext } from "react";
 
 const PopupContainer = styled.div`
   width: 300px;
@@ -128,11 +130,13 @@ const SignOut = styled.a`
   }
 `;
 
-const SignOuticon = styled(SignOutImg)`
+const SignOutIcon = styled(SignOutImg)`
 
 `;
 
 function PopUpProfile({userEmail, profile}){
+
+  const {toggleTheme} = useContext(ThemeContext);
 
   return (
     <PopupContainer>
@@ -147,12 +151,12 @@ function PopUpProfile({userEmail, profile}){
       <DarkMode for="dark-mode">
           <DarkModeIcon/>
           <span>Dark mode</span>
-          <input type="checkbox" id="dark-mode"/>
+          <input type="checkbox" id="dark-mode" onClick={toggleTheme}/>
           <span className="slider"></span>
       </DarkMode>
 
       <SignOut href="/Login">
-        <SignOuticon/>
+        <SignOutIcon/>
         <span>Sign out</span>
       </SignOut>
 
