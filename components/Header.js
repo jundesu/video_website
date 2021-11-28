@@ -35,8 +35,8 @@ const Logo = styled.a`
 const SearchBar = styled.div`
   display: flex;
   align-items: center;
-  border: 1px solid #dee2e6;
-
+  border: 1px solid ${({borderColor}) => borderColor};
+  
 `;
 
 const SearchInput = styled.input`
@@ -45,11 +45,11 @@ const SearchInput = styled.input`
   outline: none;
   border: none;
   padding: 10px;
-  background-color: #ffffff;
+  background-color: ${({backgroundColor}) => backgroundColor};
+  color: ${(color) => color};
 
   &::placeholder {
     color: #adb5bd;
-    
   }
 `;
 
@@ -58,13 +58,13 @@ const SearchBtn = styled.button`
   height: 50px;
   border: none;
   padding: auto;
-  background-color: #e9ecef;
+  background-color: ${({backgroundColor}) => backgroundColor};
 `;
 
 const SearchIcon = styled(SearchImg)`
- width: 60%;
- height: 60%;
- fill: #000000;
+  width: 60%;
+  height: 60%;
+  fill: ${({fill}) => fill };
 `;
 
 const LayoutBtn = styled.button`
@@ -79,14 +79,13 @@ const LayoutBtn = styled.button`
 const GridIcon = styled(GridImg)`
   width: 100%;
   height: 100%;
-  fill: #000000;
+  fill: ${({fill}) => fill };
 `;
 
 const TableIcon = styled(TableImg)`
   width: 100%;
   height: 100%;
-  fill: #000000;
-
+  fill: ${({fill}) => fill };
 `;
 
 const AvatarBtn = styled.button`
@@ -148,21 +147,21 @@ function Header({userEmail}) {
     <Container backgroundColor={theme.headerBackgroundColor}>
         <Logo href="#">LOGO</Logo>
 
-        <SearchBar>
+        <SearchBar borderColor={theme.searchBarBorderColor}>
           <label htmlFor="search"></label>
-          <SearchInput type="search" id="search" placeholder="Search" name="search"></SearchInput>
-          <SearchBtn type="button">
-            <SearchIcon/>
+          <SearchInput type="search" id="search" placeholder="Search" name="search" backgroundColor={theme.searchInputBackgroundColor} color={theme.searchInputColor}></SearchInput>
+          <SearchBtn type="button" backgroundColor={theme.searchBtnbackgroundColor}>
+            <SearchIcon fill={theme.searchIconfill}/>
           </SearchBtn>
         </SearchBar>
 
         <Masthead ref={node}>
           <LayoutBtn> 
-            <GridIcon/>
+            <GridIcon fill={theme.gridIconfill}/>
           </LayoutBtn>
 
           <LayoutBtn>
-            <TableIcon/>
+            <TableIcon fill={theme.tableIconfill}/>
           </LayoutBtn>
 
           <AvatarBtn type="button" onClick={() => {setOpen((prev) => !prev)}} >

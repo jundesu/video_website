@@ -10,7 +10,7 @@ const PopupContainer = styled.div`
   width: 300px;
   height: 350px;
   border: 1px solid #dee2e6;
-  background-color: #ffffff;
+  background-color: ${({backgroundColor}) => backgroundColor} ;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -38,19 +38,20 @@ const AvatarIcon = styled(AvatarImg)`
 `;
 
 const Name = styled.div`
-grid-column-start: 2;
-grid-column-end: 3;
+  grid-column-start: 2;
+  grid-column-end: 3;
 
   text-transform: capitalize;
   font-size: 2rem;
   font-weight: 600;
+  color: ${({color}) => color};
 
 `;
 const Account = styled.div`
 grid-column-start: 2;
 grid-column-end: 3;
 
-  color: #b7b7a4;
+  color: #adb5bd;
   font-size: 1.5rem;
 
 `;
@@ -62,37 +63,42 @@ const ManagementLink = styled.a`
   font-size: 2rem;
 `;
 
-const DarkModeIcon = styled(DarkImg)`
-
-`;
-
-const DarkMode = styled.label`
+const DarkModeLabel = styled.label`
     width: 100%;
-    font-size: 2rem;
-    font-weight: 300;
     display: flex;
     align-items: center;
     cursor: pointer;
 
-  & > span {
-    margin-left: 10px;
-  }
-
   & > input {
     opacity: 0;
+    width: 0;
+    height: 0;
   }
 
-  .slider {
-    display: inline-block;
-    width: 45px;
-    height: 20px;
-    border-radius: 20px;
-    position: relative;
-    transition: 1s;
-    background-color: ${({checked}) => checked ? '#fca311' : '#dee2e6'};
-  }
+`;
+const DarkModeIcon = styled(DarkImg)`
+  width: 25px;
+  height: 25px;
+  stroke: ${(stroke) => stroke};
+`;
 
-  .slider:before {
+const DarkModeText = styled.span`
+  font-size: 2rem;
+  font-weight: 300;
+  margin-left: 10px;
+`;
+
+const Slider = styled.span`
+  display: inline-block;
+  width: 45px;
+  height: 20px;
+  border-radius: 20px;
+  margin-left: 10px;
+  position: relative;
+  transition: 1s;
+  background-color: ${({checked}) => checked ? '#fca311' : '#dee2e6'};
+
+  &:before {
     content: "";
     width: 20px;
     height: 20px;
@@ -106,6 +112,7 @@ const DarkMode = styled.label`
   }
 
 `;
+
 
 const SignOut = styled.a`
   width: 100%;
@@ -127,25 +134,24 @@ const SignOutIcon = styled(SignOutImg)`
 
 function PopUpProfile({userEmail, profile}){
 
-  const {isDark, toggleTheme} = useContext(ThemeContext);
+  const {isDark, theme, toggleTheme} = useContext(ThemeContext);
 
   return (
-    <PopupContainer>
+    <PopupContainer backgroundColor={theme.popupContainerBackgroundColor}>
       <Profile>
         <AvatarIcon />
-        <Name>{profile.name}</Name>
+        <Name color={theme.nameColor}>{profile.name}</Name>
         <Account>{userEmail}</Account>
       </Profile>
 
       <ManagementLink href="#">Manage your account</ManagementLink>
 
-      <DarkMode htmlFor="dark-mode" checked={isDark}>
-          <DarkModeIcon/>
-          <span>Dark mode</span>
+      <DarkModeLabel htmlFor="dark-mode">
+          <DarkModeIcon stroke={theme.darkModeIconColor}/>
+          <DarkModeText >Dark mode</DarkModeText>
+          <Slider checked={isDark}></Slider>
           <input type="checkbox" id="dark-mode" onClick={toggleTheme} />
-          {console.log(isDark)}
-          <span className="slider"></span>
-      </DarkMode>
+      </DarkModeLabel>
 
       <SignOut href="/Login">
         <SignOutIcon/>
