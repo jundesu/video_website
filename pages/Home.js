@@ -24,7 +24,7 @@ function Home () {
   const [isDark, setIsDark] = useState(false);
   const theme = isDark ? palette.dark : palette.light;
   const toggleTheme = () => {setIsDark((prev)=> !prev )};
-  const defaultTheme = {theme, toggleTheme};
+  const defaultTheme = {isDark, theme, toggleTheme};
 
   return (
     <ThemeContext.Provider value={defaultTheme}>

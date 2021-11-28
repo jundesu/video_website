@@ -86,11 +86,10 @@ const DarkMode = styled.label`
     display: inline-block;
     width: 45px;
     height: 20px;
-    background-color: #dee2e6;
     border-radius: 20px;
     position: relative;
     transition: 1s;
-
+    background-color: ${({checked}) => checked ? '#fca311' : '#dee2e6'};
   }
 
   .slider:before {
@@ -103,15 +102,7 @@ const DarkMode = styled.label`
     top: 0%;
     left: 0%;
     transition: 1s;
-
-  }
-
-  & > input:checked + .slider {
-    background-color: #fca311;
-  }
-
-  & > input:checked + .slider:before {
-    transform: translate(25px, 0);
+    transform: ${({checked}) => checked ? 'translate(25px, 0)' : 'translate(0, 0)'};
   }
 
 `;
@@ -136,7 +127,7 @@ const SignOutIcon = styled(SignOutImg)`
 
 function PopUpProfile({userEmail, profile}){
 
-  const {toggleTheme} = useContext(ThemeContext);
+  const {isDark, toggleTheme} = useContext(ThemeContext);
 
   return (
     <PopupContainer>
@@ -148,10 +139,11 @@ function PopUpProfile({userEmail, profile}){
 
       <ManagementLink href="#">Manage your account</ManagementLink>
 
-      <DarkMode for="dark-mode">
+      <DarkMode htmlFor="dark-mode" checked={isDark}>
           <DarkModeIcon/>
           <span>Dark mode</span>
-          <input type="checkbox" id="dark-mode" onClick={toggleTheme}/>
+          <input type="checkbox" id="dark-mode" onClick={toggleTheme} />
+          {console.log(isDark)}
           <span className="slider"></span>
       </DarkMode>
 
@@ -166,3 +158,12 @@ function PopUpProfile({userEmail, profile}){
 }
 
 export default PopUpProfile;
+
+
+// & > input:checked + .slider {
+//   background-color: #fca311;
+// }
+
+// & > input:checked + .slider:before {
+//   transform: translate(25px, 0);
+// }
