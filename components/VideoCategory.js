@@ -36,22 +36,22 @@ const Category = styled.li`
 
 
 function VideoCategory ({uniqueCategories, changeCategory, selectedCategory}) {
-   const {theme} = useContext(ThemeContext);
-   
-   const selectedAll = selectedCategory === 'all';
+  const {theme} = useContext(ThemeContext);
+  
+  const selectedAll = selectedCategory === 'all';
 
   return (
     <FilterBar background={theme.filterBarBackgroundColorl} borderColor={theme.filterBarBorderColor}>
       <Category onClick={() => {changeCategory('all')}} 
-      color={selectedAll ? theme.selectedCategoryColor : theme.categoryColor}
-      backgroundColor={selectedAll ? theme.selectedCategoryBackgroundColor : theme.categoryBackgroundColor}
-      borderColor={selectedAll ? theme.selectedCategoryBorderColor : theme.categoryBorderColor}
+        color={selectedAll ? theme.selectedCategoryColor : theme.categoryColor}
+        backgroundColor={selectedAll ? theme.selectedCategoryBackgroundColor : theme.categoryBackgroundColor}
+        borderColor={selectedAll ? theme.selectedCategoryBorderColor : theme.categoryBorderColor}
       >
         all
       </Category>
       
       {uniqueCategories.map((tagName, index) => {
-        let selected = selectedCategory === tagName;
+        const selected = selectedCategory === tagName;
 
         return (
           <Category 

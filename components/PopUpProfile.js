@@ -9,7 +9,7 @@ import { useContext } from "react";
 const PopupContainer = styled.div`
   width: 300px;
   height: 350px;
-  border: 1px solid #dee2e6;
+  border: 1px solid ${({borderColor}) => borderColor};
   background-color: ${({backgroundColor}) => backgroundColor} ;
   display: flex;
   flex-direction: column;
@@ -140,7 +140,7 @@ function PopUpProfile({userEmail, profile}){
   const {isDark, theme, toggleTheme} = useContext(ThemeContext);
 
   return (
-    <PopupContainer backgroundColor={theme.popupContainerBackgroundColor}>
+    <PopupContainer backgroundColor={theme.popupContainerBackgroundColor} borderColor={theme.popupContainerBorderColor}>
       <Profile>
         <AvatarIcon />
         <Name color={theme.nameColor}>{profile.name}</Name>

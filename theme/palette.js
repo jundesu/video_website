@@ -14,6 +14,7 @@ const light ={
   tableIconfill: '#000000',
   // profile
   popupContainerBackgroundColor: '#ffffff',
+  popupContainerBorderColor: '#dee2e6',
   nameColor: '#000000',
   darkModeIconColor: '#000000',
   signOutIconColor: '#000000',
@@ -52,6 +53,7 @@ const dark = {
   tableIconfill: '#ffffff',
   // profile
   popupContainerBackgroundColor: '#1a1a1a',
+  popupContainerBorderColor: '#2c2c2c',
   nameColor: '#f8f9fa',
   darkModeIconColor: '#f8f9fa',
   signOutIconColor: '#f8f9fa',
