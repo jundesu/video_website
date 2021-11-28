@@ -82,10 +82,11 @@ const DarkModeIcon = styled(DarkImg)`
   stroke: ${(stroke) => stroke};
 `;
 
-const DarkModeText = styled.span`
+const Text = styled.span`
   font-size: 2rem;
   font-weight: 300;
   margin-left: 10px;
+  color: ${({color}) => color};
 `;
 
 const Slider = styled.span`
@@ -129,7 +130,9 @@ const SignOut = styled.a`
 `;
 
 const SignOutIcon = styled(SignOutImg)`
-
+  width: 25px;
+  height: 25px;
+  stroke: ${(stroke) => stroke};
 `;
 
 function PopUpProfile({userEmail, profile}){
@@ -148,14 +151,14 @@ function PopUpProfile({userEmail, profile}){
 
       <DarkModeLabel htmlFor="dark-mode">
           <DarkModeIcon stroke={theme.darkModeIconColor}/>
-          <DarkModeText >Dark mode</DarkModeText>
+          <Text color={theme.textColor}>Dark mode</Text>
           <Slider checked={isDark}></Slider>
           <input type="checkbox" id="dark-mode" onClick={toggleTheme} />
       </DarkModeLabel>
 
       <SignOut href="/Login">
-        <SignOutIcon/>
-        <span>Sign out</span>
+        <SignOutIcon stroke={theme.signOutIconColor}/>
+        <Text color={theme.textColor}>Sign out</Text>
       </SignOut>
 
     </PopupContainer>
