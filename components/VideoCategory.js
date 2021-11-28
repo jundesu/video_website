@@ -25,9 +25,9 @@ const FilterBar = styled.ul`
 `;
 const Category = styled.li`
   font-size: 1.5rem;
-  color: ${({selected}) => selected ? '#ffffff' : '#000000' };
-  background-color: ${({selected}) => selected ? '#000000' : '#f8f9fa' };
-  border: ${({selected}) => selected ? '1px solid #000000' : '1px solid #ced4da' };
+  color: ${({color}) => color };
+  background-color: ${({backgroundColor}) => backgroundColor };
+  border: 1px solid ${({borderColor}) => borderColor };
   border-radius: 20px;
   padding: 10px 20px;
   margin-right: 20px;
@@ -37,16 +37,29 @@ const Category = styled.li`
 
 function VideoCategory ({uniqueCategories, changeCategory, selectedCategory}) {
    const {theme} = useContext(ThemeContext);
+   
+   const selectedAll = selectedCategory === 'all';
 
   return (
     <FilterBar background={theme.filterBarBackgroundColorl} borderColor={theme.filterBarBorderColor}>
-      <Category onClick={() => {changeCategory('all')}} selected={selectedCategory === 'all'} color={theme.categoryColor}>all</Category>
+      <Category onClick={() => {changeCategory('all')}} 
+      color={selectedAll ? theme.selectedCategoryColor : theme.categoryColor}
+      backgroundColor={selectedAll ? theme.selectedCategoryBackgroundColor : theme.categoryBackgroundColor}
+      borderColor={selectedAll ? theme.selectedCategoryBorderColor : theme.categoryBorderColor}
+      >
+        all
+      </Category>
+      
       {uniqueCategories.map((tagName, index) => {
+        let selected = selectedCategory === tagName;
+
         return (
           <Category 
-            onClick={() => {changeCategory(tagName)}} 
-            selected={selectedCategory === tagName}
             key={index}
+            onClick={() => {changeCategory(tagName)}} 
+            color={selected ? theme.selectedCategoryColor : theme.categoryColor}
+            backgroundColor={selected ? theme.selectedCategoryBackgroundColor : theme.categoryBackgroundColor}
+            borderColor={selected ? theme.selectedCategoryBorderColor : theme.categoryBorderColor}
           >
             {tagName}
           </Category>

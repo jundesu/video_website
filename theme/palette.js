@@ -28,6 +28,11 @@ const light ={
   filterBarBorderColor: '#e9ecef transparent #e9ecef transparent',
   categoryColor: '#000000',
   selectedCategoryColor: '#ffffff',
+  categoryBackgroundColor:'#f8f9fa',
+  selectedCategoryBackgroundColor:'#000000',
+  categoryBorderColor: '#ced4da',
+  selectedCategoryBorderColor: '#000000',
+
   //video
   videoTitleColor: '#000000',
   videoMessageColor: '#495057',
@@ -59,8 +64,13 @@ const dark = {
   //category
   filterBarBackgroundColorl: '#1a1a1a',
   filterBarBorderColor: '#2c2c2c transparent #2c2c2c transparent',
-  categoryColor: '#ffffff',
+  categoryColor: '#f8f9fa',
   selectedCategoryColor: '#000000',
+  categoryBackgroundColor:'#2c2c2c',
+  selectedCategoryBackgroundColor:'#e9ecef',
+  categoryBorderColor: '#495057',
+  selectedCategoryBorderColor: '#e9ecef',
+
   //video
   videoTitleColor: '#f8f9fa',
   videoMessageColor: '#adb5bd',
