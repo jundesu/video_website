@@ -1,12 +1,13 @@
 import styled from "@emotion/styled";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import GridView from "./gridView";
 import VideoCategory from "./VideoCategory";
+import { ThemeContext } from "../theme/palette";
 
 const Contents = styled.main`
 grid-area: main;
 
-background-color: #e9ecef;
+background-color: ${({background}) => background };
 width: 100%;
 height: 100%;
 padding: 0px;
@@ -24,6 +25,7 @@ async function fetchVideos (){
 function VideoContents() {
   const [videos, setVideos] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const {theme} = useContext(ThemeContext);
 
   useEffect(() => {
     fetchVideos().then((videoList) => {
@@ -46,7 +48,7 @@ function VideoContents() {
 
 
   return (
-    <Contents>
+    <Contents background={theme.contentsBackgroundColor}>
       <VideoCategory uniqueCategories={uniqueCategories}
                      changeCategory={(selected) => setSelectedCategory(selected)}
                      selectedCategory={selectedCategory} />

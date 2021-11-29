@@ -1,4 +1,6 @@
 import styled from "@emotion/styled";
+import { useContext } from "react";
+import { ThemeContext } from "../theme/palette";
 
 const FilterBar = styled.ul`
   list-style: none;
@@ -7,7 +9,10 @@ const FilterBar = styled.ul`
   justify-content: space-between;
   margin: 0;
   padding: 10px 0;
-  background-color: #ffffff;
+  background-color: ${({background}) => background};
+  border: 1px solid;
+  border-color: ${({borderColor}) => borderColor} ;
+
   overflow-x: scroll;
 
   position: sticky;
@@ -20,8 +25,9 @@ const FilterBar = styled.ul`
 `;
 const Category = styled.li`
   font-size: 1.5rem;
-  color: ${({selected}) => selected ? '#ffffff' : '#000000' };
-  background-color: ${({selected}) => selected ? '#000000' : '#e9ecef' };
+  color: ${({color}) => color };
+  background-color: ${({backgroundColor}) => backgroundColor };
+  border: 1px solid ${({borderColor}) => borderColor };
   border-radius: 20px;
   padding: 10px 20px;
   margin-right: 20px;
@@ -30,16 +36,30 @@ const Category = styled.li`
 
 
 function VideoCategory ({uniqueCategories, changeCategory, selectedCategory}) {
-   
+  const {theme} = useContext(ThemeContext);
+  
+  const selectedAll = selectedCategory === 'all';
+
   return (
-    <FilterBar>
-      <Category onClick={() => {changeCategory('all')}} selected={selectedCategory === 'all'}>all</Category>
+    <FilterBar background={theme.filterBarBackgroundColorl} borderColor={theme.filterBarBorderColor}>
+      <Category onClick={() => {changeCategory('all')}} 
+        color={selectedAll ? theme.selectedCategoryColor : theme.categoryColor}
+        backgroundColor={selectedAll ? theme.selectedCategoryBackgroundColor : theme.categoryBackgroundColor}
+        borderColor={selectedAll ? theme.selectedCategoryBorderColor : theme.categoryBorderColor}
+      >
+        all
+      </Category>
+      
       {uniqueCategories.map((tagName, index) => {
+        const selected = selectedCategory === tagName;
+
         return (
           <Category 
-            onClick={() => {changeCategory(tagName)}} 
-            selected={selectedCategory === tagName}
             key={index}
+            onClick={() => {changeCategory(tagName)}} 
+            color={selected ? theme.selectedCategoryColor : theme.categoryColor}
+            backgroundColor={selected ? theme.selectedCategoryBackgroundColor : theme.categoryBackgroundColor}
+            borderColor={selected ? theme.selectedCategoryBorderColor : theme.categoryBorderColor}
           >
             {tagName}
           </Category>

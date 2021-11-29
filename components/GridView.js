@@ -1,4 +1,6 @@
 import styled from "@emotion/styled";
+import { useContext } from "react";
+import { ThemeContext } from "../theme/palette";
 
 const GridLayout = styled.ul`
   list-style: none;
@@ -29,7 +31,7 @@ const Thumbnail = styled.img`
 `;
 
 const ChannelIcon = styled.img`
-grid-area: icon;
+  grid-area: icon;
 
   background: #000000;
   border-radius: 50%;
@@ -39,13 +41,21 @@ grid-area: icon;
 `;
 
 const VideoMessage = styled.section`
-grid-area: message;
+  grid-area: message;
 
   display: flex;
   flex-direction: column;
 
-& > h3 {
-  color: #000000;
+& > h4 {
+  color: ${({color}) => color};
+  font-size: 1.5rem;
+  font-weight: 300;
+  margin: 10px 0 0 0;
+}
+`;
+
+const VideoTitle = styled.h3`
+  color: ${({color}) => color};
   font-size: 1.8rem;
   font-weight: 400;
   margin: 0;
@@ -53,19 +63,12 @@ grid-area: message;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;  
-  overflow: hidden;
- 
-}
-
-& > h4 {
-  color: #495057;
-  font-size: 1.5rem;
-  font-weight: 300;
-  margin: 10px 0 0 0;
-}
+  overflow: hidden; 
 `;
 
-function GridView ({videos}){
+function GridView({videos}) {
+  const {theme} = useContext(ThemeContext);
+
   return (
       <GridLayout>
         {videos.map((video, index) => {
@@ -73,8 +76,8 @@ function GridView ({videos}){
             <Video key={index}>
               <Thumbnail src={video.thumbnailUrl} alt="thumbnail" />
               <ChannelIcon src={video.channelIcon}/>
-              <VideoMessage>
-                <h3>{video.title}</h3>
+              <VideoMessage color={theme.videoMessageColor}>
+                <VideoTitle color={theme.videoTitleColor}>{video.title}</VideoTitle>
                 <h4>{video.channelTitle}</h4>
                 <h4>{video.viewCount} views</h4>
                 {/* <span>{video.category}</span> */}

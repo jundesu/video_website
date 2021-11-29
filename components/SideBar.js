@@ -1,14 +1,16 @@
 import styled from "@emotion/styled";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { ThemeContext } from "../theme/palette";
 
 const Subscriptions = styled.aside`
   grid-area: sidebar;
   overflow-y: scroll;
+  background-color: ${({background}) => background} ;
 
   & > h1 {
     text-transform: uppercase;
     color: #6c757d;
-    font-size: 2rem;
+    font-size: 1.8rem;
     margin: 20px 0 20px 20px;
   }
 `;
@@ -34,16 +36,17 @@ const ChannelLink = styled.a`
     height: 30px;
   }
 
-  & > h2 {
-    color: #000000;
-    font-size: 1.2rem;
-    font-weight: 300;
-    width: 150px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
 `;
+const ChannelTitle = styled.h2`
+  color: ${({color}) => color};
+  font-size: 1.2rem;
+  font-weight: 300;
+  width: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
 
 const UnreadDot = styled.span`
   width: 6px;
@@ -62,6 +65,8 @@ async function fetchChannelList () {
 function Sidebar () {
   const [channels, setChannel] = useState([]);
 
+  const {theme} = useContext(ThemeContext);
+
   useEffect(() =>{
     fetchChannelList().then((channels) => {
       setChannel(channels);
@@ -70,7 +75,7 @@ function Sidebar () {
 
 
   return (
-    <Subscriptions>
+    <Subscriptions background={theme.subscriptionsBackgroundColor}>
       <h1>subscriptions</h1>
       <ChannelList>
         {channels.map((channel, index) => {
@@ -78,7 +83,7 @@ function Sidebar () {
             <li key={index}>
               <ChannelLink href="#">
                 <img src={channel.channelIcon} alt="channel image"/>
-                <h2>{channel.channelTitle}</h2>
+                <ChannelTitle color={theme.channelTitleColor}>{channel.channelTitle}</ChannelTitle>
                 <UnreadDot unread={channel.unreadCount > 0 } />
               </ChannelLink>
             </li>

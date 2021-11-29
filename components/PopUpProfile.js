@@ -3,12 +3,14 @@ import SignOutImg from "../svgs/signOut_icon.svg";
 import DarkImg from "../svgs/darkMode_icon.svg";
 import AvatarImg from "../svgs/avatar_icon.svg";
 
+import { ThemeContext } from "../theme/palette";
+import { useContext } from "react";
 
 const PopupContainer = styled.div`
   width: 300px;
   height: 350px;
-  border: 1px solid #dee2e6;
-  background-color: #ffffff;
+  border: 1px solid ${({borderColor}) => borderColor};
+  background-color: ${({backgroundColor}) => backgroundColor} ;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -36,19 +38,20 @@ const AvatarIcon = styled(AvatarImg)`
 `;
 
 const Name = styled.div`
-grid-column-start: 2;
-grid-column-end: 3;
+  grid-column-start: 2;
+  grid-column-end: 3;
 
   text-transform: capitalize;
   font-size: 2rem;
   font-weight: 600;
+  color: ${({color}) => color};
 
 `;
 const Account = styled.div`
 grid-column-start: 2;
 grid-column-end: 3;
 
-  color: #b7b7a4;
+  color: #adb5bd;
   font-size: 1.5rem;
 
 `;
@@ -60,38 +63,43 @@ const ManagementLink = styled.a`
   font-size: 2rem;
 `;
 
-const DarkModeIcon = styled(DarkImg)`
-
-`;
-
-const DarkMode = styled.label`
+const DarkModeLabel = styled.label`
     width: 100%;
-    font-size: 2rem;
-    font-weight: 300;
     display: flex;
     align-items: center;
     cursor: pointer;
 
-  & > span {
-    margin-left: 10px;
-  }
-
   & > input {
     opacity: 0;
+    width: 0;
+    height: 0;
   }
 
-  .slider {
-    display: inline-block;
-    width: 45px;
-    height: 20px;
-    background-color: #dee2e6;
-    border-radius: 20px;
-    position: relative;
-    transition: 1s;
+`;
+const DarkModeIcon = styled(DarkImg)`
+  width: 25px;
+  height: 25px;
+  stroke: ${(stroke) => stroke};
+`;
 
-  }
+const Text = styled.span`
+  font-size: 2rem;
+  font-weight: 300;
+  margin-left: 10px;
+  color: ${({color}) => color};
+`;
 
-  .slider:before {
+const Slider = styled.span`
+  display: inline-block;
+  width: 45px;
+  height: 20px;
+  border-radius: 20px;
+  margin-left: 10px;
+  position: relative;
+  transition: 1s;
+  background-color: ${({checked}) => checked ? '#fca311' : '#dee2e6'};
+
+  &:before {
     content: "";
     width: 20px;
     height: 20px;
@@ -101,18 +109,11 @@ const DarkMode = styled.label`
     top: 0%;
     left: 0%;
     transition: 1s;
-
-  }
-
-  & > input:checked + .slider {
-    background-color: #fca311;
-  }
-
-  & > input:checked + .slider:before {
-    transform: translate(25px, 0);
+    transform: ${({checked}) => checked ? 'translate(25px, 0)' : 'translate(0, 0)'};
   }
 
 `;
+
 
 const SignOut = styled.a`
   width: 100%;
@@ -128,32 +129,36 @@ const SignOut = styled.a`
   }
 `;
 
-const SignOuticon = styled(SignOutImg)`
-
+const SignOutIcon = styled(SignOutImg)`
+  width: 25px;
+  height: 25px;
+  stroke: ${(stroke) => stroke};
 `;
 
 function PopUpProfile({userEmail, profile}){
 
+  const {isDark, theme, toggleTheme} = useContext(ThemeContext);
+
   return (
-    <PopupContainer>
+    <PopupContainer backgroundColor={theme.popupContainerBackgroundColor} borderColor={theme.popupContainerBorderColor}>
       <Profile>
         <AvatarIcon />
-        <Name>{profile.name}</Name>
+        <Name color={theme.nameColor}>{profile.name}</Name>
         <Account>{userEmail}</Account>
       </Profile>
 
       <ManagementLink href="#">Manage your account</ManagementLink>
 
-      <DarkMode for="dark-mode">
-          <DarkModeIcon/>
-          <span>Dark mode</span>
-          <input type="checkbox" id="dark-mode"/>
-          <span className="slider"></span>
-      </DarkMode>
+      <DarkModeLabel htmlFor="dark-mode">
+          <DarkModeIcon stroke={theme.darkModeIconColor}/>
+          <Text color={theme.textColor}>Dark mode</Text>
+          <Slider checked={isDark}></Slider>
+          <input type="checkbox" id="dark-mode" onClick={toggleTheme} />
+      </DarkModeLabel>
 
       <SignOut href="/Login">
-        <SignOuticon/>
-        <span>Sign out</span>
+        <SignOutIcon stroke={theme.signOutIconColor}/>
+        <Text color={theme.textColor}>Sign out</Text>
       </SignOut>
 
     </PopupContainer>
@@ -162,3 +167,12 @@ function PopUpProfile({userEmail, profile}){
 }
 
 export default PopUpProfile;
+
+
+// & > input:checked + .slider {
+//   background-color: #fca311;
+// }
+
+// & > input:checked + .slider:before {
+//   transform: translate(25px, 0);
+// }

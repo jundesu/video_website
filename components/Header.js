@@ -1,12 +1,15 @@
 import styled from "@emotion/styled";
 import PopUpProfile from "./PopUpProfile";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import SearchImg from "../svgs/search_icon.svg"; 
 import AvatarImg from "../svgs/avatar_icon.svg";
 import GridImg from "../svgs/grid_view.svg";
 import TableImg from "../svgs/table_view.svg";
 
-const VideoHeader = styled.header`
+import { ThemeContext } from "../theme/palette";
+
+
+const Container = styled.header`
   grid-area: header;
   position: fixed;
   top: 0;
@@ -18,7 +21,7 @@ const VideoHeader = styled.header`
   align-items: center;
   justify-content: space-between;
   padding: 0 30px;
-  background-color: #ffffff;
+  background-color: ${({backgroundColor}) => backgroundColor};
 `;
 
 const Logo = styled.a`
@@ -32,8 +35,8 @@ const Logo = styled.a`
 const SearchBar = styled.div`
   display: flex;
   align-items: center;
-  border: 1px solid #dee2e6;
-
+  border: 1px solid ${({borderColor}) => borderColor};
+  
 `;
 
 const SearchInput = styled.input`
@@ -42,10 +45,11 @@ const SearchInput = styled.input`
   outline: none;
   border: none;
   padding: 10px;
+  background-color: ${({backgroundColor}) => backgroundColor};
+  color: ${(color) => color};
 
   &::placeholder {
     color: #adb5bd;
-    
   }
 `;
 
@@ -54,31 +58,34 @@ const SearchBtn = styled.button`
   height: 50px;
   border: none;
   padding: auto;
+  background-color: ${({backgroundColor}) => backgroundColor};
 `;
 
 const SearchIcon = styled(SearchImg)`
- width: 60%;
- height: 60%;
-
+  width: 60%;
+  height: 60%;
+  fill: ${({fill}) => fill };
 `;
 
 const LayoutBtn = styled.button`
   width: 50px;
   height: 50px;
   margin-right: 20px;
-  border: none;
   padding: 0;
+  border: none;
   background: none;
 `;
 
 const GridIcon = styled(GridImg)`
   width: 100%;
   height: 100%;
+  fill: ${({fill}) => fill };
 `;
 
 const TableIcon = styled(TableImg)`
   width: 100%;
   height: 100%;
+  fill: ${({fill}) => fill };
 `;
 
 const AvatarBtn = styled.button`
@@ -113,6 +120,9 @@ function Header({userEmail}) {
   const node = useRef();
   const [profile, setProfile] = useState({});
 
+  const {theme} = useContext(ThemeContext);
+
+
   const handleClickoutside = (e) => {
     if(node.current.contains(e.target)){
       return
@@ -134,27 +144,27 @@ function Header({userEmail}) {
   }, []);
 
   return (
-    <VideoHeader>
+    <Container backgroundColor={theme.headerBackgroundColor}>
         <Logo href="#">LOGO</Logo>
 
-        <SearchBar>
+        <SearchBar borderColor={theme.searchBarBorderColor}>
           <label htmlFor="search"></label>
-          <SearchInput type="search" id="search" placeholder="Search" name="search"></SearchInput>
-          <SearchBtn type="button">
-            <SearchIcon/>
+          <SearchInput type="search" id="search" placeholder="Search" name="search" backgroundColor={theme.searchInputBackgroundColor} color={theme.searchInputColor}></SearchInput>
+          <SearchBtn type="button" backgroundColor={theme.searchBtnbackgroundColor}>
+            <SearchIcon fill={theme.searchIconfill}/>
           </SearchBtn>
         </SearchBar>
 
         <Masthead ref={node}>
           <LayoutBtn> 
-            <GridIcon/>
+            <GridIcon fill={theme.gridIconfill}/>
           </LayoutBtn>
 
           <LayoutBtn>
-            <TableIcon/>
+            <TableIcon fill={theme.tableIconfill}/>
           </LayoutBtn>
 
-          <AvatarBtn type="button" onClick={() => {setOpen(!open)}} >
+          <AvatarBtn type="button" onClick={() => {setOpen((prev) => !prev)}} >
             <AvatarIcon/>
           </AvatarBtn>
           {open && (
@@ -162,7 +172,7 @@ function Header({userEmail}) {
               )}
 
         </Masthead>
-    </VideoHeader>
+    </Container>
   );
 }
 
