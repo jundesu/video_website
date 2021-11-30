@@ -3,8 +3,6 @@ import PopUpProfile from "./PopUpProfile";
 import { useContext, useEffect, useRef, useState } from "react";
 import SearchImg from "../svgs/search_icon.svg"; 
 import AvatarImg from "../svgs/avatar_icon.svg";
-import GridImg from "../svgs/grid_view.svg";
-import TableImg from "../svgs/table_view.svg";
 
 import { ThemeContext } from "../theme/palette";
 
@@ -67,27 +65,6 @@ const SearchIcon = styled(SearchImg)`
   fill: ${({fill}) => fill };
 `;
 
-const LayoutBtn = styled.button`
-  width: 50px;
-  height: 50px;
-  margin-right: 20px;
-  padding: 0;
-  border: none;
-  background: none;
-`;
-
-const GridIcon = styled(GridImg)`
-  width: 100%;
-  height: 100%;
-  fill: ${({fill}) => fill };
-`;
-
-const TableIcon = styled(TableImg)`
-  width: 100%;
-  height: 100%;
-  fill: ${({fill}) => fill };
-`;
-
 const AvatarBtn = styled.button`
   width: 50px;
   height: 50px;
@@ -103,7 +80,7 @@ const AvatarIcon = styled(AvatarImg)`
   height: 100%;
 `;
 
-const Masthead = styled.div`
+const User = styled.div`
   display: flex;
   align-items: center;
   position: relative;
@@ -155,23 +132,14 @@ function Header({userEmail}) {
           </SearchBtn>
         </SearchBar>
 
-        <Masthead ref={node}>
-          <LayoutBtn> 
-            <GridIcon fill={theme.gridIconfill}/>
-          </LayoutBtn>
-
-          <LayoutBtn>
-            <TableIcon fill={theme.tableIconfill}/>
-          </LayoutBtn>
-
+        <User ref={node}>
           <AvatarBtn type="button" onClick={() => {setOpen((prev) => !prev)}} >
             <AvatarIcon/>
           </AvatarBtn>
           {open && (
               <PopUpProfile userEmail={userEmail} profile={profile}/>
-              )}
-
-        </Masthead>
+          )}
+        </User>
     </Container>
   );
 }
