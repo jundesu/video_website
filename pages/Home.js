@@ -8,14 +8,19 @@ import palette, {ThemeContext} from "../theme/palette";
 
 
 const HomePage = styled.div`
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: ${({backgroundColor}) => backgroundColor ? '#1a1a1a' : '#ffffff'};
 
-  display: grid;
-  grid-template-columns: 300px 1fr;
-  grid-template-rows: 80px 100%;
-  grid-template-areas: "header header"  
-                       "sidebar main";
+  & > main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    margin-top: 80px;
+
+  }
 `;
 
 function Home () {
@@ -28,10 +33,12 @@ function Home () {
 
   return (
     <ThemeContext.Provider value={defaultTheme}>
-      <HomePage>
+      <HomePage backgroundColor={isDark}>
         <Header userEmail={router.query?.email}/>
-        <Sidebar />
-        <VideoContents/>
+        <main>
+          <Sidebar />
+          <VideoContents/>
+        </main> 
       </HomePage>
     </ThemeContext.Provider>
       

@@ -3,12 +3,10 @@ import PopUpProfile from "./PopUpProfile";
 import { useContext, useEffect, useRef, useState } from "react";
 import SearchImg from "../svgs/search_icon.svg"; 
 import AvatarImg from "../svgs/avatar_icon.svg";
-
 import { ThemeContext } from "../theme/palette";
 
 
 const Container = styled.header`
-  grid-area: header;
   position: fixed;
   top: 0;
   z-index: 2;
@@ -18,7 +16,7 @@ const Container = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 30px;
+  padding: 0 30px 0 30px;
   background-color: ${({backgroundColor}) => backgroundColor};
 `;
 
@@ -122,7 +120,7 @@ function Header({userEmail}) {
 
   return (
     <Container backgroundColor={theme.headerBackgroundColor}>
-        <Logo href="#">LOGO</Logo>
+        <Logo href="/Home">LOGO</Logo>
 
         <SearchBar borderColor={theme.searchBarBorderColor}>
           <label htmlFor="search"></label>

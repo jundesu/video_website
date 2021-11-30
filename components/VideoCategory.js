@@ -12,7 +12,6 @@ const FilterBar = styled.ul`
   background-color: ${({background}) => background};
   border: 1px solid;
   border-color: ${({borderColor}) => borderColor} ;
-
   overflow-x: scroll;
 
   position: sticky;
@@ -21,8 +20,10 @@ const FilterBar = styled.ul`
   &::-webkit-scrollbar {
     display: none;
   }
-
 `;
+
+
+
 const Category = styled.li`
   font-size: 1.5rem;
   color: ${({color}) => color };
