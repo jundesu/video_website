@@ -1,16 +1,14 @@
 import styled from "@emotion/styled";
 import { useState, useEffect, useContext } from "react";
-import GridView from "./gridView";
+import Layout from "./Layout";
 import VideoCategory from "./VideoCategory";
 import { ThemeContext } from "../theme/palette";
 
-const Contents = styled.main`
-grid-area: main;
-
-background-color: ${({background}) => background };
+const Contents = styled.section`
 width: 100%;
 height: 100%;
-padding: 0px;
+
+background-color: ${({background}) => background };
 
 overflow-y: scroll;
 `;
@@ -53,7 +51,7 @@ function VideoContents() {
                      changeCategory={(selected) => setSelectedCategory(selected)}
                      selectedCategory={selectedCategory} />
 
-        <GridView videos={newVideos} />
+        <Layout videos={newVideos} />
     </Contents>
   );
 }

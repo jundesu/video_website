@@ -3,17 +3,20 @@ import { useEffect, useState, useContext } from "react";
 import { ThemeContext } from "../theme/palette";
 
 const Subscriptions = styled.aside`
-  grid-area: sidebar;
+  width: 300px;
+  height: 100%;
   overflow-y: scroll;
   background-color: ${({background}) => background} ;
+  padding: 20px;
 
   & > h1 {
     text-transform: uppercase;
     color: #6c757d;
     font-size: 1.8rem;
-    margin: 20px 0 20px 20px;
+    margin: 0 0 10px 0;
   }
 `;
+// margin: 20px 0 20px 20px;
 
 const ChannelList = styled.ul`
   list-style: none;
@@ -27,7 +30,7 @@ const ChannelLink = styled.a`
   align-items: center;
   justify-content: space-between;
   text-decoration: none;
-  padding: 0 30px;
+
 
   & > img {
     background: #000000;
