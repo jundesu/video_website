@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ThemeContext } from "../theme/palette";
 import LeftArrow from "../svgs/leftArrow_icon.svg";
 import RightArrow from "../svgs/rightArrow_icon.svg";
@@ -38,12 +38,10 @@ const FilterBar = styled.ul`
   margin: 0;
   padding: 10px 0;
   background-color: ${({background}) => background};
-
-  
   overflow-x: scroll;
-
   position: sticky;
   top: 0px;
+
 
   &::-webkit-scrollbar {
     display: none;
@@ -59,23 +57,39 @@ const Category = styled.li`
   padding: 10px 20px;
   margin-right: 20px;
   text-transform: capitalize;
+
+  transition-duration: 1s ;
+  transform: translateX(${({movement}) => movement}px);
 `;
 
 function VideoCategory ({uniqueCategories, changeCategory, selectedCategory}) {
   const {theme} = useContext(ThemeContext);
-  
+
   const selectedAll = selectedCategory === 'all';
+
+  const [movement, setMovement] = useState(0); 
+
+  const handleScrollNext = () => {
+      setMovement((prev) => prev - 300);
+  };
+  const handleScrollPrev = () => {
+    if(movement < 0) {
+      setMovement((prev) => prev + 300);
+    }
+    
+  };
 
   return (
     <ScrollContainer borderColor={theme.scrollContainerBorderColor}>
-      <ArrowBtn backgroundColor={theme.arrowBtnBackgroundColor}>
+      <ArrowBtn backgroundColor={theme.arrowBtnBackgroundColor} onClick={handleScrollPrev}>
         <PreviousIcon fill={theme.previousIconFill}/>
       </ArrowBtn>
-      <FilterBar background={theme.filterBarBackgroundColorl} >
+      <FilterBar background={theme.filterBarBackgroundColorl}>
         <Category onClick={() => {changeCategory('all')}} 
           color={selectedAll ? theme.selectedCategoryColor : theme.categoryColor}
           backgroundColor={selectedAll ? theme.selectedCategoryBackgroundColor : theme.categoryBackgroundColor}
           borderColor={selectedAll ? theme.selectedCategoryBorderColor : theme.categoryBorderColor}
+          movement={movement}
         >
           all
         </Category>
@@ -90,14 +104,15 @@ function VideoCategory ({uniqueCategories, changeCategory, selectedCategory}) {
               color={selected ? theme.selectedCategoryColor : theme.categoryColor}
               backgroundColor={selected ? theme.selectedCategoryBackgroundColor : theme.categoryBackgroundColor}
               borderColor={selected ? theme.selectedCategoryBorderColor : theme.categoryBorderColor}
+              movement={movement}
             >
               {tagName}
             </Category>
           )
         })}
       </FilterBar>
-      <ArrowBtn backgroundColor={theme.arrowBtnBackgroundColor}>
-        <NextIcon fill={theme.nextIconFill}/>
+      <ArrowBtn backgroundColor={theme.arrowBtnBackgroundColor} onClick={handleScrollNext}>
+        <NextIcon fill={theme.nextIconFill} />
       </ArrowBtn>
     </ScrollContainer>
   );
