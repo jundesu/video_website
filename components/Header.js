@@ -94,9 +94,8 @@ function Header({userEmail}) {
   const [open, setOpen] = useState(false);
   const node = useRef();
   const [profile, setProfile] = useState({});
-
+  
   const {theme} = useContext(ThemeContext);
-
 
   const handleClickoutside = (e) => {
     if(node.current.contains(e.target)){

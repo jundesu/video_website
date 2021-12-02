@@ -19,7 +19,6 @@ const HomePage = styled.div`
     height: 100%;
     display: flex;
     margin-top: 80px;
-
   }
 `;
 

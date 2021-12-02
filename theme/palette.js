@@ -25,15 +25,17 @@ const light ={
   //contents
   contentsBackgroundColor: '#f8f9fa',
   //category
+  scrollContainerBorderColor: '#e9ecef transparent #e9ecef transparent',
   filterBarBackgroundColorl: '#ffffff',
-  filterBarBorderColor: '#e9ecef transparent #e9ecef transparent',
   categoryColor: '#000000',
   selectedCategoryColor: '#ffffff',
   categoryBackgroundColor:'#f8f9fa',
   selectedCategoryBackgroundColor:'#000000',
   categoryBorderColor: '#ced4da',
   selectedCategoryBorderColor: '#000000',
-
+  arrowBtnBackgroundColor: '#ffffff',
+  previousIconFill: '#495057',
+  nextIconFill: '#495057',
   //video
   videoTitleColor: '#000000',
   videoMessageColor: '#495057',
@@ -64,15 +66,17 @@ const dark = {
   //contents
   contentsBackgroundColor: '#1a1a1a',
   //category
+  scrollContainerBorderColor: '#2c2c2c transparent #2c2c2c transparent',
   filterBarBackgroundColorl: '#1a1a1a',
-  filterBarBorderColor: '#2c2c2c transparent #2c2c2c transparent',
   categoryColor: '#f8f9fa',
   selectedCategoryColor: '#000000',
   categoryBackgroundColor:'#2c2c2c',
   selectedCategoryBackgroundColor:'#e9ecef',
   categoryBorderColor: '#495057',
   selectedCategoryBorderColor: '#e9ecef',
-
+  arrowBtnBackgroundColor: '#1a1a1a',
+  previousIconFill: '#f8f9fa',
+  nextIconFill: '#f8f9fa',
   //video
   videoTitleColor: '#f8f9fa',
   videoMessageColor: '#adb5bd',

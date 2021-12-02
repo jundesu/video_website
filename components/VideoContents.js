@@ -7,7 +7,6 @@ import { ThemeContext } from "../theme/palette";
 const Contents = styled.section`
 width: 100%;
 height: 100%;
-
 background-color: ${({background}) => background };
 
 overflow-y: scroll;
