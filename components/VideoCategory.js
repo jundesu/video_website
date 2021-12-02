@@ -10,6 +10,8 @@ const ScrollContainer = styled.div`
   display: flex;
   border: 1px solid;
   border-color: ${({borderColor}) => borderColor} ;
+  position: sticky;
+  top: 0px;
 `;
 
 const ArrowBtn = styled.button`
@@ -39,16 +41,12 @@ const FilterBar = styled.ul`
   padding: 10px 0;
   background-color: ${({background}) => background};
   overflow-x: scroll;
-  position: sticky;
-  top: 0px;
  
   &::-webkit-scrollbar {
     display: none;
   }
 
 `;
-
-
 
 const Category = styled.li`
   font-size: 1.5rem;
