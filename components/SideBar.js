@@ -1,22 +1,38 @@
 import styled from "@emotion/styled";
 import { useEffect, useState, useContext } from "react";
 import { ThemeContext } from "../theme/palette";
+import SubsImg from "../svgs/subs_icon.svg";
 
-const Subscriptions = styled.aside`
+const SidebarMenu = styled.aside`
   width: 300px;
   height: 100%;
   overflow-y: scroll;
   background-color: ${({background}) => background} ;
   padding: 20px;
+`;
+const SubsBtn = styled.button`
+  border: none;
+  width: 100%;
+  background: none;
+  display: flex;
+  align-items: center;
 
+  
   & > h1 {
     text-transform: uppercase;
     color: #6c757d;
-    font-size: 1.8rem;
-    margin: 0 0 10px 0;
+    font-size: 1.5rem;
+    margin-left: 20px;
   }
 `;
-// margin: 20px 0 20px 20px;
+
+const SubsIcon = styled(SubsImg)`
+  width: 30px; 
+  height: 30px;
+  path {
+    fill: #6c757d;
+  }
+`;
 
 const ChannelList = styled.ul`
   list-style: none;
@@ -78,8 +94,11 @@ function Sidebar () {
 
 
   return (
-    <Subscriptions background={theme.subscriptionsBackgroundColor}>
-      <h1>subscriptions</h1>
+    <SidebarMenu background={theme.subscriptionsBackgroundColor}>
+      <SubsBtn>
+        <SubsIcon/>
+        <h1>subscriptions</h1>
+      </SubsBtn>
       <ChannelList>
         {channels.map((channel, index) => {
           return (
@@ -93,7 +112,7 @@ function Sidebar () {
           )
         })}
       </ChannelList>
-    </Subscriptions>
+    </SidebarMenu>
   );
 }
 

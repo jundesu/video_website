@@ -50,7 +50,7 @@ function VideoContents() {
                      changeCategory={(selected) => setSelectedCategory(selected)}
                      selectedCategory={selectedCategory} />
 
-        <Layout videos={newVideos} />
+        {/* <Layout videos={newVideos} /> */}
     </Contents>
   );
 }
