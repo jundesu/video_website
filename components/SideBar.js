@@ -4,25 +4,31 @@ import { ThemeContext } from "../theme/palette";
 import SubsImg from "../svgs/subs_icon.svg";
 
 const SidebarMenu = styled.aside`
-  width: 300px;
+  width: ${({collapse}) => collapse ? '120px' : '300px'};
   height: 100%;
   overflow-y: scroll;
   background-color: ${({background}) => background} ;
-  padding: 20px;
+  padding: ${({collapse}) => collapse ? '10px' : '10px 20px 10px 20px'} ;
 `;
 const SubsBtn = styled.button`
   border: none;
   width: 100%;
   background: none;
-  display: flex;
+  display: ${({collapse}) => collapse ? 'column' : 'flex'};
   align-items: center;
+  padding: 0;
+  margin: 10px 0 10px 0;
+  position: relative;
 
+  &:hover {
+    background-color: #adb5bd33;
+  }
   
   & > h1 {
     text-transform: uppercase;
     color: #6c757d;
-    font-size: 1.5rem;
-    margin-left: 20px;
+    font-size: ${({collapse}) => collapse ? '1rem' : '1.5rem'};
+    margin: ${({collapse}) => collapse ? '0 0 0 0' : '0 0 0 15px'};
   }
 `;
 
@@ -38,7 +44,8 @@ const ChannelList = styled.ul`
   list-style: none;
   padding: 0;
   margin: 0;
-  line-height: 3rem;
+  display: ${({collapse}) => collapse ? 'none' : 'block'}
+
 `;
 
 const ChannelLink = styled.a`
@@ -46,7 +53,11 @@ const ChannelLink = styled.a`
   align-items: center;
   justify-content: space-between;
   text-decoration: none;
+  line-height: 4rem;
 
+  &:hover {
+    background-color: #adb5bd33;
+  }
 
   & > img {
     background: #000000;
@@ -64,6 +75,7 @@ const ChannelTitle = styled.h2`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin: 0;
 `;
 
 
@@ -83,6 +95,7 @@ async function fetchChannelList () {
 
 function Sidebar () {
   const [channels, setChannel] = useState([]);
+  const [collapse, setCollapse] = useState(false);
 
   const {theme} = useContext(ThemeContext);
 
@@ -92,14 +105,13 @@ function Sidebar () {
     })
   }, [])
 
-
   return (
-    <SidebarMenu background={theme.subscriptionsBackgroundColor}>
-      <SubsBtn>
+    <SidebarMenu background={theme.subscriptionsBackgroundColor} collapse={collapse}>
+      <SubsBtn type="button" onClick={() => setCollapse(prev => !prev)} collapse={collapse}>
         <SubsIcon/>
         <h1>subscriptions</h1>
       </SubsBtn>
-      <ChannelList>
+      <ChannelList collapse={collapse}>
         {channels.map((channel, index) => {
           return (
             <li key={index}>
