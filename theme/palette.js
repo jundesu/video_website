@@ -8,10 +8,7 @@ const light ={
   searchInputBackgroundColor: '#ffffff',
   searchInputColor:'#000000',
   searchBtnbackgroundColor: '#f8f9fa',
-  searchIconfill: '#000000',
-  // layout
-  gridIconfill: '#000000',
-  tableIconfill: '#000000',
+  searchIconFill: '#000000',
   // profile
   popupContainerBackgroundColor: '#ffffff',
   popupContainerBorderColor: '#dee2e6',
@@ -19,8 +16,12 @@ const light ={
   darkModeIconColor: '#000000',
   signOutIconColor: '#000000',
   textColor:'#000000',
-  // subscriptions
-  subscriptionsBackgroundColor: '#ffffff',
+  // sidebar
+  sidebarMenuBackgroundColor: '#ffffff',
+  subsBtnBackgroundColor: '#ffffff',
+  subsBtnHoverBackgroundColor: '#e9ecef',
+  subsIconFill: '#000000',
+  subsTitleColor: '#000000',
   channelTitleColor: '#000000',
   //contents
   contentsBackgroundColor: '#f8f9fa',
@@ -49,10 +50,7 @@ const dark = {
   searchInputBackgroundColor: '#000000',
   searchInputColor:'#dee2e6',
   searchBtnbackgroundColor: '#2c2c2c',
-  searchIconfill: '#ffffff',
-  // layout
-  gridIconfill: '#ffffff',
-  tableIconfill: '#ffffff',
+  searchIconFill: '#ffffff',
   // profile
   popupContainerBackgroundColor: '#1a1a1a',
   popupContainerBorderColor: '#2c2c2c',
@@ -60,8 +58,12 @@ const dark = {
   darkModeIconColor: '#f8f9fa',
   signOutIconColor: '#f8f9fa',
   textColor:'#f8f9fa',
-  // subscriptions
-  subscriptionsBackgroundColor: '#2c2c2c',
+  // sidebar
+  sidebarMenuBackgroundColor: '#2c2c2c',
+  subsBtnBackgroundColor: '#2c2c2c',
+  subsBtnHoverBackgroundColor: '#343a40',
+  subsIconFill: '#f8f9fa',
+  subsTitleColor: '#f8f9fa',
   channelTitleColor: '#f8f9fa',
   //contents
   contentsBackgroundColor: '#1a1a1a',
