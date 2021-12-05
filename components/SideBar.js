@@ -15,32 +15,31 @@ const SubsBtn = styled.button`
   border: none;
   width: 100%;
   height: 60px;
-  background-color: #ffffff;
+  background-color: ${({backgroundColor}) => backgroundColor};
   display: ${({collapse}) => collapse ? 'column' : 'flex'};
   align-items: center;
-  padding: 0 15px 0 15px;
+  padding:  ${({collapse}) => collapse ? '0px 5px 0px 5px' : '0px 15px 0px 15px'};
 
   position: sticky;
   top: 0;
   left: 0;
 
   &:hover {
-    background-color: #e9ecef;
+    background-color: ${({hoverColor}) => hoverColor};
   }
-  
-  & > h1 {
-    text-transform: uppercase;
-    color: #000000;
-    font-size: ${({collapse}) => collapse ? '1rem' : '1.5rem'};
-    margin: ${({collapse}) => collapse ? '0 0 0 0' : '0 0 0 15px'};
-  }
+`;
+const SubsTitle = styled.h1`
+  text-transform: uppercase;
+  color: ${({subsTitleColor}) => subsTitleColor};
+  font-size: ${({collapse}) => collapse ? '1rem' : '1.5rem'};
+  margin: ${({collapse}) => collapse ? '0 0 0 0' : '0 0 0 15px'};
 `;
 
 const SubsIcon = styled(SubsImg)`
   width: 30px; 
   height: 30px;
   path {
-    fill: #000000;
+    fill: ${({fill}) => fill};
   }
 `;
 
@@ -111,10 +110,10 @@ function Sidebar () {
   }, [])
 
   return (
-    <SidebarMenu background={theme.subscriptionsBackgroundColor} collapse={collapse}>
-      <SubsBtn type="button" onClick={() => setCollapse(prev => !prev)} collapse={collapse}>
-        <SubsIcon/>
-        <h1>subscriptions</h1>
+    <SidebarMenu background={theme.sidebarMenuBackgroundColor} collapse={collapse}>
+      <SubsBtn type="button" onClick={() => setCollapse(prev => !prev)} collapse={collapse} backgroundColor={theme.subsBtnBackgroundColor} hoverColor={theme. subsBtnHoverBackgroundColor}>
+        <SubsIcon fill={theme.subsIconFill}/>
+        <SubsTitle collapse={collapse} subsTitleColor={theme.subsTitleColor}>subscriptions</SubsTitle>
       </SubsBtn>
       <ChannelList collapse={collapse}>
         {channels.map((channel, index) => {

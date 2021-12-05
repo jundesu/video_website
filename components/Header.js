@@ -125,7 +125,7 @@ function Header({userEmail}) {
           <label htmlFor="search"></label>
           <SearchInput type="search" id="search" placeholder="Search" name="search" backgroundColor={theme.searchInputBackgroundColor} color={theme.searchInputColor}></SearchInput>
           <SearchBtn type="button" backgroundColor={theme.searchBtnbackgroundColor}>
-            <SearchIcon fill={theme.searchIconfill}/>
+            <SearchIcon fill={theme.searchIconFill}/>
           </SearchBtn>
         </SearchBar>
 
