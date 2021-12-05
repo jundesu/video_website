@@ -8,25 +8,29 @@ const SidebarMenu = styled.aside`
   height: 100%;
   overflow-y: scroll;
   background-color: ${({background}) => background} ;
-  padding: ${({collapse}) => collapse ? '10px' : '10px 20px 10px 20px'} ;
+  padding: 0px;
 `;
+
 const SubsBtn = styled.button`
   border: none;
   width: 100%;
-  background: none;
+  height: 60px;
+  background-color: #ffffff;
   display: ${({collapse}) => collapse ? 'column' : 'flex'};
   align-items: center;
-  padding: 0;
-  margin: 10px 0 10px 0;
-  position: relative;
+  padding: 0 15px 0 15px;
+
+  position: sticky;
+  top: 0;
+  left: 0;
 
   &:hover {
-    background-color: #adb5bd33;
+    background-color: #e9ecef;
   }
   
   & > h1 {
     text-transform: uppercase;
-    color: #6c757d;
+    color: #000000;
     font-size: ${({collapse}) => collapse ? '1rem' : '1.5rem'};
     margin: ${({collapse}) => collapse ? '0 0 0 0' : '0 0 0 15px'};
   }
@@ -36,7 +40,7 @@ const SubsIcon = styled(SubsImg)`
   width: 30px; 
   height: 30px;
   path {
-    fill: #6c757d;
+    fill: #000000;
   }
 `;
 
@@ -54,6 +58,7 @@ const ChannelLink = styled.a`
   justify-content: space-between;
   text-decoration: none;
   line-height: 4rem;
+  padding: 0 15px;
 
   &:hover {
     background-color: #adb5bd33;
