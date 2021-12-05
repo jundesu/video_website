@@ -111,7 +111,6 @@ const Slider = styled.span`
     transition: 1s;
     transform: ${({checked}) => checked ? 'translate(25px, 0)' : 'translate(0, 0)'};
   }
-
 `;
 
 

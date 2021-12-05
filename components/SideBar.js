@@ -1,28 +1,55 @@
 import styled from "@emotion/styled";
 import { useEffect, useState, useContext } from "react";
 import { ThemeContext } from "../theme/palette";
+import SubsImg from "../svgs/subs_icon.svg";
 
-const Subscriptions = styled.aside`
-  width: 300px;
+const SidebarMenu = styled.aside`
+  width: ${({collapse}) => collapse ? '120px' : '300px'};
   height: 100%;
   overflow-y: scroll;
   background-color: ${({background}) => background} ;
-  padding: 20px;
+  padding: 0px;
+`;
 
+const SubsBtn = styled.button`
+  border: none;
+  width: 100%;
+  height: 60px;
+  background-color: #ffffff;
+  display: ${({collapse}) => collapse ? 'column' : 'flex'};
+  align-items: center;
+  padding: 0 15px 0 15px;
+
+  position: sticky;
+  top: 0;
+  left: 0;
+
+  &:hover {
+    background-color: #e9ecef;
+  }
+  
   & > h1 {
     text-transform: uppercase;
-    color: #6c757d;
-    font-size: 1.8rem;
-    margin: 0 0 10px 0;
+    color: #000000;
+    font-size: ${({collapse}) => collapse ? '1rem' : '1.5rem'};
+    margin: ${({collapse}) => collapse ? '0 0 0 0' : '0 0 0 15px'};
   }
 `;
-// margin: 20px 0 20px 20px;
+
+const SubsIcon = styled(SubsImg)`
+  width: 30px; 
+  height: 30px;
+  path {
+    fill: #000000;
+  }
+`;
 
 const ChannelList = styled.ul`
   list-style: none;
   padding: 0;
   margin: 0;
-  line-height: 3rem;
+  display: ${({collapse}) => collapse ? 'none' : 'block'}
+
 `;
 
 const ChannelLink = styled.a`
@@ -30,7 +57,12 @@ const ChannelLink = styled.a`
   align-items: center;
   justify-content: space-between;
   text-decoration: none;
+  line-height: 4rem;
+  padding: 0 15px;
 
+  &:hover {
+    background-color: #adb5bd33;
+  }
 
   & > img {
     background: #000000;
@@ -48,6 +80,7 @@ const ChannelTitle = styled.h2`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin: 0;
 `;
 
 
@@ -67,6 +100,7 @@ async function fetchChannelList () {
 
 function Sidebar () {
   const [channels, setChannel] = useState([]);
+  const [collapse, setCollapse] = useState(false);
 
   const {theme} = useContext(ThemeContext);
 
@@ -76,11 +110,13 @@ function Sidebar () {
     })
   }, [])
 
-
   return (
-    <Subscriptions background={theme.subscriptionsBackgroundColor}>
-      <h1>subscriptions</h1>
-      <ChannelList>
+    <SidebarMenu background={theme.subscriptionsBackgroundColor} collapse={collapse}>
+      <SubsBtn type="button" onClick={() => setCollapse(prev => !prev)} collapse={collapse}>
+        <SubsIcon/>
+        <h1>subscriptions</h1>
+      </SubsBtn>
+      <ChannelList collapse={collapse}>
         {channels.map((channel, index) => {
           return (
             <li key={index}>
@@ -93,7 +129,7 @@ function Sidebar () {
           )
         })}
       </ChannelList>
-    </Subscriptions>
+    </SidebarMenu>
   );
 }
 

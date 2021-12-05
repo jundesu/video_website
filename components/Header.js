@@ -130,7 +130,7 @@ function Header({userEmail}) {
         </SearchBar>
 
         <User ref={node}>
-          <AvatarBtn type="button" onClick={() => {setOpen((prev) => !prev)}} >
+          <AvatarBtn type="button" onClick={() => setOpen(prev => !prev)} >
             <AvatarIcon/>
           </AvatarBtn>
           {open && (
