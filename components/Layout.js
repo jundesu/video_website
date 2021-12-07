@@ -10,7 +10,6 @@ const GridLayout = styled.ul`
   display: grid;
   grid-template-columns: repeat(4, 18vw);
   justify-content: space-between;
-
   overflow-y: scroll;
 `;
 

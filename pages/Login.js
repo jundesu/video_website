@@ -6,20 +6,37 @@ import FacebookImg from "../svgs/facebook_icon.svg";
 import GoogleImg from "../svgs/google_icon.svg";
 
 
-
 const LoginPage = styled.main`
   display: flex;
+  flex-direction: row;
   width: 100%;
-  height:100%;
+  height: 100%;
   background: linear-gradient(to bottom,#928DAB, #1F1C2C);
 
   p {
     width: 50%;
     margin: auto;
+    padding: 30px;
     color: white;
     font-size: 4rem;
     text-align: center;
+    font-weight: 100;
   }
+
+  @media(max-width: 800px) {
+    flex-direction: column;
+    p {
+      width: 100%;
+    }
+  }
+
+  @media(max-width: 500px) {
+    flex-direction: column;
+    p {
+      font-size: 2rem;
+    }
+  }
+
 `;
 
 const Form = styled.form`
@@ -28,8 +45,21 @@ const Form = styled.form`
   justify-content: space-between;
   align-items: center;
   width: 50%;
+  height: 100%;
   background-color: #ffffff;
   padding: 100px 100px;
+
+  @media(max-width: 1200px) {
+    padding: 50px 50px;
+  }
+
+  @media(max-width: 800px) {
+    width: 100%;
+  }
+
+  @media(max-width: 500px) {
+    padding: 25px 25px;
+  }
 `;
 
 const Label = styled.label`
@@ -101,10 +131,17 @@ const Submit = styled.button`
   &:hover {
     background-position: left;
   }
+
+  @media(max-width: 500px) {
+    font-size: 2rem;
+    line-height: 4rem;
+    margin: 10px 0;
+  }
+
 `;
 const SignUpText = styled.span`
   color: #534f66; 
-  font-size: 1.5rem;
+  font-size: 1.8rem;
 `;
 
 
@@ -112,6 +149,14 @@ const ThirdParty = styled.section`
   display: flex;
   justify-content: space-between;
   width: 50%;
+
+  @media(max-width: 1200px) {
+    width: 70%;
+  }
+  @media(max-width: 800px) {
+    width: 50%;
+  }
+
 `;
 
 const Social = styled.button`
@@ -121,6 +166,11 @@ const Social = styled.button`
   border-radius: 50%;
   border: none;
   padding: 0;
+
+  @media(max-width: 500px) {
+    width: 40px;
+    height: 40px;
+  }
 `;
 
 const AppleIcon = styled(AppleImg)`
