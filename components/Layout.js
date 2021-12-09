@@ -6,27 +6,36 @@ const GridLayout = styled.ul`
   list-style: none;
   padding: 20px;
   margin: 0;
+  width: 100%;
   
   display: grid;
-  grid-template-columns: repeat(4, 18vw);
+  grid-template-columns: repeat(4,auto);
   justify-content: space-between;
+
+  grid-gap: 10px;
   overflow-y: scroll;
+
 `;
 
 const Video = styled.li`
   display: grid;
-  grid-template-columns: 1fr 1fr 2fr;
-  grid-template-rows: 1fr 1fr;
-  grid-template-areas: "thumbnail thumbnail thumbnail thumbnail"  
-                       "icon message message message";
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows:  auto auto;
+  grid-template-areas: "thumbnail thumbnail"  
+                       "icon message";
   row-gap: 10px;
+
 `;
 
 const Thumbnail = styled.img`
   grid-area: thumbnail;
 
   width: 100%;
-  height: 10vw;
+  height: 12vw;
+  background-color: #000000;
+  object-fit: cover;
+
+
 `;
 
 const ChannelIcon = styled.img`
@@ -36,6 +45,7 @@ const ChannelIcon = styled.img`
   border-radius: 50%;
   width: 40px;
   height: 40px;
+  object-fit: cover;
 
 `;
 

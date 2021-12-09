@@ -9,7 +9,16 @@ const SidebarMenu = styled.aside`
   overflow-y: scroll;
   background-color: ${({background}) => background} ;
   padding: 0px;
+
 `;
+
+// @media(max-width: 500px) {
+//   width: ${({collapse}) => collapse ? '100%' : '100%'};
+//   height: ${({collapse}) => collapse ? 'auto' : '100%'};
+  
+//   position: fixed;
+//   bottom: 0;
+// }
 
 const SubsBtn = styled.button`
   border: none;
@@ -33,6 +42,7 @@ const SubsTitle = styled.h1`
   color: ${({subsTitleColor}) => subsTitleColor};
   font-size: ${({collapse}) => collapse ? '1rem' : '1.5rem'};
   margin: ${({collapse}) => collapse ? '0 0 0 0' : '0 0 0 15px'};
+  font-weight: 500;
 `;
 
 const SubsIcon = styled(SubsImg)`
@@ -99,7 +109,7 @@ async function fetchChannelList () {
 
 function Sidebar () {
   const [channels, setChannel] = useState([]);
-  const [collapse, setCollapse] = useState(false);
+  const [collapse, setCollapse] = useState(true);
 
   const {theme} = useContext(ThemeContext);
 

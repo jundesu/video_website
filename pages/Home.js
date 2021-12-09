@@ -18,9 +18,15 @@ const HomePage = styled.div`
     width: 100%;
     height: 100%;
     display: flex;
+    flex-direction: row;
     margin-top: 80px;
+
   }
 `;
+
+// @media(max-width: 500px) {
+//   flex-direction: column-reverse;
+// }
 
 function Home () {
   const router = useRouter();
