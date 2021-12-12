@@ -20,13 +20,24 @@ const HomePage = styled.div`
     display: flex;
     flex-direction: row;
     margin-top: 80px;
-
   }
 `;
 
-// @media(max-width: 500px) {
-//   flex-direction: column-reverse;
-// }
+const Mask = styled.div`
+  width: 100%;
+  height: 100%;
+  background-color: #49505779;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  display: none;
+
+  @media(max-width: 1200px) {
+    display: ${({maskStatus}) => maskStatus ? 'block' : 'none' };
+  }
+`;
+
 
 function Home () {
   const router = useRouter();
@@ -36,14 +47,19 @@ function Home () {
   const toggleTheme = () => {setIsDark((prev)=> !prev )};
   const defaultTheme = {isDark, theme, toggleTheme};
 
+  const [maskStatus, setMaskStatus] = useState(false);
+  
   return (
     <ThemeContext.Provider value={defaultTheme}>
       <HomePage backgroundColor={isDark}>
+        <Mask maskStatus={maskStatus}/>
         <Header userEmail={router.query?.email}/>
-        <main>
-          <Sidebar />
-          <VideoContents/>
-        </main> 
+          <main>
+            <Sidebar renderMask={(collapse) => {
+              setMaskStatus(!collapse);
+            }}/>
+            <VideoContents/>
+          </main>
       </HomePage>
     </ThemeContext.Provider>
       
