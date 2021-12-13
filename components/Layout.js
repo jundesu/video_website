@@ -7,13 +7,23 @@ const GridLayout = styled.ul`
   padding: 20px;
   margin: 0;
   width: 100%;
+  overflow-y: scroll;
   
   display: grid;
-  grid-template-columns: repeat(4,auto);
+  grid-template-columns: repeat(4, auto);
   justify-content: space-between;
-
   grid-gap: 10px;
-  overflow-y: scroll;
+  
+  @media(max-width: 1000px) {
+    grid-template-columns: repeat(3, auto);
+  }
+  @media(max-width: 800px) {
+    grid-template-columns: repeat(2, auto);
+  }
+
+  @media(max-width: 600px) {
+    grid-template-columns: repeat(1, auto);
+  }
 
 `;
 
@@ -33,8 +43,19 @@ const Thumbnail = styled.img`
   width: 100%;
   height: 12vw;
   background-color: #000000;
-  object-fit: cover;
+  object-fit: contain;
 
+  @media(max-width: 1000px) {
+    height: 15vw;
+  }
+
+  @media(max-width: 800px) {
+    height: 20vw;
+  }
+
+  @media(max-width: 600px) {
+    height: 40vw;
+  }
 
 `;
 
@@ -45,7 +66,7 @@ const ChannelIcon = styled.img`
   border-radius: 50%;
   width: 40px;
   height: 40px;
-  object-fit: cover;
+  object-fit: contain;
 
 `;
 
