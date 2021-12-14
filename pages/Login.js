@@ -90,8 +90,9 @@ const Input = styled.input`
   margin: 0;
   line-height: 5rem;
   outline: none;
-  border: 2px solid;
+  border-bottom: 2px solid;
   border-color: transparent transparent #928DAB transparent;
+  border-radius: 0;
 
   &::placeholder {
     color: #adadad;

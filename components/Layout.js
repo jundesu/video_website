@@ -11,8 +11,7 @@ const GridLayout = styled.ul`
   
   display: grid;
   grid-template-columns: repeat(4, auto);
-  justify-content: space-between;
-  grid-gap: 10px;
+  column-gap: 10px;
   
   @media(max-width: 1000px) {
     grid-template-columns: repeat(3, auto);
@@ -28,39 +27,48 @@ const GridLayout = styled.ul`
 `;
 
 const Video = styled.li`
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  grid-template-rows:  auto auto;
-  grid-template-areas: "thumbnail thumbnail"  
-                       "icon message";
-  row-gap: 10px;
-
 `;
 
-const Thumbnail = styled.img`
-  grid-area: thumbnail;
+// display: grid;
+// grid-template-columns: 1fr 3fr;
+// grid-template-rows:  auto auto;
+// grid-template-areas: "thumbnail thumbnail"  
+//                      "icon message";
+// row-gap: 10px;
 
-  width: 100%;
-  height: 12vw;
+const Thumbnail = styled.img`
+  display: block;
   background-color: #000000;
   object-fit: contain;
 
-  @media(max-width: 1000px) {
-    height: 15vw;
-  }
+  --size: 100%;
+  --aspect-ratio: 2.3;
+  width: var(--size);
+  height: calc(var(--size) / var(--aspect-ratio));
+  
+`;
+// @media(max-width: 1000px) {
+//   height: 15vw;
+// }
 
-  @media(max-width: 800px) {
-    height: 20vw;
-  }
+// @media(max-width: 800px) {
+//   height: 20vw;
+// }
 
-  @media(max-width: 600px) {
-    height: 40vw;
-  }
+// @media(max-width: 600px) {
+//   height: 40vw;
+// }
+// grid-area: thumbnail;
+
+const VideoDetails = styled.div`
+    display: flex;
+    flex-direction: row;
+
+    margin-top: 20px;
 
 `;
 
 const ChannelIcon = styled.img`
-  grid-area: icon;
 
   background: #000000;
   border-radius: 50%;
@@ -70,11 +78,12 @@ const ChannelIcon = styled.img`
 
 `;
 
-const VideoMessage = styled.section`
-  grid-area: message;
+// grid-area: icon;
 
+const VideoMessage = styled.section`
   display: flex;
   flex-direction: column;
+  margin-left: 15px;
 
 & > h4 {
   color: ${({color}) => color};
@@ -83,6 +92,8 @@ const VideoMessage = styled.section`
   margin: 10px 0 0 0;
 }
 `;
+
+// grid-area: message;
 
 const VideoTitle = styled.h3`
   color: ${({color}) => color};
@@ -105,13 +116,17 @@ function GridView({videos}) {
           return (
             <Video key={index}>
               <Thumbnail src={video.thumbnailUrl} alt="thumbnail" />
-              <ChannelIcon src={video.channelIcon}/>
-              <VideoMessage color={theme.videoMessageColor}>
-                <VideoTitle color={theme.videoTitleColor}>{video.title}</VideoTitle>
-                <h4>{video.channelTitle}</h4>
-                <h4>{video.viewCount} views</h4>
-                {/* <span>{video.category}</span> */}
-              </VideoMessage>
+              
+              <VideoDetails>
+                <ChannelIcon src={video.channelIcon}/>
+                <VideoMessage color={theme.videoMessageColor}>
+                  <VideoTitle color={theme.videoTitleColor}>{video.title}</VideoTitle>
+                  <h4>{video.channelTitle}</h4>
+                  <h4>{video.viewCount} views</h4>
+                  {/* <span>{video.category}</span> */}
+                </VideoMessage>
+              </VideoDetails>
+                
             </Video>
           )
         })}

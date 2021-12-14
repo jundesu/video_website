@@ -33,6 +33,7 @@ const Logo = styled.a`
   @media(max-width: 500px) {
     font-size: 2rem;
   }
+
 `;
 
 const SearchBar = styled.div`
@@ -53,20 +54,25 @@ const SearchInput = styled.input`
 
   &::placeholder {
     color: #adb5bd;
+    font-size: 2rem;
   }
 
   @media(max-width: 800px) {
-    width: 200px;
-    height: 30px;
+    width: 300px;
+    height: 40px;
     padding: 5px;
 
   }
-  @media(max-width: 500px) {
-    width: 150px;
+  @media(max-width: 600px) {
+    width: 200px;
 
     &::placeholder {
-      font-size: 1rem;
-    }
+      font-size: 1.2rem;
+  }
+
+  @media(max-width: 400px) {
+    width: 150px;
+    height: 30px;
   }
 `;
 
@@ -77,15 +83,20 @@ const SearchBtn = styled.button`
   padding: auto;
   background-color: ${({backgroundColor}) => backgroundColor};
 
-  @media(max-width: 500px) {
+  @media(max-width: 800px) {
+    width: 40px;
+    height: 40px;
+  }
+
+  @media(max-width: 400px) {
     width: 30px;
     height: 30px;
   }
 `;
 
 const SearchIcon = styled(SearchImg)`
-  width: 60%;
-  height: 60%;
+  width: 80%;
+  height: 80%;
   fill: ${({fill}) => fill };
 `;
 

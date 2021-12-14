@@ -122,7 +122,7 @@ async function fetchChannelList () {
 
 function Sidebar({ renderMask }) {
   const [channels, setChannel] = useState([]);
-  const [collapse, setCollapse] = useState(false);
+  const [collapse, setCollapse] = useState(true);
   const {theme} = useContext(ThemeContext);
 
   const handleCollapsedSidebar = () => {
