@@ -9,7 +9,7 @@ import { ThemeContext } from "../theme/palette";
 const Container = styled.header`
   position: fixed;
   top: 0;
-  z-index: 2;
+  z-index: 1;
 
   width: 100%;
   height: 80px;
@@ -18,14 +18,22 @@ const Container = styled.header`
   justify-content: space-between;
   padding: 0 30px 0 30px;
   background-color: ${({backgroundColor}) => backgroundColor};
+
+  @media(max-width: 800px) {
+    padding: 0 15px 0 15px;
+  }
 `;
 
 const Logo = styled.a`
-  height: 50px;
-  font-size: 4rem;
+  font-size: 3rem;
   font-weight: 900;
   color: #fca311;
   text-decoration: none;
+
+  @media(max-width: 500px) {
+    font-size: 2rem;
+  }
+
 `;
 
 const SearchBar = styled.div`
@@ -36,7 +44,7 @@ const SearchBar = styled.div`
 `;
 
 const SearchInput = styled.input`
-  width: 500px;
+  width: 400px;
   height: 50px;
   outline: none;
   border: none;
@@ -46,6 +54,25 @@ const SearchInput = styled.input`
 
   &::placeholder {
     color: #adb5bd;
+    font-size: 2rem;
+  }
+
+  @media(max-width: 800px) {
+    width: 300px;
+    height: 40px;
+    padding: 5px;
+
+  }
+  @media(max-width: 600px) {
+    width: 200px;
+
+    &::placeholder {
+      font-size: 1.2rem;
+  }
+
+  @media(max-width: 400px) {
+    width: 150px;
+    height: 30px;
   }
 `;
 
@@ -55,11 +82,21 @@ const SearchBtn = styled.button`
   border: none;
   padding: auto;
   background-color: ${({backgroundColor}) => backgroundColor};
+
+  @media(max-width: 800px) {
+    width: 40px;
+    height: 40px;
+  }
+
+  @media(max-width: 400px) {
+    width: 30px;
+    height: 30px;
+  }
 `;
 
 const SearchIcon = styled(SearchImg)`
-  width: 60%;
-  height: 60%;
+  width: 80%;
+  height: 80%;
   fill: ${({fill}) => fill };
 `;
 
@@ -71,6 +108,10 @@ const AvatarBtn = styled.button`
   background: #fca311;
   padding: 0;
 
+  @media(max-width: 500px) {
+    width: 30px;
+    height: 30px;
+  }
 `;
 
 const AvatarIcon = styled(AvatarImg)`

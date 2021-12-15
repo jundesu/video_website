@@ -6,45 +6,63 @@ const GridLayout = styled.ul`
   list-style: none;
   padding: 20px;
   margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
   
   display: grid;
-  grid-template-columns: repeat(4, 18vw);
-  justify-content: space-between;
+  grid-template-columns: repeat(4, auto);
+  gap: 10px;
+  
+  @media(max-width: 1000px) {
+    grid-template-columns: repeat(3, auto);
+  }
+  @media(max-width: 800px) {
+    grid-template-columns: repeat(2, auto);
+  }
 
-  overflow-y: scroll;
+  @media(max-width: 600px) {
+    grid-template-columns: repeat(1, auto);
+  }
+
 `;
 
 const Video = styled.li`
-  display: grid;
-  grid-template-columns: 1fr 1fr 2fr;
-  grid-template-rows: 1fr 1fr;
-  grid-template-areas: "thumbnail thumbnail thumbnail thumbnail"  
-                       "icon message message message";
-  row-gap: 10px;
+
 `;
 
-const Thumbnail = styled.img`
-  grid-area: thumbnail;
 
-  width: 100%;
-  height: 10vw;
+const Thumbnail = styled.img`
+  background-color: #000000;
+  object-fit: cover;
+
+  --size: 100%;
+  --aspect-ratio: 2.3;
+  width: var(--size);
+  height: calc(var(--size) / var(--aspect-ratio));
+
+`;
+
+const VideoDetails = styled.div`
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+
 `;
 
 const ChannelIcon = styled.img`
-  grid-area: icon;
-
   background: #000000;
   border-radius: 50%;
   width: 40px;
   height: 40px;
+  object-fit: cover;
 
 `;
 
 const VideoMessage = styled.section`
-  grid-area: message;
-
   display: flex;
   flex-direction: column;
+  margin-left: 15px;
 
 & > h4 {
   color: ${({color}) => color};
@@ -75,13 +93,17 @@ function GridView({videos}) {
           return (
             <Video key={index}>
               <Thumbnail src={video.thumbnailUrl} alt="thumbnail" />
-              <ChannelIcon src={video.channelIcon}/>
-              <VideoMessage color={theme.videoMessageColor}>
-                <VideoTitle color={theme.videoTitleColor}>{video.title}</VideoTitle>
-                <h4>{video.channelTitle}</h4>
-                <h4>{video.viewCount} views</h4>
-                {/* <span>{video.category}</span> */}
-              </VideoMessage>
+              
+              <VideoDetails>
+                <ChannelIcon src={video.channelIcon}/>
+                <VideoMessage color={theme.videoMessageColor}>
+                  <VideoTitle color={theme.videoTitleColor}>{video.title}</VideoTitle>
+                  <h4>{video.channelTitle}</h4>
+                  <h4>{video.viewCount} views</h4>
+                  {/* <span>{video.category}</span> */}
+                </VideoMessage>
+              </VideoDetails>
+                
             </Video>
           )
         })}

@@ -16,7 +16,7 @@ const PopupContainer = styled.div`
   justify-content: space-between;
   padding: 50px 20px;
   position: absolute;
-  top: 70px;
+  top: 65px;
   right: 0px;
 `;
 

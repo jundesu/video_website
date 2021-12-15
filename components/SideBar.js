@@ -3,12 +3,28 @@ import { useEffect, useState, useContext } from "react";
 import { ThemeContext } from "../theme/palette";
 import SubsImg from "../svgs/subs_icon.svg";
 
+
 const SidebarMenu = styled.aside`
-  width: ${({collapse}) => collapse ? '120px' : '300px'};
+  min-width: ${({collapse}) => collapse ? '120px' : '250px'};
   height: 100%;
   overflow-y: scroll;
   background-color: ${({background}) => background} ;
   padding: 0px;
+
+  @media(max-width: 1200px) {
+    position: ${({collapse}) => collapse ? 'relative' : 'fixed'};
+    left: 0;
+    z-index: 3;
+  }
+
+  @media(max-width: 500px) {
+    min-width: ${({collapse}) => collapse ? '100%' : '100%'};
+    height: ${({collapse}) => collapse ? 'auto' : '100%'};
+    
+    position: fixed;
+    bottom: 0;
+    z-index: 3;
+  }
 `;
 
 const SubsBtn = styled.button`
@@ -27,12 +43,17 @@ const SubsBtn = styled.button`
   &:hover {
     background-color: ${({hoverColor}) => hoverColor};
   }
+
+  @media(max-width: 500px) {
+    padding: 0 45px;
+  }
 `;
 const SubsTitle = styled.h1`
   text-transform: uppercase;
   color: ${({subsTitleColor}) => subsTitleColor};
   font-size: ${({collapse}) => collapse ? '1rem' : '1.5rem'};
   margin: ${({collapse}) => collapse ? '0 0 0 0' : '0 0 0 15px'};
+  font-weight: 500;
 `;
 
 const SubsIcon = styled(SubsImg)`
@@ -70,6 +91,9 @@ const ChannelLink = styled.a`
     height: 30px;
   }
 
+  @media(max-width: 500px) {
+    padding: 0 45px;;
+  }
 `;
 const ChannelTitle = styled.h2`
   color: ${({color}) => color};
@@ -81,7 +105,6 @@ const ChannelTitle = styled.h2`
   text-overflow: ellipsis;
   margin: 0;
 `;
-
 
 const UnreadDot = styled.span`
   width: 6px;
@@ -97,11 +120,23 @@ async function fetchChannelList () {
   return jsonResponse
 }
 
-function Sidebar () {
+function Sidebar({ renderMask }) {
   const [channels, setChannel] = useState([]);
-  const [collapse, setCollapse] = useState(false);
-
+  const [collapse, setCollapse] = useState(true);
   const {theme} = useContext(ThemeContext);
+
+  const handleCollapsedSidebar = () => {
+    const viewportWidth = window.innerWidth;
+    if(viewportWidth < 1200) {
+      setCollapse(true);
+      return
+    }
+    setCollapse(false);
+  }
+  useEffect(() => {
+    window.addEventListener('resize', handleCollapsedSidebar)
+    return () => {window.removeEventListener('resize', handleCollapsedSidebar)}
+  },[])
 
   useEffect(() =>{
     fetchChannelList().then((channels) => {
@@ -109,28 +144,31 @@ function Sidebar () {
     })
   }, [])
 
+  useEffect(() => {
+    renderMask(collapse)
+  }, [collapse])
+
   return (
-    <SidebarMenu background={theme.sidebarMenuBackgroundColor} collapse={collapse}>
-      <SubsBtn type="button" onClick={() => setCollapse(prev => !prev)} collapse={collapse} backgroundColor={theme.subsBtnBackgroundColor} hoverColor={theme. subsBtnHoverBackgroundColor}>
-        <SubsIcon fill={theme.subsIconFill}/>
-        <SubsTitle collapse={collapse} subsTitleColor={theme.subsTitleColor}>subscriptions</SubsTitle>
-      </SubsBtn>
-      <ChannelList collapse={collapse}>
-        {channels.map((channel, index) => {
-          return (
-            <li key={index}>
-              <ChannelLink href="#">
-                <img src={channel.channelIcon} alt="channel image"/>
-                <ChannelTitle color={theme.channelTitleColor}>{channel.channelTitle}</ChannelTitle>
-                <UnreadDot unread={channel.unreadCount > 0 } />
-              </ChannelLink>
-            </li>
-          )
-        })}
-      </ChannelList>
-    </SidebarMenu>
+      <SidebarMenu background={theme.sidebarMenuBackgroundColor} collapse={collapse}>
+        <SubsBtn type="button" onClick={() => setCollapse(prev => !prev)} collapse={collapse} backgroundColor={theme.subsBtnBackgroundColor} hoverColor={theme. subsBtnHoverBackgroundColor}>
+          <SubsIcon fill={theme.subsIconFill}/>
+          <SubsTitle collapse={collapse} subsTitleColor={theme.subsTitleColor}>subscriptions</SubsTitle>
+        </SubsBtn>
+        <ChannelList collapse={collapse}>
+          {channels.map((channel, index) => {
+            return (
+              <li key={index}>
+                <ChannelLink href="#">
+                  <img src={channel.channelIcon} alt="channel image"/>
+                  <ChannelTitle color={theme.channelTitleColor}>{channel.channelTitle}</ChannelTitle>
+                  <UnreadDot unread={channel.unreadCount > 0 } />
+                </ChannelLink>
+              </li>
+            )
+          })}
+        </ChannelList>
+      </SidebarMenu>  
   );
 }
-
 
 export default Sidebar;
