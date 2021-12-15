@@ -7,11 +7,12 @@ const GridLayout = styled.ul`
   padding: 20px;
   margin: 0;
   width: 100%;
+  height: 100%;
   overflow-y: scroll;
   
   display: grid;
   grid-template-columns: repeat(4, auto);
-  column-gap: 10px;
+  gap: 10px;
   
   @media(max-width: 1000px) {
     grid-template-columns: repeat(3, auto);
@@ -27,58 +28,36 @@ const GridLayout = styled.ul`
 `;
 
 const Video = styled.li`
+
 `;
 
-// display: grid;
-// grid-template-columns: 1fr 3fr;
-// grid-template-rows:  auto auto;
-// grid-template-areas: "thumbnail thumbnail"  
-//                      "icon message";
-// row-gap: 10px;
 
 const Thumbnail = styled.img`
-  display: block;
   background-color: #000000;
-  object-fit: contain;
+  object-fit: cover;
 
   --size: 100%;
   --aspect-ratio: 2.3;
   width: var(--size);
   height: calc(var(--size) / var(--aspect-ratio));
-  
+
 `;
-// @media(max-width: 1000px) {
-//   height: 15vw;
-// }
-
-// @media(max-width: 800px) {
-//   height: 20vw;
-// }
-
-// @media(max-width: 600px) {
-//   height: 40vw;
-// }
-// grid-area: thumbnail;
 
 const VideoDetails = styled.div`
     display: flex;
     flex-direction: row;
-
     margin-top: 20px;
 
 `;
 
 const ChannelIcon = styled.img`
-
   background: #000000;
   border-radius: 50%;
   width: 40px;
   height: 40px;
-  object-fit: contain;
+  object-fit: cover;
 
 `;
-
-// grid-area: icon;
 
 const VideoMessage = styled.section`
   display: flex;
@@ -92,8 +71,6 @@ const VideoMessage = styled.section`
   margin: 10px 0 0 0;
 }
 `;
-
-// grid-area: message;
 
 const VideoTitle = styled.h3`
   color: ${({color}) => color};
