@@ -37,70 +37,6 @@ const Logo = styled.a`
 
 `;
 
-// const SearchBar = styled.div`
-//   display: flex;
-//   align-items: center;
-//   border: 1px solid ${({borderColor}) => borderColor};
-  
-// `;
-
-// const SearchInput = styled.input`
-//   width: 400px;
-//   height: 50px;
-//   outline: none;
-//   border: none;
-//   padding: 10px;
-//   background-color: ${({backgroundColor}) => backgroundColor};
-//   color: ${(color) => color};
-
-//   &::placeholder {
-//     color: #adb5bd;
-//     font-size: 2rem;
-//   }
-
-//   @media(max-width: 800px) {
-//     width: 300px;
-//     height: 40px;
-//     padding: 5px;
-
-//   }
-//   @media(max-width: 600px) {
-//     width: 200px;
-
-//     &::placeholder {
-//       font-size: 1.2rem;
-//   }
-
-//   @media(max-width: 400px) {
-//     width: 150px;
-//     height: 30px;
-//   }
-// `;
-
-// const SearchBtn = styled.button`
-//   width: 50px;
-//   height: 50px;
-//   border: none;
-//   padding: auto;
-//   background-color: ${({backgroundColor}) => backgroundColor};
-
-//   @media(max-width: 800px) {
-//     width: 40px;
-//     height: 40px;
-//   }
-
-//   @media(max-width: 400px) {
-//     width: 30px;
-//     height: 30px;
-//   }
-// `;
-
-// const SearchIcon = styled(SearchImg)`
-//   width: 80%;
-//   height: 80%;
-//   fill: ${({fill}) => fill };
-// `;
-
 const AvatarBtn = styled.button`
   width: 50px;
   height: 50px;
@@ -132,7 +68,7 @@ async function fetchProfile() {
   return jsonResponse
 }
 
-function Header({userEmail}) {
+function Header({userEmail, videos}) {
   const [open, setOpen] = useState(false);
   const node = useRef();
   const [profile, setProfile] = useState({});
@@ -162,17 +98,7 @@ function Header({userEmail}) {
   return (
     <Container backgroundColor={theme.headerBackgroundColor}>
         <Logo href="/Home">LOGO</Logo>
-
-        <SearchBar />
-
-        {/* <SearchBar borderColor={theme.searchBarBorderColor}>
-          <label htmlFor="search"></label>
-          <SearchInput type="search" id="search" placeholder="Search" name="search" backgroundColor={theme.searchInputBackgroundColor} color={theme.searchInputColor}></SearchInput>
-          <SearchBtn type="button" backgroundColor={theme.searchBtnbackgroundColor}>
-            <SearchIcon fill={theme.searchIconFill}/>
-          </SearchBtn>
-        </SearchBar> */}
-
+        <SearchBar videos={videos}/>
         <User ref={node}>
           <AvatarBtn type="button" onClick={() => setOpen(prev => !prev)} >
             <AvatarIcon/>

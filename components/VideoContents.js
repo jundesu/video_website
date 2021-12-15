@@ -12,23 +12,9 @@ background-color: ${({background}) => background };
 overflow-y: scroll;
 `;
 
-
-async function fetchVideos (){
-  const response = await fetch('http://localhost:3000/api/videos');
-  const jsonResponse = await response.json();
-  return jsonResponse
-}
-
-function VideoContents() {
-  const [videos, setVideos] = useState([]);
+function VideoContents({videos}) {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const {theme} = useContext(ThemeContext);
-
-  useEffect(() => {
-    fetchVideos().then((videoList) => {
-      setVideos(videoList);
-    })
-  }, []);
 
   const categories = videos.map((video) => {
     return video.category
@@ -42,8 +28,7 @@ function VideoContents() {
       return video.category === selectedCategory
     }) 
   } 
-
-
+  
   return (
     <Contents background={theme.contentsBackgroundColor}>
       <VideoCategory uniqueCategories={uniqueCategories}

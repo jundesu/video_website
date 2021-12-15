@@ -3,7 +3,6 @@ import SearchImg from "../svgs/search_icon.svg";
 import { useContext, useState } from "react";
 import { ThemeContext } from "../theme/palette";
 
-
 const Search = styled.div`
   display: flex;
   align-items: center;
@@ -68,7 +67,7 @@ const SearchIcon = styled(SearchImg)`
   fill: ${({fill}) => fill };
 `;
 
-function SearchBar () {
+function SearchBar ({videos}) {
   const {theme} = useContext(ThemeContext);
   const [query, setQuery] = useState('');
 

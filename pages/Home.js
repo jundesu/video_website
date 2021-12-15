@@ -3,7 +3,7 @@ import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import VideoContents from "../components/VideoContents";
 import { useRouter } from 'next/router';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import palette, {ThemeContext} from "../theme/palette";
 
 
@@ -38,27 +38,38 @@ const Mask = styled.div`
   }
 `;
 
+async function fetchVideos (){
+  const response = await fetch('http://localhost:3000/api/videos');
+  const jsonResponse = await response.json();
+  return jsonResponse
+}
 
 function Home () {
   const router = useRouter();
-
   const [isDark, setIsDark] = useState(false);
   const theme = isDark ? palette.dark : palette.light;
   const toggleTheme = () => {setIsDark((prev)=> !prev )};
   const defaultTheme = {isDark, theme, toggleTheme};
-
   const [maskStatus, setMaskStatus] = useState(false);
+
+  const [videos, setVideos] = useState([]);
+
+  useEffect(() => {
+    fetchVideos().then((videoList) => {
+      setVideos(videoList);
+    })
+  }, []);
   
   return (
     <ThemeContext.Provider value={defaultTheme}>
       <HomePage backgroundColor={isDark}>
         <Mask maskStatus={maskStatus}/>
-        <Header userEmail={router.query?.email}/>
+        <Header userEmail={router.query?.email} videos={videos}/>
           <main>
             <Sidebar renderMask={(collapse) => {
               setMaskStatus(!collapse);
             }}/>
-            <VideoContents/>
+            <VideoContents videos={videos} />
           </main>
       </HomePage>
     </ThemeContext.Provider>
