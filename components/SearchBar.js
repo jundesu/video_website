@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import SearchImg from "../svgs/search_icon.svg"; 
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "../theme/palette";
 
 const Search = styled.div`
@@ -67,15 +67,14 @@ const SearchIcon = styled(SearchImg)`
   fill: ${({fill}) => fill };
 `;
 
-function SearchBar ({videos}) {
+function SearchBar ({onQuery}) {
   const {theme} = useContext(ThemeContext);
-  const [query, setQuery] = useState('');
+  const [inputValue, setInputValue] = useState('');
 
-  const handleSearchValue = (event) => {
-    setQuery(event.target.value);
-    console.log(query);
+  const handleInputeValue = (event) => {
+    setInputValue(event.target.value);
   };
-
+  
   return (
     <Search borderColor={theme.searchBarBorderColor}>
       <label htmlFor="search"></label>
@@ -85,9 +84,13 @@ function SearchBar ({videos}) {
         placeholder="Search..." 
         backgroundColor={theme.searchInputBackgroundColor} 
         color={theme.searchInputColor}
-        onChange={handleSearchValue}
+        onChange={handleInputeValue}
         />
-      <SearchBtn type="button" backgroundColor={theme.searchBtnbackgroundColor}>
+      <SearchBtn 
+        type="button" 
+        backgroundColor={theme.searchBtnbackgroundColor}
+        onClick={() => onQuery(inputValue)}
+      >
         <SearchIcon fill={theme.searchIconFill}/>
       </SearchBtn>
     </Search>

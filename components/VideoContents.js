@@ -12,30 +12,25 @@ background-color: ${({background}) => background };
 overflow-y: scroll;
 `;
 
-function VideoContents({videos}) {
-  const [selectedCategory, setSelectedCategory] = useState('all');
+function VideoContents({videos, filteredVideos, onChangeCategory, selectedCategory}) {
   const {theme} = useContext(ThemeContext);
 
+  // create categories
   const categories = videos.map((video) => {
     return video.category
   });
   const uniqueCategories = [...new Set(categories)];
 
-  let newVideos = videos;
-  
-  if(selectedCategory !== 'all') {
-    newVideos = newVideos.filter((video) => {
-      return video.category === selectedCategory
-    }) 
-  } 
   
   return (
     <Contents background={theme.contentsBackgroundColor}>
-      <VideoCategory uniqueCategories={uniqueCategories}
-                     changeCategory={(selected) => setSelectedCategory(selected)}
-                     selectedCategory={selectedCategory} />
+      <VideoCategory 
+        uniqueCategories={uniqueCategories}
+        onChangeCategory={onChangeCategory}
+        selectedCategory={selectedCategory}
+      />
 
-        <Layout videos={newVideos} />
+        <Layout filteredVideos={filteredVideos} />
     </Contents>
   );
 }

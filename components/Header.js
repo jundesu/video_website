@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import PopUpProfile from "./PopUpProfile";
 import { useContext, useEffect, useRef, useState } from "react";
-// import SearchImg from "../svgs/search_icon.svg"; 
 import AvatarImg from "../svgs/avatar_icon.svg";
 import { ThemeContext } from "../theme/palette";
 import SearchBar from "./SearchBar";
@@ -68,7 +67,7 @@ async function fetchProfile() {
   return jsonResponse
 }
 
-function Header({userEmail, videos}) {
+function Header({userEmail, onQuery}) {
   const [open, setOpen] = useState(false);
   const node = useRef();
   const [profile, setProfile] = useState({});
@@ -98,7 +97,7 @@ function Header({userEmail, videos}) {
   return (
     <Container backgroundColor={theme.headerBackgroundColor}>
         <Logo href="/Home">LOGO</Logo>
-        <SearchBar videos={videos}/>
+        <SearchBar onQuery={onQuery}/>
         <User ref={node}>
           <AvatarBtn type="button" onClick={() => setOpen(prev => !prev)} >
             <AvatarIcon/>
