@@ -83,7 +83,7 @@ function Home () {
           return video.category === selected
         }) 
       )
-    }else {setFilteredVideos(videos)}
+    } else {setFilteredVideos(videos)}
   };
    
   useEffect(() => {

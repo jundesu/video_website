@@ -31,7 +31,7 @@ const Logo = styled.a`
   text-decoration: none;
 
   @media(max-width: 500px) {
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
 
 `;
@@ -45,8 +45,8 @@ const AvatarBtn = styled.button`
   padding: 0;
 
   @media(max-width: 500px) {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
   }
 `;
 
