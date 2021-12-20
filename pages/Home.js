@@ -60,6 +60,7 @@ function Home () {
 
   // search bar
   const handleQueryResult = (inputValue) => {
+    setSelectedCategory('all');
     setFilteredVideos(
       videos.filter((video) => {
         if(inputValue === '') {

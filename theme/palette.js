@@ -10,6 +10,8 @@ const light ={
   clearBtnBackgroundColor: '#ffffff',
   searchBtnHoverColor: '#e9ecef',
   searchIconFill: '#000000',
+  mobileSearchBoxBackgroundColor: '#ffffff',
+  backIconFill: '#495057',
   // profile
   popupContainerBackgroundColor: '#ffffff',
   popupContainerBorderColor: '#dee2e6',
@@ -53,6 +55,8 @@ const dark = {
   clearBtnBackgroundColor: '#000000',
   searchBtnHoverColor: '#343a40',
   searchIconFill: '#ffffff',
+  mobileSearchBoxBackgroundColor: '#000000',
+  backIconFill: '#f8f9fa',
   // profile
   popupContainerBackgroundColor: '#1a1a1a',
   popupContainerBorderColor: '#2c2c2c',

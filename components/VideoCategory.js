@@ -11,13 +11,16 @@ const ScrollContainer = styled.div`
   border: 1px solid;
   border-color: ${({borderColor}) => borderColor} ;
   position: sticky;
-  top: 0px;
+  top: 0;
+  left: 0;
 `;
 
 const ArrowBtn = styled.button`
   width: 50px;
   background-color: ${({backgroundColor}) => backgroundColor };
   border: none;
+  padding: 0;
+  margin: 0;
 `;
 
 const PreviousIcon = styled(LeftArrow)`

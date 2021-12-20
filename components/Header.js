@@ -4,6 +4,8 @@ import { useContext, useEffect, useRef, useState } from "react";
 import AvatarImg from "../svgs/avatar_icon.svg";
 import { ThemeContext } from "../theme/palette";
 import SearchBar from "./SearchBar";
+import MobileSearchBar from "./MobileSearchBar";
+import SearchButton from "./SearchButtton";
 
 
 const Container = styled.header`
@@ -61,6 +63,15 @@ const User = styled.div`
   position: relative;
 `;
 
+const SearchBtnIcon = styled(SearchButton)`
+  margin: 0 20px 0 auto; 
+  border-radius: 50%;
+
+  @media(min-width: 500px){
+    display: none;
+  }
+`;
+
 async function fetchProfile() {
   const response = await fetch('http://localhost:3000/api/profile');
   const jsonResponse = await response.json();
@@ -73,6 +84,12 @@ function Header({userEmail, onQuery}) {
   const [profile, setProfile] = useState({});
   
   const {theme} = useContext(ThemeContext);
+
+  const [expand, setExpand] = useState(false); 
+
+  const previousPage = () => {
+    setExpand(false);
+  };
 
   const handleClickoutside = (e) => {
     if(node.current.contains(e.target)){
@@ -97,7 +114,11 @@ function Header({userEmail, onQuery}) {
   return (
     <Container backgroundColor={theme.headerBackgroundColor}>
         <Logo href="/Home">LOGO</Logo>
-        <SearchBar onQuery={onQuery}/>
+        <SearchBar onQuery={onQuery} />
+        <SearchBtnIcon onClick={() => setExpand(true)}/>
+        {expand && (<MobileSearchBar onQuery={onQuery} previousPage={previousPage} />)}
+        
+
         <User ref={node}>
           <AvatarBtn type="button" onClick={() => setOpen(prev => !prev)} >
             <AvatarIcon/>
