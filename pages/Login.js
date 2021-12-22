@@ -93,6 +93,7 @@ const Input = styled.input`
   border-bottom: 2px solid;
   border-color: transparent transparent #928DAB transparent;
   border-radius: 0;
+  font-size: 2rem;
 
   &::placeholder {
     color: #adadad;

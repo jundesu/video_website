@@ -76,7 +76,7 @@ const ChannelLink = styled.a`
   align-items: center;
   justify-content: space-between;
   text-decoration: none;
-  line-height: 4rem;
+  line-height: 5rem;
   padding: 0 15px;
 
   &:hover {
@@ -96,7 +96,7 @@ const ChannelLink = styled.a`
 `;
 const ChannelTitle = styled.h2`
   color: ${({color}) => color};
-  font-size: 1.2rem;
+  font-size: 1.8rem;
   font-weight: 300;
   width: 150px;
   white-space: nowrap;

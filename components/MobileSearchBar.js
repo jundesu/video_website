@@ -12,6 +12,7 @@ const SearchBox = styled.div`
   align-items: center;
   justify-content: space-between;
   background-color: ${({backgroundColor}) => backgroundColor};
+  padding: 10px;
   
   position: absolute;
   top: 0;
@@ -32,20 +33,21 @@ const BackBtn = styled.button`
 `;
 
 const BackIcon = styled(LeftArrow)`
-  width: 50%;
-  height: 50%;
+  width: 70%;
+  height: 70%;
   fill: ${({fill}) => fill};
 `;
 
 const SearchInput = styled.input`
-  width: 400px;
-  height: 50px;
+  width: 50%;
+  height: 100%;
   outline: none;
   border: none;
   padding: 10px;
   background-color: ${({backgroundColor}) => backgroundColor};
   color: ${(color) => color};
   appearance: none;
+  font-size: 2rem;
 
   &::placeholder {
     color: #adb5bd;
@@ -56,20 +58,10 @@ const SearchInput = styled.input`
     -webkit-appearance: none;
   }
 
-  @media(max-width: 800px) {
-    width: 300px;
-  
-  }
-  @media(max-width: 600px) {
-    width: 250px;
-
-    &::placeholder {
-      font-size: 1.8rem;
-  }
 `;
 
 const ClearBtn = styled.button`
-  width: 30px;
+  width: 50px;
   height: 50px;
   border: none;
   padding: 0;
@@ -80,16 +72,14 @@ const ClearBtn = styled.button`
 
 const ClearIcon = styled(ClearImg)`
   visibility: ${({clearIconDisplay}) => clearIconDisplay ? 'visible' : 'hidden'};
-  width: 60%;
-  height: 60%;
+  width: 50%;
+  height: 50%;
   fill: #adb5bd;
 `;
 
 const ExpandSearchBtn = styled(SearchButton)`
   border-radius: 50%;
 `;
-
-
 
 function MobileSearchBar ({onQuery, previousPage}) {
   const {theme} = useContext(ThemeContext);
@@ -129,13 +119,6 @@ function MobileSearchBar ({onQuery, previousPage}) {
         <ClearIcon clearIconDisplay={clearIconDisplay}/>
       </ClearBtn>
       <ExpandSearchBtn onClick={() => onQuery(inputValue)}/>
-      {/* <SearchBtn 
-        type="button" 
-        hoverColor={theme.searchBtnHoverColor}
-        onClick={() => onQuery(inputValue)}
-      >
-        <SearchIcon fill={theme.searchIconFill}/>
-      </SearchBtn> */}
     </SearchBox>
   );
 }

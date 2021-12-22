@@ -166,12 +166,3 @@ function PopUpProfile({userEmail, profile}){
 }
 
 export default PopUpProfile;
-
-
-// & > input:checked + .slider {
-//   background-color: #fca311;
-// }
-
-// & > input:checked + .slider:before {
-//   transform: translate(25px, 0);
-// }
