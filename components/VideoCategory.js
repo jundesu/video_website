@@ -11,13 +11,16 @@ const ScrollContainer = styled.div`
   border: 1px solid;
   border-color: ${({borderColor}) => borderColor} ;
   position: sticky;
-  top: 0px;
+  top: 0;
+  left: 0;
 `;
 
 const ArrowBtn = styled.button`
   width: 50px;
   background-color: ${({backgroundColor}) => backgroundColor };
   border: none;
+  padding: 0;
+  margin: 0;
 `;
 
 const PreviousIcon = styled(LeftArrow)`
@@ -60,7 +63,7 @@ const Category = styled.li`
 
 `;
 
-function VideoCategory ({uniqueCategories, changeCategory, selectedCategory}) {
+function VideoCategory ({uniqueCategories, onChangeCategory, selectedCategory}) {
   const {theme} = useContext(ThemeContext);
 
   const selectedAll = selectedCategory === 'all';
@@ -83,7 +86,7 @@ function VideoCategory ({uniqueCategories, changeCategory, selectedCategory}) {
         <PreviousIcon fill={theme.previousIconFill}/>
       </ArrowBtn>
       <FilterBar background={theme.filterBarBackgroundColorl} ref={test}>
-        <Category onClick={() => {changeCategory('all')}} 
+        <Category onClick={() => {onChangeCategory('all')}} 
           color={selectedAll ? theme.selectedCategoryColor : theme.categoryColor}
           backgroundColor={selectedAll ? theme.selectedCategoryBackgroundColor : theme.categoryBackgroundColor}
           borderColor={selectedAll ? theme.selectedCategoryBorderColor : theme.categoryBorderColor}
@@ -98,7 +101,7 @@ function VideoCategory ({uniqueCategories, changeCategory, selectedCategory}) {
           return (
             <Category 
               key={index}
-              onClick={() => {changeCategory(tagName)}} 
+              onClick={() => {onChangeCategory(tagName)}} 
               color={selected ? theme.selectedCategoryColor : theme.categoryColor}
               backgroundColor={selected ? theme.selectedCategoryBackgroundColor : theme.categoryBackgroundColor}
               borderColor={selected ? theme.selectedCategoryBorderColor : theme.categoryBorderColor}

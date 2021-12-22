@@ -3,7 +3,6 @@ import { useEffect, useState, useContext } from "react";
 import { ThemeContext } from "../theme/palette";
 import SubsImg from "../svgs/subs_icon.svg";
 
-
 const SidebarMenu = styled.aside`
   min-width: ${({collapse}) => collapse ? '120px' : '250px'};
   height: 100%;

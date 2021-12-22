@@ -84,12 +84,12 @@ const VideoTitle = styled.h3`
   overflow: hidden; 
 `;
 
-function GridView({videos}) {
+function GridView({filteredVideos}) {
   const {theme} = useContext(ThemeContext);
 
   return (
       <GridLayout>
-        {videos.map((video, index) => {
+        {filteredVideos.map((video, index) => {
           return (
             <Video key={index}>
               <Thumbnail src={video.thumbnailUrl} alt="thumbnail" />
@@ -100,7 +100,7 @@ function GridView({videos}) {
                   <VideoTitle color={theme.videoTitleColor}>{video.title}</VideoTitle>
                   <h4>{video.channelTitle}</h4>
                   <h4>{video.viewCount} views</h4>
-                  {/* <span>{video.category}</span> */}
+                  <sapn>{video.category}</sapn>
                 </VideoMessage>
               </VideoDetails>
                 

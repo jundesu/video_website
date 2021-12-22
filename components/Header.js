@@ -1,9 +1,11 @@
 import styled from "@emotion/styled";
 import PopUpProfile from "./PopUpProfile";
 import { useContext, useEffect, useRef, useState } from "react";
-import SearchImg from "../svgs/search_icon.svg"; 
 import AvatarImg from "../svgs/avatar_icon.svg";
 import { ThemeContext } from "../theme/palette";
+import SearchBar from "./SearchBar";
+import MobileSearchBar from "./MobileSearchBar";
+import SearchButton from "./SearchButtton";
 
 
 const Container = styled.header`
@@ -31,73 +33,9 @@ const Logo = styled.a`
   text-decoration: none;
 
   @media(max-width: 500px) {
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
 
-`;
-
-const SearchBar = styled.div`
-  display: flex;
-  align-items: center;
-  border: 1px solid ${({borderColor}) => borderColor};
-  
-`;
-
-const SearchInput = styled.input`
-  width: 400px;
-  height: 50px;
-  outline: none;
-  border: none;
-  padding: 10px;
-  background-color: ${({backgroundColor}) => backgroundColor};
-  color: ${(color) => color};
-
-  &::placeholder {
-    color: #adb5bd;
-    font-size: 2rem;
-  }
-
-  @media(max-width: 800px) {
-    width: 300px;
-    height: 40px;
-    padding: 5px;
-
-  }
-  @media(max-width: 600px) {
-    width: 200px;
-
-    &::placeholder {
-      font-size: 1.2rem;
-  }
-
-  @media(max-width: 400px) {
-    width: 150px;
-    height: 30px;
-  }
-`;
-
-const SearchBtn = styled.button`
-  width: 50px;
-  height: 50px;
-  border: none;
-  padding: auto;
-  background-color: ${({backgroundColor}) => backgroundColor};
-
-  @media(max-width: 800px) {
-    width: 40px;
-    height: 40px;
-  }
-
-  @media(max-width: 400px) {
-    width: 30px;
-    height: 30px;
-  }
-`;
-
-const SearchIcon = styled(SearchImg)`
-  width: 80%;
-  height: 80%;
-  fill: ${({fill}) => fill };
 `;
 
 const AvatarBtn = styled.button`
@@ -109,8 +47,8 @@ const AvatarBtn = styled.button`
   padding: 0;
 
   @media(max-width: 500px) {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
   }
 `;
 
@@ -125,18 +63,33 @@ const User = styled.div`
   position: relative;
 `;
 
+const SearchBtnIcon = styled(SearchButton)`
+  margin: 0 20px 0 auto; 
+  border-radius: 50%;
+
+  @media(min-width: 500px){
+    display: none;
+  }
+`;
+
 async function fetchProfile() {
   const response = await fetch('http://localhost:3000/api/profile');
   const jsonResponse = await response.json();
   return jsonResponse
 }
 
-function Header({userEmail}) {
+function Header({userEmail, onQuery}) {
   const [open, setOpen] = useState(false);
   const node = useRef();
   const [profile, setProfile] = useState({});
   
   const {theme} = useContext(ThemeContext);
+
+  const [expand, setExpand] = useState(false); 
+
+  const previousPage = () => {
+    setExpand(false);
+  };
 
   const handleClickoutside = (e) => {
     if(node.current.contains(e.target)){
@@ -161,14 +114,10 @@ function Header({userEmail}) {
   return (
     <Container backgroundColor={theme.headerBackgroundColor}>
         <Logo href="/Home">LOGO</Logo>
-
-        <SearchBar borderColor={theme.searchBarBorderColor}>
-          <label htmlFor="search"></label>
-          <SearchInput type="search" id="search" placeholder="Search" name="search" backgroundColor={theme.searchInputBackgroundColor} color={theme.searchInputColor}></SearchInput>
-          <SearchBtn type="button" backgroundColor={theme.searchBtnbackgroundColor}>
-            <SearchIcon fill={theme.searchIconFill}/>
-          </SearchBtn>
-        </SearchBar>
+        <SearchBar onQuery={onQuery} />
+        <SearchBtnIcon onClick={() => setExpand(true)}/>
+        {expand && (<MobileSearchBar onQuery={onQuery} previousPage={previousPage} />)}
+        
 
         <User ref={node}>
           <AvatarBtn type="button" onClick={() => setOpen(prev => !prev)} >
