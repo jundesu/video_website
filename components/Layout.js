@@ -104,7 +104,7 @@ function GridView({filteredVideos}) {
                   <VideoTitle color={theme.videoTitleColor}>{video.title}</VideoTitle>
                   <h4>{video.channelTitle}</h4>
                   <h4>{video.viewCount} views</h4>
-                  <sapn>{video.category}</sapn>
+                  <span>{video.category}</span>
                 </VideoMessage>
               </VideoDetails>
                 

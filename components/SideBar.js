@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, useRef } from "react";
 import { ThemeContext } from "../theme/palette";
 import SubsImg from "../svgs/subs_icon.svg";
 
@@ -119,23 +119,54 @@ async function fetchChannelList () {
   return jsonResponse
 }
 
+
+function useCurrentWidth() {
+  const getWidth = () => window?.innerWidth
+  || document?.documentElement.clientWidth 
+  || document?.body.clientWidth;
+
+  // save current window width in the state object
+  let [width, setWidth] = useState(0);
+
+  // in this case useEffect will execute only once because
+  // it does not have any dependencies.
+  useEffect(() => {
+    // timeoutId for debounce mechanism
+    let timeoutId = null;
+    const resizeListener = () => {
+      // prevent execution of previous setTimeout
+      clearTimeout(timeoutId);
+ 
+      timeoutId = setTimeout(() => {
+        setWidth(getWidth())
+      }, 1000);
+    };
+    // set resize listener
+    window.addEventListener('resize', resizeListener);
+
+    // clean up function
+    return () => {
+      window.removeEventListener('resize', resizeListener);
+    }
+  }, [])
+
+  return width;
+}
+
 function Sidebar({ renderMask }) {
   const [channels, setChannel] = useState([]);
   const [collapse, setCollapse] = useState(true);
   const {theme} = useContext(ThemeContext);
+  const width = useCurrentWidth();
 
-  const handleCollapsedSidebar = () => {
-    const viewportWidth = window.innerWidth;
-    if(viewportWidth < 1200) {
+  useEffect(() => {
+    if(width < 1200) {
       setCollapse(true);
       return
     }
     setCollapse(false);
-  }
-  useEffect(() => {
-    window.addEventListener('resize', handleCollapsedSidebar)
-    return () => {window.removeEventListener('resize', handleCollapsedSidebar)}
-  },[])
+  }, [width]) 
+
 
   useEffect(() =>{
     fetchChannelList().then((channels) => {
