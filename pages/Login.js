@@ -208,7 +208,7 @@ function Login() {
   };
 
   const handleClick = (e) => {
-    e.preventDefault()
+    // e.preventDefault();
     router.push({
       pathname:'/Home',
       query: { email: email },

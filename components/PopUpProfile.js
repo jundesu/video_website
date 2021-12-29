@@ -17,7 +17,7 @@ const PopupContainer = styled.div`
   padding: 50px 20px;
   position: absolute;
   top: 65px;
-  right: 0px;
+  right: 0;
 `;
 
 const Profile = styled.div`

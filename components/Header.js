@@ -12,7 +12,6 @@ const Container = styled.header`
   position: fixed;
   top: 0;
   z-index: 1;
-
   width: 100%;
   height: 80px;
   display: flex;
@@ -35,7 +34,6 @@ const Logo = styled.a`
   @media(max-width: 500px) {
     font-size: 2.5rem;
   }
-
 `;
 
 const AvatarBtn = styled.button`
@@ -73,7 +71,7 @@ const SearchBtnIcon = styled(SearchButton)`
 `;
 
 async function fetchProfile() {
-  const response = await fetch('http://localhost:3000/api/profile');
+  const response = await fetch('/api/profile');
   const jsonResponse = await response.json();
   return jsonResponse
 }

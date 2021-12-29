@@ -27,7 +27,10 @@ const GridLayout = styled.ul`
     flex-direction: column;
     padding: 5px;
   }
-
+  
+  @media(max-width: 500px) {
+    margin-bottom: 150px;
+  }
 `;
 
 const Video = styled.li`

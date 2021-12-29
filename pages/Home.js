@@ -8,8 +8,8 @@ import palette, {ThemeContext} from "../theme/palette";
 
 
 const HomePage = styled.div`
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   background-color: ${({backgroundColor}) => backgroundColor ? '#1a1a1a' : '#ffffff'};
@@ -20,26 +20,31 @@ const HomePage = styled.div`
     display: flex;
     flex-direction: row;
     margin-top: 80px;
+    position: fixed;
+    top: 0px;
+    left: 0px;
   }
 `;
 
-const Mask = styled.div`
-  width: 100%;
-  height: 100%;
-  background-color: #49505779;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 2;
-  display: none;
+// const Mask = styled.div`
+//   width: 100%;
+//   height: 100%;
+//   background-color: #49505779;
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   font-size: 10rem;
+//   display: none;
 
-  @media(max-width: 1200px) {
-    display: ${({maskStatus}) => maskStatus ? 'block' : 'none' };
-  }
-`;
+//   @media(max-width: 1200px) {
+//     display: ${({maskStatus}) => maskStatus ? 'block' : 'none'};
+//   }
+
+// `;
+
 
 async function fetchVideos (){
-  const response = await fetch('http://localhost:3000/api/videos');
+  const response = await fetch('/api/videos');
   const jsonResponse = await response.json();
   return jsonResponse
 }
@@ -97,9 +102,12 @@ function Home () {
 
   return (
     <ThemeContext.Provider value={defaultTheme}>
-      <HomePage backgroundColor={isDark}>
-        <Mask maskStatus={maskStatus}/>
-        <Header userEmail={router.query?.email} videos={videos} onQuery={handleQueryResult}/>
+      <HomePage backgroundColor={isDark}>Home
+        <Header 
+          userEmail={router.query?.email} 
+          videos={videos} 
+          onQuery={handleQueryResult}
+        />
           <main>
             <Sidebar renderMask={(collapse) => {
               setMaskStatus(!collapse);

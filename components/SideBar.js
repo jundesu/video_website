@@ -2,6 +2,8 @@ import styled from "@emotion/styled";
 import { useEffect, useState, useContext, useRef } from "react";
 import { ThemeContext } from "../theme/palette";
 import SubsImg from "../svgs/subs_icon.svg";
+import CloseImg from "../svgs/clear_icon.svg";
+
 
 const SidebarMenu = styled.aside`
   min-width: ${({collapse}) => collapse ? '120px' : '250px'};
@@ -13,7 +15,7 @@ const SidebarMenu = styled.aside`
   @media(max-width: 1200px) {
     position: ${({collapse}) => collapse ? 'relative' : 'fixed'};
     left: 0;
-    z-index: 3;
+    z-index: 1;
   }
 
   @media(max-width: 500px) {
@@ -22,7 +24,6 @@ const SidebarMenu = styled.aside`
     
     position: fixed;
     bottom: 0;
-    z-index: 3;
   }
 `;
 
@@ -44,7 +45,7 @@ const SubsBtn = styled.button`
   }
 
   @media(max-width: 500px) {
-    padding: 0 45px;
+    padding: 0 20px 0 45px;
   }
 `;
 const SubsTitle = styled.h1`
@@ -61,6 +62,14 @@ const SubsIcon = styled(SubsImg)`
   path {
     fill: ${({fill}) => fill};
   }
+`;
+
+const CloseIcon = styled(CloseImg)`
+  width: 20px; 
+  height: 20px;
+  margin-left: auto;
+  fill: #6c757d;
+  display: ${({collapse}) => collapse ? 'none' : 'block' };
 `;
 
 const ChannelList = styled.ul`
@@ -114,11 +123,10 @@ const UnreadDot = styled.span`
 `;
 
 async function fetchChannelList () {
-  const response = await fetch('http://localhost:3000/api/subscriptions');
+  const response = await fetch('/api/subscriptions');
   const jsonResponse = await response.json();
   return jsonResponse
 }
-
 
 function useCurrentWidth() {
   const getWidth = () => window?.innerWidth
@@ -183,12 +191,13 @@ function Sidebar({ renderMask }) {
         <SubsBtn type="button" onClick={() => setCollapse(prev => !prev)} collapse={collapse} backgroundColor={theme.subsBtnBackgroundColor} hoverColor={theme. subsBtnHoverBackgroundColor}>
           <SubsIcon fill={theme.subsIconFill}/>
           <SubsTitle collapse={collapse} subsTitleColor={theme.subsTitleColor}>subscriptions</SubsTitle>
+          <CloseIcon collapse={collapse}/>
         </SubsBtn>
         <ChannelList collapse={collapse}>
           {channels.map((channel, index) => {
             return (
               <li key={index}>
-                <ChannelLink href="#">
+                <ChannelLink href="/Home">
                   <img src={channel.channelIcon} alt="channel image"/>
                   <ChannelTitle color={theme.channelTitleColor}>{channel.channelTitle}</ChannelTitle>
                   <UnreadDot unread={channel.unreadCount > 0 } />
