@@ -5,6 +5,7 @@ import VideoContents from "../components/VideoContents";
 import { useRouter } from 'next/router';
 import { useState, useEffect } from "react";
 import palette, {ThemeContext} from "../theme/palette";
+import SidebarOverlay from "../components/SidebarOverlay";
 
 
 const HomePage = styled.div`
@@ -102,16 +103,17 @@ function Home () {
 
   return (
     <ThemeContext.Provider value={defaultTheme}>
-      <HomePage backgroundColor={isDark}>Home
+      <HomePage backgroundColor={isDark}>
         <Header 
           userEmail={router.query?.email} 
           videos={videos} 
           onQuery={handleQueryResult}
         />
           <main>
-            <Sidebar renderMask={(collapse) => {
-              setMaskStatus(!collapse);
-            }}/>
+            <Sidebar 
+              // renderMask={(collapse) => {
+              // setMaskStatus(!collapse);}}
+            />
             <VideoContents 
               videos={videos}
               filteredVideos={filteredVideos}
@@ -119,6 +121,7 @@ function Home () {
               selectedCategory={selectedCategory}
             />
           </main>
+          <SidebarOverlay/>
       </HomePage>
     </ThemeContext.Provider>
       

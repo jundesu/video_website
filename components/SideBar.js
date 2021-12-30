@@ -182,9 +182,9 @@ function Sidebar({ renderMask }) {
     })
   }, [])
 
-  useEffect(() => {
-    renderMask(collapse)
-  }, [collapse])
+  // useEffect(() => {
+  //   renderMask(collapse)
+  // }, [collapse])
 
   return (
       <SidebarMenu background={theme.sidebarMenuBackgroundColor} collapse={collapse}>
