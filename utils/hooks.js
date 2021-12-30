@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 
-
 function useCurrentWidth() {
   const getWidth = () => window.innerWidth
   || document.documentElement.clientWidth 
@@ -12,6 +11,7 @@ function useCurrentWidth() {
   // in this case useEffect will execute only once because
   // it does not have any dependencies.
   useEffect(() => {
+    setWidth(getWidth());
     // timeoutId for debounce mechanism
     let timeoutId = null;
     const resizeListener = () => {
@@ -34,4 +34,4 @@ function useCurrentWidth() {
   return width;
 }
 
-export default useCurrentWidth;
+export {useCurrentWidth};
