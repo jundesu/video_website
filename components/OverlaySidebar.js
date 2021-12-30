@@ -12,10 +12,6 @@ const Overlay = styled.div`
    left: 0;
 `;
 
-const ExpandedSidebar = styled(Sidebar)`
-  min-width:250px; 
-  
-`;
 // display: none;
 
 // @media(max-width: 1200px) {
@@ -26,7 +22,7 @@ const ExpandedSidebar = styled(Sidebar)`
 function SidebarOverlay() {
   return (
     <Overlay>
-      <ExpandedSidebar/>
+      <Sidebar/>
     </Overlay>
   );
 }

@@ -5,7 +5,7 @@ import VideoContents from "../components/VideoContents";
 import { useRouter } from 'next/router';
 import { useState, useEffect } from "react";
 import palette, {ThemeContext} from "../theme/palette";
-import SidebarOverlay from "../components/SidebarOverlay";
+
 
 
 const HomePage = styled.div`
@@ -27,23 +27,6 @@ const HomePage = styled.div`
   }
 `;
 
-// const Mask = styled.div`
-//   width: 100%;
-//   height: 100%;
-//   background-color: #49505779;
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   font-size: 10rem;
-//   display: none;
-
-//   @media(max-width: 1200px) {
-//     display: ${({maskStatus}) => maskStatus ? 'block' : 'none'};
-//   }
-
-// `;
-
-
 async function fetchVideos (){
   const response = await fetch('/api/videos');
   const jsonResponse = await response.json();
@@ -56,8 +39,6 @@ function Home () {
   const theme = isDark ? palette.dark : palette.light;
   const toggleTheme = () => {setIsDark((prev)=> !prev )};
   const defaultTheme = {isDark, theme, toggleTheme};
-
-  const [maskStatus, setMaskStatus] = useState(false);
 
 // video
   const [videos, setVideos] = useState([]);
@@ -110,10 +91,7 @@ function Home () {
           onQuery={handleQueryResult}
         />
           <main>
-            <Sidebar 
-              // renderMask={(collapse) => {
-              // setMaskStatus(!collapse);}}
-            />
+            <Sidebar/>
             <VideoContents 
               videos={videos}
               filteredVideos={filteredVideos}
@@ -121,7 +99,6 @@ function Home () {
               selectedCategory={selectedCategory}
             />
           </main>
-          <SidebarOverlay/>
       </HomePage>
     </ThemeContext.Provider>
       

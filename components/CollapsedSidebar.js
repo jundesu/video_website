@@ -6,11 +6,25 @@ import CloseImg from "../svgs/clear_icon.svg";
 
 
 const SidebarMenu = styled.aside`
-  min-width: 250px;
+  min-width: ${({collapse}) => collapse ? '120px' : '250px'};
   height: 100%;
   overflow-y: scroll;
   background-color: ${({background}) => background} ;
   padding: 0px;
+
+  @media(max-width: 1200px) {
+    position: ${({collapse}) => collapse ? 'relative' : 'fixed'};
+    left: 0;
+    z-index: 1;
+  }
+
+  @media(max-width: 500px) {
+    min-width: ${({collapse}) => collapse ? '100%' : '100%'};
+    height: ${({collapse}) => collapse ? 'auto' : '100%'};
+    
+    position: fixed;
+    bottom: 0;
+  }
 `;
 
 const SubsBtn = styled.button`
@@ -18,9 +32,9 @@ const SubsBtn = styled.button`
   width: 100%;
   height: 60px;
   background-color: ${({backgroundColor}) => backgroundColor};
-  display: flex;
+  display: ${({collapse}) => collapse ? 'column' : 'flex'};
   align-items: center;
-  padding: 0px 15px 0px 15px;
+  padding:  ${({collapse}) => collapse ? '0px 5px 0px 5px' : '0px 15px 0px 15px'};
 
   position: sticky;
   top: 0;
@@ -29,13 +43,16 @@ const SubsBtn = styled.button`
   &:hover {
     background-color: ${({hoverColor}) => hoverColor};
   }
-`;
 
+  @media(max-width: 500px) {
+    padding: 0 20px 0 45px;
+  }
+`;
 const SubsTitle = styled.h1`
   text-transform: uppercase;
   color: ${({subsTitleColor}) => subsTitleColor};
-  font-size: 1.5rem;
-  margin: 0 0 0 15px;
+  font-size: ${({collapse}) => collapse ? '1rem' : '1.5rem'};
+  margin: ${({collapse}) => collapse ? '0 0 0 0' : '0 0 0 15px'};
   font-weight: 500;
 `;
 
@@ -52,13 +69,15 @@ const CloseIcon = styled(CloseImg)`
   height: 20px;
   margin-left: auto;
   fill: #6c757d;
-
+  display: ${({collapse}) => collapse ? 'none' : 'block' };
 `;
 
 const ChannelList = styled.ul`
   list-style: none;
   padding: 0;
   margin: 0;
+  display: ${({collapse}) => collapse ? 'none' : 'block'}
+
 `;
 
 const ChannelLink = styled.a`
@@ -80,6 +99,9 @@ const ChannelLink = styled.a`
     height: 30px;
   }
 
+  @media(max-width: 500px) {
+    padding: 0 45px;;
+  }
 `;
 const ChannelTitle = styled.h2`
   color: ${({color}) => color};
