@@ -101,54 +101,47 @@ const UnreadDot = styled.span`
 `;
 
 // move to home
-async function fetchChannelList () {
-  const response = await fetch('/api/subscriptions');
-  const jsonResponse = await response.json();
-  return jsonResponse
-}
+// async function fetchChannelList () {
+//   const response = await fetch('/api/subscriptions');
+//   const jsonResponse = await response.json();
+//   return jsonResponse
+// }
 
 //move to utils file
-function useCurrentWidth() {
-  const getWidth = () => window?.innerWidth
-  || document?.documentElement.clientWidth 
-  || document?.body.clientWidth;
+// function useCurrentWidth() {
+//   const getWidth = () => window?.innerWidth
+//   || document?.documentElement.clientWidth 
+//   || document?.body.clientWidth;
 
-  // save current window width in the state object
-  let [width, setWidth] = useState(0);
+//   let [width, setWidth] = useState(0);
 
-  // in this case useEffect will execute only once because
-  // it does not have any dependencies.
-  useEffect(() => {
-    // timeoutId for debounce mechanism
-    let timeoutId = null;
-    const resizeListener = () => {
-      // prevent execution of previous setTimeout
-      clearTimeout(timeoutId);
- 
-      timeoutId = setTimeout(() => {
-        setWidth(getWidth())
-      }, 1000);
-    };
-    // set resize listener
-    window.addEventListener('resize', resizeListener);
+//   useEffect(() => {
+//     let timeoutId = null;
+//     const resizeListener = () => {
+//       clearTimeout(timeoutId);
+//       timeoutId = setTimeout(() => {
+//         setWidth(getWidth())
+//       }, 1000);
+//     };
 
-    // clean up function
-    return () => {
-      window.removeEventListener('resize', resizeListener);
-    }
-  }, [])
+//     window.addEventListener('resize', resizeListener);
 
-  return width;
-}
+//     return () => {
+//       window.removeEventListener('resize', resizeListener);
+//     }
+//   }, [])
 
+//   return width;
+// }
 
 function Sidebar() {
-  // move to home
-  const [channels, setChannel] = useState([]);
-  const [collapse, setCollapse] = useState(true);
   const {theme} = useContext(ThemeContext);
-  const width = useCurrentWidth();
+// move to home
+  // const [channels, setChannel] = useState([]);
+  // const [collapse, setCollapse] = useState(true);
+  // const width = useCurrentWidth();
 
+//move to home
   // useEffect(() => {
   //   if(width < 1200) {
   //     setCollapse(true);
@@ -157,16 +150,12 @@ function Sidebar() {
   //   setCollapse(false);
   // }, [width]) 
 
-
+//move to home
   // useEffect(() =>{
   //   fetchChannelList().then((channels) => {
   //     setChannel(channels);
   //   })
   // }, [])
-
-  // useEffect(() => {
-  //   renderMask(collapse)
-  // }, [collapse])
 
   return (
       <SidebarMenu 

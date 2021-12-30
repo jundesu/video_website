@@ -5,8 +5,7 @@ import VideoContents from "../components/VideoContents";
 import { useRouter } from 'next/router';
 import { useState, useEffect } from "react";
 import palette, {ThemeContext} from "../theme/palette";
-
-
+import {useCurrentWidth} from "../utils/hooks";
 
 const HomePage = styled.div`
   width: 100vw;
@@ -27,8 +26,16 @@ const HomePage = styled.div`
   }
 `;
 
+// fetch videos
 async function fetchVideos (){
   const response = await fetch('/api/videos');
+  const jsonResponse = await response.json();
+  return jsonResponse
+}
+
+// fetch subscriptions
+async function fetchChannelList () {
+  const response = await fetch('/api/subscriptions');
   const jsonResponse = await response.json();
   return jsonResponse
 }
@@ -44,6 +51,11 @@ function Home () {
   const [videos, setVideos] = useState([]);
   const [filteredVideos, setFilteredVideos] = useState(videos);
   const [selectedCategory, setSelectedCategory] = useState('all');
+
+//subscription 
+  const [channels, setChannel] = useState([]);
+  const [collapse, setCollapse] = useState(true);
+  const width = useCurrentWidth();
 
   // search bar
   const handleQueryResult = (inputValue) => {
@@ -78,9 +90,20 @@ function Home () {
     fetchVideos().then((videoList) => {
       setVideos(videoList);
       setFilteredVideos(videoList);
+    })
 
+    fetchChannelList().then((channels) => {
+      setChannel(channels);
     })
   }, []);
+
+  useEffect(() => {
+    if(width < 1200) {
+      setCollapse(true);
+      return
+    }
+    setCollapse(false);
+  }, [width]) 
 
   return (
     <ThemeContext.Provider value={defaultTheme}>
