@@ -3,28 +3,25 @@ import Sidebar from "./Sidebar";
 import { useEffect, useState, useContext, useRef } from "react";
 import { ThemeContext } from "../theme/palette";
 
+import ExpandedSidebar from "./ExpandedSidebar";
+
 const Overlay = styled.div`
    width: 100%;
    height: 100%;
    background-color: #49505779;
-   position: absolute;
+   position: fixed;
    top: 0;
    left: 0;
+   z-index: 2;
 `;
 
-// display: none;
 
-// @media(max-width: 1200px) {
-//    display: ${({maskStatus}) => maskStatus ? 'block' : 'none'};
-//  }
-
-
-function SidebarOverlay() {
+function OverlaySidebar({channels, toggleCollapse}) {
   return (
     <Overlay>
-      <Sidebar/>
+      <ExpandedSidebar channels={channels} toggleCollapse={toggleCollapse}/>
     </Overlay>
   );
 }
 
-export default SidebarOverlay;
+export default OverlaySidebar;

@@ -6,7 +6,7 @@ import CollapseImg from "../svgs/clear_icon.svg";
 
 
 const Subscriptions = styled.div`
-  min-width: 250px;
+  width: 250px;
   height: 100%;
   overflow-y: scroll;
   background-color: ${({background}) => background} ;

@@ -4,7 +4,7 @@ import { ThemeContext } from "../theme/palette";
 import SubsImg from "../svgs/subs_icon.svg";
 
 const Subscriptions = styled.div`
-  min-width: 120px;
+  width: 120px;
   background-color: ${({background}) => background};
 `;
 

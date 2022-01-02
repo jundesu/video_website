@@ -17,7 +17,7 @@ const Aside = styled.aside`
 `;
 
 function Sidebar({channels, collapse, toggleCollapse}) {
-console.log('hi:', collapse)
+
   return (
     <Aside collapse={collapse}>
       {collapse ? <CollapsedSidebar toggleCollapse={toggleCollapse} /> : <ExpandedSidebar channels={channels} toggleCollapse={toggleCollapse}/>}

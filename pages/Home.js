@@ -9,9 +9,7 @@ import {useCurrentWidth} from "../utils/hooks";
 import Header from "../components/Header";
 import VideoContents from "../components/VideoContents";
 import Sidebar from "../components/Sidebar";
-// import CollapsedSidebar from "../components/CollapsedSidebar";
-// import ExpandedSidebar from "../components/ExpandedSidebar";
-
+import OverlaySidebar from "../components/OverlaySidebar";
 
 
 const HomePage = styled.div`
@@ -62,6 +60,7 @@ function Home () {
 //subscription 
   const [channels, setChannel] = useState([]);
   const [collapse, setCollapse] = useState(false);
+  const [displayOverlay, setDisplayOverlay] = useState(true);
   const width = useCurrentWidth();
 
   // search bar
@@ -115,6 +114,7 @@ function Home () {
   return (
     <ThemeContext.Provider value={defaultTheme}>
       <HomePage backgroundColor={isDark}>
+        {displayOverlay && (<OverlaySidebar channels={channels} toggleCollapse={() => setDisplayOverlay(false)}/>)}
         <Header 
           userEmail={router.query?.email} 
           videos={videos} 
