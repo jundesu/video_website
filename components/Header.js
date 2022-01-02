@@ -23,6 +23,10 @@ const Container = styled.header`
   @media(max-width: 800px) {
     padding: 0 15px 0 15px;
   }
+
+  @media(max-width: 500px) {
+    z-index: ${({collapse}) => collapse ? '1' : '0'};
+  }
 `;
 
 const Logo = styled.a`
@@ -76,7 +80,7 @@ async function fetchProfile() {
   return jsonResponse
 }
 
-function Header({userEmail, onQuery}) {
+function Header({userEmail, onQuery, collapse}) {
   const [open, setOpen] = useState(false);
   const node = useRef();
   const [profile, setProfile] = useState({});
@@ -110,7 +114,7 @@ function Header({userEmail, onQuery}) {
   }, []);
 
   return (
-    <Container backgroundColor={theme.headerBackgroundColor}>
+    <Container backgroundColor={theme.headerBackgroundColor} collapse={collapse}>
         <Logo href="/Home">LOGO</Logo>
         <SearchBar onQuery={onQuery} />
         <SearchBtnIcon onClick={() => setExpand(true)}/>

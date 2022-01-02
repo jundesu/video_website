@@ -1,11 +1,18 @@
 import styled from "@emotion/styled";
-import Header from "../components/Header";
-import Sidebar from "../components/Sidebar";
-import VideoContents from "../components/VideoContents";
+
 import { useRouter } from 'next/router';
 import { useState, useEffect } from "react";
 import palette, {ThemeContext} from "../theme/palette";
+
 import {useCurrentWidth} from "../utils/hooks";
+
+import Header from "../components/Header";
+import VideoContents from "../components/VideoContents";
+import Sidebar from "../components/Sidebar";
+// import CollapsedSidebar from "../components/CollapsedSidebar";
+// import ExpandedSidebar from "../components/ExpandedSidebar";
+
+
 
 const HomePage = styled.div`
   width: 100vw;
@@ -54,7 +61,7 @@ function Home () {
 
 //subscription 
   const [channels, setChannel] = useState([]);
-  const [collapse, setCollapse] = useState(true);
+  const [collapse, setCollapse] = useState(false);
   const width = useCurrentWidth();
 
   // search bar
@@ -112,9 +119,15 @@ function Home () {
           userEmail={router.query?.email} 
           videos={videos} 
           onQuery={handleQueryResult}
+          collapse={collapse} 
         />
           <main>
-            <Sidebar/>
+            <Sidebar 
+              channels={channels} 
+              collapse={collapse} 
+              toggleCollapse={() => setCollapse(prev => !prev)}
+            />
+
             <VideoContents 
               videos={videos}
               filteredVideos={filteredVideos}
