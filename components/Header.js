@@ -115,7 +115,7 @@ function Header({userEmail, onQuery, collapse}) {
 
   return (
     <Container backgroundColor={theme.headerBackgroundColor} collapse={collapse}>
-        <Logo href="/Home">LOGO</Logo>
+        <Logo href="/home">LOGO</Logo>
         <SearchBar onQuery={onQuery} />
         <SearchBtnIcon onClick={() => setExpand(true)}/>
         {expand && (<MobileSearchBar onQuery={onQuery} previousPage={previousPage} />)}

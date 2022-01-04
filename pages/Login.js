@@ -210,7 +210,7 @@ function Login() {
   const handleClick = (e) => {
     // e.preventDefault();
     router.push({
-      pathname:'/Home',
+      pathname:'/home',
       query: { email: email },
     },
     '/home')

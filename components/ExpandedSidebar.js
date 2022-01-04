@@ -191,7 +191,7 @@ function ExpandedSidebar({channels, toggleCollapse}) {
           {channels.map((channel, index) => {
             return (
               <li key={index}>
-                <ChannelLink href="/Home">
+                <ChannelLink href="/home">
                   <img src={channel.channelIcon} alt="channel image"/>
                   <ChannelTitle color={theme.channelTitleColor}>{channel.channelTitle}</ChannelTitle>
                   <UnreadDot unread={channel.unreadCount > 0 } />

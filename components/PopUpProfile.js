@@ -155,7 +155,7 @@ function PopUpProfile({userEmail, profile}){
           <input type="checkbox" id="dark-mode" onClick={toggleTheme} />
       </DarkModeLabel>
 
-      <SignOut href="/Login">
+      <SignOut href="/login">
         <SignOutIcon stroke={theme.signOutIconColor}/>
         <Text color={theme.textColor}>Sign out</Text>
       </SignOut>
