@@ -60,7 +60,7 @@ function Home () {
 //subscription 
   const [channels, setChannel] = useState([]);
   const [collapse, setCollapse] = useState(false);
-  const [displayOverlay, setDisplayOverlay] = useState(true);
+  const [displayOverlay, setDisplayOverlay] = useState(false);
   const width = useCurrentWidth();
 
   // search bar
@@ -90,6 +90,15 @@ function Home () {
         }) 
       )
     } else {setFilteredVideos(videos)}
+  };
+
+//sidebar
+  const handleSubscriptionsBtn = () => {
+    if(width < 1200 && width > 500) {
+      setDisplayOverlay(true)
+    } else {
+      setCollapse(prev => !prev)
+    }
   };
    
   useEffect(() => {
@@ -125,7 +134,9 @@ function Home () {
             <Sidebar 
               channels={channels} 
               collapse={collapse} 
-              toggleCollapse={() => setCollapse(prev => !prev)}
+              toggleCollapse={handleSubscriptionsBtn}
+
+              // toggleCollapse={() => setCollapse(prev => !prev)}
             />
 
             <VideoContents 

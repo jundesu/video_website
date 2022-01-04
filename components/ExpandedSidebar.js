@@ -11,6 +11,10 @@ const Subscriptions = styled.div`
   overflow-y: scroll;
   background-color: ${({background}) => background} ;
 
+  @media(max-width: 500px) {
+    width: 100%;
+  }
+
 `;
 
 const SubsBtn = styled.button`

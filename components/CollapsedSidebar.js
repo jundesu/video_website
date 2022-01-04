@@ -6,6 +6,10 @@ import SubsImg from "../svgs/subs_icon.svg";
 const Subscriptions = styled.div`
   width: 120px;
   background-color: ${({background}) => background};
+
+  @media(max-width: 500px) {
+    width: 100%;
+  }
 `;
 
 const SubsBtn = styled.button`
