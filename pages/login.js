@@ -93,6 +93,7 @@ const Input = styled.input`
   border-bottom: 2px solid;
   border-color: transparent transparent #928DAB transparent;
   border-radius: 0;
+  font-size: 2rem;
 
   &::placeholder {
     color: #adadad;
@@ -207,9 +208,9 @@ function Login() {
   };
 
   const handleClick = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     router.push({
-      pathname:'/Home',
+      pathname:'/home',
       query: { email: email },
     },
     '/home')
@@ -223,12 +224,24 @@ function Login() {
       <Form>
         <Label>
           E-mail
-          <Input type="email" placeholder="enter your e-mail" value={email} onChange={handleChange} required/>
+          <Input
+            name="email" 
+            type="email" 
+            placeholder="enter your e-mail" 
+            value={email} 
+            onChange={handleChange} 
+            required
+          />
         </Label>
         
         <Label>
           Password
-          <Input type="password" placeholder="enter your password" required/>
+          <Input 
+            name="password"
+            type="password" 
+            placeholder="enter your password" 
+            required
+          />
         </Label>
 
         <ForgotPassword href="#">Forgot password ?</ForgotPassword>

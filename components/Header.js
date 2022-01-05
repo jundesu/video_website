@@ -12,7 +12,6 @@ const Container = styled.header`
   position: fixed;
   top: 0;
   z-index: 1;
-
   width: 100%;
   height: 80px;
   display: flex;
@@ -23,6 +22,10 @@ const Container = styled.header`
 
   @media(max-width: 800px) {
     padding: 0 15px 0 15px;
+  }
+
+  @media(max-width: 500px) {
+    z-index: ${({collapse}) => collapse ? '1' : '0'};
   }
 `;
 
@@ -35,7 +38,6 @@ const Logo = styled.a`
   @media(max-width: 500px) {
     font-size: 2.5rem;
   }
-
 `;
 
 const AvatarBtn = styled.button`
@@ -73,12 +75,12 @@ const SearchBtnIcon = styled(SearchButton)`
 `;
 
 async function fetchProfile() {
-  const response = await fetch('http://localhost:3000/api/profile');
+  const response = await fetch('/api/profile');
   const jsonResponse = await response.json();
   return jsonResponse
 }
 
-function Header({userEmail, onQuery}) {
+function Header({userEmail, onQuery, collapse}) {
   const [open, setOpen] = useState(false);
   const node = useRef();
   const [profile, setProfile] = useState({});
@@ -112,8 +114,8 @@ function Header({userEmail, onQuery}) {
   }, []);
 
   return (
-    <Container backgroundColor={theme.headerBackgroundColor}>
-        <Logo href="/Home">LOGO</Logo>
+    <Container backgroundColor={theme.headerBackgroundColor} collapse={collapse}>
+        <Logo href="/home">LOGO</Logo>
         <SearchBar onQuery={onQuery} />
         <SearchBtnIcon onClick={() => setExpand(true)}/>
         {expand && (<MobileSearchBar onQuery={onQuery} previousPage={previousPage} />)}

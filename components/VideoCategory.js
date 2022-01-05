@@ -10,9 +10,11 @@ const ScrollContainer = styled.div`
   display: flex;
   border: 1px solid;
   border-color: ${({borderColor}) => borderColor} ;
+
   position: sticky;
   top: 0;
   left: 0;
+  
 `;
 
 const ArrowBtn = styled.button`
@@ -21,6 +23,7 @@ const ArrowBtn = styled.button`
   border: none;
   padding: 0;
   margin: 0;
+  border: none;
 `;
 
 const PreviousIcon = styled(LeftArrow)`
@@ -37,6 +40,7 @@ const NextIcon = styled(RightArrow)`
 
 const FilterBar = styled.ul`
   list-style: none;
+
   width: 100%;
   display: flex;
   justify-content: space-between;

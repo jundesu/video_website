@@ -7,46 +7,53 @@ const GridLayout = styled.ul`
   padding: 20px;
   margin: 0;
   width: 100%;
-  height: 100%;
+
   overflow-y: scroll;
-  
+
   display: grid;
-  grid-template-columns: repeat(4, auto);
+  grid-template-columns: repeat(4, 24%);
+  justify-content: space-between;
   gap: 10px;
   
   @media(max-width: 1000px) {
-    grid-template-columns: repeat(3, auto);
+    grid-template-columns: repeat(3, 32%);
   }
   @media(max-width: 800px) {
-    grid-template-columns: repeat(2, auto);
+    grid-template-columns: repeat(2, 49%);
   }
 
   @media(max-width: 600px) {
-    grid-template-columns: repeat(1, auto);
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
   }
-
+  
+  @media(max-width: 500px) {
+    margin-bottom: 150px;
+  }
 `;
 
 const Video = styled.li`
+  width: 100%;
+  height: 100%;
 
+  @media(max-width: 600px) {
+    margin-bottom: 20px;
+  }
 `;
-
 
 const Thumbnail = styled.img`
   background-color: #000000;
-  object-fit: cover;
-
-  --size: 100%;
-  --aspect-ratio: 2.3;
-  width: var(--size);
-  height: calc(var(--size) / var(--aspect-ratio));
+  object-fit: contain;
+  width: 100%;
+  height: 45%;
 
 `;
 
 const VideoDetails = styled.div`
     display: flex;
     flex-direction: row;
-    margin-top: 20px;
+    margin-top: 10px;
 
 `;
 
@@ -100,7 +107,7 @@ function GridView({filteredVideos}) {
                   <VideoTitle color={theme.videoTitleColor}>{video.title}</VideoTitle>
                   <h4>{video.channelTitle}</h4>
                   <h4>{video.viewCount} views</h4>
-                  <sapn>{video.category}</sapn>
+                  <span>{video.category}</span>
                 </VideoMessage>
               </VideoDetails>
                 

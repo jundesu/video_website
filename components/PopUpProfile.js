@@ -17,7 +17,7 @@ const PopupContainer = styled.div`
   padding: 50px 20px;
   position: absolute;
   top: 65px;
-  right: 0px;
+  right: 0;
 `;
 
 const Profile = styled.div`
@@ -155,7 +155,7 @@ function PopUpProfile({userEmail, profile}){
           <input type="checkbox" id="dark-mode" onClick={toggleTheme} />
       </DarkModeLabel>
 
-      <SignOut href="/Login">
+      <SignOut href="/login">
         <SignOutIcon stroke={theme.signOutIconColor}/>
         <Text color={theme.textColor}>Sign out</Text>
       </SignOut>
@@ -166,12 +166,3 @@ function PopUpProfile({userEmail, profile}){
 }
 
 export default PopUpProfile;
-
-
-// & > input:checked + .slider {
-//   background-color: #fca311;
-// }
-
-// & > input:checked + .slider:before {
-//   transform: translate(25px, 0);
-// }

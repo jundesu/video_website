@@ -1,15 +1,20 @@
 import styled from "@emotion/styled";
-import Header from "../components/Header";
-import Sidebar from "../components/Sidebar";
-import VideoContents from "../components/VideoContents";
+
 import { useRouter } from 'next/router';
 import { useState, useEffect } from "react";
 import palette, {ThemeContext} from "../theme/palette";
 
+import {useCurrentWidth} from "../utils/hooks";
+
+import Header from "../components/Header";
+import VideoContents from "../components/VideoContents";
+import Sidebar from "../components/Sidebar";
+import OverlaySidebar from "../components/OverlaySidebar";
+
 
 const HomePage = styled.div`
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   background-color: ${({backgroundColor}) => backgroundColor ? '#1a1a1a' : '#ffffff'};
@@ -20,26 +25,22 @@ const HomePage = styled.div`
     display: flex;
     flex-direction: row;
     margin-top: 80px;
+    position: fixed;
+    top: 0px;
+    left: 0px;
   }
 `;
 
-const Mask = styled.div`
-  width: 100%;
-  height: 100%;
-  background-color: #49505779;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 2;
-  display: none;
-
-  @media(max-width: 1200px) {
-    display: ${({maskStatus}) => maskStatus ? 'block' : 'none' };
-  }
-`;
-
+// fetch videos
 async function fetchVideos (){
-  const response = await fetch('http://localhost:3000/api/videos');
+  const response = await fetch('/api/videos');
+  const jsonResponse = await response.json();
+  return jsonResponse
+}
+
+// fetch subscriptions
+async function fetchChannelList () {
+  const response = await fetch('/api/subscriptions');
   const jsonResponse = await response.json();
   return jsonResponse
 }
@@ -51,12 +52,16 @@ function Home () {
   const toggleTheme = () => {setIsDark((prev)=> !prev )};
   const defaultTheme = {isDark, theme, toggleTheme};
 
-  const [maskStatus, setMaskStatus] = useState(false);
-
 // video
   const [videos, setVideos] = useState([]);
   const [filteredVideos, setFilteredVideos] = useState(videos);
   const [selectedCategory, setSelectedCategory] = useState('all');
+
+//subscription 
+  const [channels, setChannel] = useState([]);
+  const [collapse, setCollapse] = useState(false);
+  const [displayOverlay, setDisplayOverlay] = useState(false);
+  const width = useCurrentWidth();
 
   // search bar
   const handleQueryResult = (inputValue) => {
@@ -86,24 +91,54 @@ function Home () {
       )
     } else {setFilteredVideos(videos)}
   };
+
+//sidebar
+  const handleSubscriptionsBtn = () => {
+    if(width < 1200 && width > 500) {
+      setDisplayOverlay(true)
+    } else {
+      setCollapse(prev => !prev)
+    }
+  };
    
   useEffect(() => {
     fetchVideos().then((videoList) => {
       setVideos(videoList);
       setFilteredVideos(videoList);
+    })
 
+    fetchChannelList().then((channels) => {
+      setChannel(channels);
     })
   }, []);
+
+  useEffect(() => {
+    if(width < 1200) {
+      setCollapse(true);
+      return
+    }
+    setCollapse(false);
+  }, [width]) 
 
   return (
     <ThemeContext.Provider value={defaultTheme}>
       <HomePage backgroundColor={isDark}>
-        <Mask maskStatus={maskStatus}/>
-        <Header userEmail={router.query?.email} videos={videos} onQuery={handleQueryResult}/>
+        {displayOverlay && (<OverlaySidebar channels={channels} toggleCollapse={() => setDisplayOverlay(false)}/>)}
+        <Header 
+          userEmail={router.query?.email} 
+          videos={videos} 
+          onQuery={handleQueryResult}
+          collapse={collapse} 
+        />
           <main>
-            <Sidebar renderMask={(collapse) => {
-              setMaskStatus(!collapse);
-            }}/>
+            <Sidebar 
+              channels={channels} 
+              collapse={collapse} 
+              toggleCollapse={handleSubscriptionsBtn}
+
+              // toggleCollapse={() => setCollapse(prev => !prev)}
+            />
+
             <VideoContents 
               videos={videos}
               filteredVideos={filteredVideos}

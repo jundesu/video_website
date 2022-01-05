@@ -10,6 +10,7 @@ height: 100%;
 background-color: ${({background}) => background };
 
 overflow-y: scroll;
+
 `;
 
 function VideoContents({videos, filteredVideos, onChangeCategory, selectedCategory}) {
