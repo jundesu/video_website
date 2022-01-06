@@ -5,7 +5,7 @@ import { ThemeContext } from "../theme/palette";
 const GridLayout = styled.ul`
   list-style: none;
   padding: 20px;
-  margin: 0;
+  margin: 0 0 50px 0;
   width: 100%;
 
   overflow-y: scroll;

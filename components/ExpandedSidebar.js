@@ -70,6 +70,10 @@ const ChannelList = styled.ul`
   list-style: none;
   padding: 0;
   margin: 0;
+
+  @media(min-width: 1200px) {
+    margin: 0 0 80px 0;
+  }
 `;
 
 const ChannelLink = styled.a`
@@ -114,62 +118,8 @@ const UnreadDot = styled.span`
   visibility: ${({unread}) =>  unread ? 'visible' : 'hidden'};
 `;
 
-// move to home
-// async function fetchChannelList () {
-//   const response = await fetch('/api/subscriptions');
-//   const jsonResponse = await response.json();
-//   return jsonResponse
-// }
-
-//move to utils file
-// function useCurrentWidth() {
-//   const getWidth = () => window?.innerWidth
-//   || document?.documentElement.clientWidth 
-//   || document?.body.clientWidth;
-
-//   let [width, setWidth] = useState(0);
-
-//   useEffect(() => {
-//     let timeoutId = null;
-//     const resizeListener = () => {
-//       clearTimeout(timeoutId);
-//       timeoutId = setTimeout(() => {
-//         setWidth(getWidth())
-//       }, 1000);
-//     };
-
-//     window.addEventListener('resize', resizeListener);
-
-//     return () => {
-//       window.removeEventListener('resize', resizeListener);
-//     }
-//   }, [])
-
-//   return width;
-// }
-
 function ExpandedSidebar({channels, toggleCollapse}) {
   const {theme} = useContext(ThemeContext);
-// move to home
-  // const [channels, setChannel] = useState([]);
-  // const [collapse, setCollapse] = useState(true);
-  // const width = useCurrentWidth();
-
-//move to home
-  // useEffect(() => {
-  //   if(width < 1200) {
-  //     setCollapse(true);
-  //     return
-  //   }
-  //   setCollapse(false);
-  // }, [width]) 
-
-//move to home
-  // useEffect(() =>{
-  //   fetchChannelList().then((channels) => {
-  //     setChannel(channels);
-  //   })
-  // }, [])
 
   return (
       <Subscriptions 
