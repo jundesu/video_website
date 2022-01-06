@@ -1,10 +1,7 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import AppleImg from "../svgs/apple_icon.svg";
-import FacebookImg from "../svgs/facebook_icon.svg";
-import GoogleImg from "../svgs/google_icon.svg";
-
+import ThirdParty from '../components/ThirdParty';
 
 const LoginPage = styled.main`
   display: flex;
@@ -154,48 +151,6 @@ const SignUpText = styled.span`
   font-size: 1.8rem;
 `;
 
-
-const ThirdParty = styled.section`
-  display: flex;
-  justify-content: space-between;
-  width: 50%;
-
-  @media(max-width: 1200px) {
-    width: 70%;
-  }
-  @media(max-width: 800px) {
-    width: 50%;
-  }
-
-`;
-
-const Social = styled.button`
-  width: 60px;
-  height: 60px;
-  background-color: #ffffff;
-  border-radius: 50%;
-  border: none;
-  padding: 0;
-
-  @media(max-width: 500px) {
-    width: 40px;
-    height: 40px;
-  }
-`;
-
-const AppleIcon = styled(AppleImg)`
-  width: 100%;
-  height: 100%;
-`;
-const FacebookIcon = styled(FacebookImg)`
-  width: 100%;
-  height: 100%;
-`;
-const GoogleIcon = styled(GoogleImg)`
-  width: 90%;
-  height: 90%;
-`;
-
 const SignUpLink = styled.a`
   text-decoration: none;
   color: #adadad;
@@ -278,17 +233,7 @@ function Login() {
         <ForgotPassword href="#">Forgot password ?</ForgotPassword>
         <Submit>Log in</Submit>
         <SignUpText>or sign up using</SignUpText>
-        <ThirdParty>
-          <Social>
-              <AppleIcon/>
-          </Social>
-          <Social>
-            <FacebookIcon/>
-          </Social>
-          <Social>
-            <GoogleIcon/>
-          </Social>
-        </ThirdParty>
+        <ThirdParty/>
         <SignUpText>
           Don't have an account ?
           <SignUpLink href="#">Sign up</SignUpLink>
