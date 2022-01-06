@@ -27,6 +27,8 @@ const LoginPage = styled.main`
     flex-direction: column;
     p {
       width: 100%;
+      padding: 20px;
+      font-size: 3rem;
     }
   }
 
@@ -39,7 +41,7 @@ const LoginPage = styled.main`
 
 `;
 
-const Form = styled.form`
+const FormStyle = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -55,6 +57,7 @@ const Form = styled.form`
 
   @media(max-width: 800px) {
     width: 100%;
+    padding: 20px 150px;
   }
 
   @media(max-width: 500px) {
@@ -62,26 +65,31 @@ const Form = styled.form`
   }
 `;
 
+const InputStyled = styled.div`
+ width: 100%;
+ position: relative;
+
+ &::after {
+  content: '';
+  width: 0%;
+  height: 2px;
+  background: #fca311;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  transition: all 0.4s ease;
+ }
+
+ &:hover::after {
+  width: 100%;
+ }
+
+`;
+
 const Label = styled.label`
   width: 100%;
   color: #4b4e6e; 
-  position: relative;
   font-size: 2rem;
-
-  &::after {
-    content: '';
-    width: 0%;
-    height: 2px;
-    background: #fca311;
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    transition: all 0.4s ease;
-  }
-
-  &:hover::after {
-    width: 100%;
-  }
 `;
 
 const Input = styled.input`
@@ -198,17 +206,47 @@ const SignUpLink = styled.a`
   }
 `;
 
+function InputField({id, label, placeholder, value, onChange, required}) {
+  return (
+      <InputStyled>
+        <Label htmlFor={id}>{label}</Label>
+          <Input
+            value={value}
+            type={id}
+            id={id}
+            name={id}
+            placeholder={placeholder}
+            onChange={onChange} 
+            required={required}
+          /> 
+      </InputStyled>
+    );
+}
+
 function Login() {
   const [email, setEmail] = useState('');
   const router = useRouter();
+  const inputFields =[
+    {
+      label: "E-mail", 
+      id: "email",
+      placeholder: "enter your e-mail",
+      value: email, 
+      handleInputChange: e => setEmail(e.target.value),
+      required: true,
+    },
+    {
+      label:"Password", 
+      id:"password", 
+      placeholder: "enter your password",  
+      handleInputChange: () => {},
+      required: true,
+    },
+  ];
 
-  const handleChange = (e)=> {
-    console.log(e.target.value);
-    setEmail(e.target.value);
-  };
-
-  const handleClick = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
+
     router.push({
       pathname:'/home',
       query: { email: email },
@@ -216,40 +254,30 @@ function Login() {
     '/home')
   };
 
-
-
   return (
     <LoginPage>
       <p>Log in to your account</p>
-      <Form>
-        <Label>
-          E-mail
-          <Input
-            name="email" 
-            type="email" 
-            placeholder="enter your e-mail" 
-            value={email} 
-            onChange={handleChange} 
-            required
-          />
-        </Label>
+      
+      <FormStyle onSubmit={handleSubmit}>
+        {
+          inputFields.map((input, index) => {
+            return (
+              <InputField
+                key={index} 
+                value={input.value} 
+                label={input.label}
+                id={input.id}
+                placeholder={input.placeholder} 
+                onChange={input.handleInputChange}
+                required={input.required}
+              />
+            )
+          })
+        }
         
-        <Label>
-          Password
-          <Input 
-            name="password"
-            type="password" 
-            placeholder="enter your password" 
-            required
-          />
-        </Label>
-
         <ForgotPassword href="#">Forgot password ?</ForgotPassword>
-
-        <Submit onClick={handleClick}>Log in</Submit>
-
+        <Submit>Log in</Submit>
         <SignUpText>or sign up using</SignUpText>
-
         <ThirdParty>
           <Social>
               <AppleIcon/>
@@ -261,13 +289,12 @@ function Login() {
             <GoogleIcon/>
           </Social>
         </ThirdParty>
-
         <SignUpText>
           Don't have an account ?
           <SignUpLink href="#">Sign up</SignUpLink>
         </SignUpText>
-
-      </Form>
+      </FormStyle>
+        
     </LoginPage>
   );
 
