@@ -84,7 +84,7 @@ const VideoMessage = styled.section`
     color: ${({videoCategoryColor}) => videoCategoryColor};
     margin: 10px 0 0 0;
     border: 1px solid;
-    border-color: ${(videoCategoryBorderColor) => videoCategoryBorderColor};
+    border-color: ${({videoCategoryBorderColor}) => videoCategoryBorderColor};
     padding: 2px 5px;
   }
 `;
