@@ -69,14 +69,24 @@ const ChannelIcon = styled.img`
 const VideoMessage = styled.section`
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   margin-left: 15px;
 
-& > h4 {
-  color: ${({color}) => color};
-  font-size: 1.5rem;
-  font-weight: 300;
-  margin: 10px 0 0 0;
-}
+  & > h4 {
+    color: ${({color}) => color};
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin: 10px 0 0 0;
+  }
+
+  & > span {
+    font-size: 1.2rem;
+    color: ${({videoCategoryColor}) => videoCategoryColor};
+    margin: 10px 0 0 0;
+    border: 1px solid;
+    border-color: ${(videoCategoryBorderColor) => videoCategoryBorderColor};
+    padding: 2px 5px;
+  }
 `;
 
 const VideoTitle = styled.h3`
@@ -103,7 +113,11 @@ function GridView({filteredVideos}) {
               
               <VideoDetails>
                 <ChannelIcon src={video.channelIcon}/>
-                <VideoMessage color={theme.videoMessageColor}>
+                <VideoMessage 
+                  color={theme.videoMessageColor} 
+                  videoCategoryColor={theme.videoCategoryColor} 
+                  videoCategoryBorderColor={theme.videoCategoryBorderColor}
+                >
                   <VideoTitle color={theme.videoTitleColor}>{video.title}</VideoTitle>
                   <h4>{video.channelTitle}</h4>
                   <h4>{video.viewCount} views</h4>
