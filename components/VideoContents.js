@@ -1,16 +1,14 @@
 import styled from "@emotion/styled";
-import { useState, useEffect, useContext } from "react";
-import Layout from "./Layout";
-import VideoCategory from "./VideoCategory";
+import { useContext } from "react";
 import { ThemeContext } from "../theme/palette";
+import VideoCategory from "./VideoCategory";
+import CardList from "./CardList";
 
 const Contents = styled.section`
-width: 100%;
-height: 100%;
-background-color: ${({background}) => background };
-
-overflow-y: scroll;
-
+  width: 100%;
+  height: 100%;
+  background-color: ${({background}) => background };
+  overflow-y: scroll;
 `;
 
 function VideoContents({videos, filteredVideos, onChangeCategory, selectedCategory}) {
@@ -20,9 +18,9 @@ function VideoContents({videos, filteredVideos, onChangeCategory, selectedCatego
   const categories = videos.map((video) => {
     return video.category
   });
+
   const uniqueCategories = [...new Set(categories)];
 
-  
   return (
     <Contents background={theme.contentsBackgroundColor}>
       <VideoCategory 
@@ -30,8 +28,7 @@ function VideoContents({videos, filteredVideos, onChangeCategory, selectedCatego
         onChangeCategory={onChangeCategory}
         selectedCategory={selectedCategory}
       />
-
-        <Layout filteredVideos={filteredVideos} />
+        <CardList filteredVideos={filteredVideos} />
     </Contents>
   );
 }

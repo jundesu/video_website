@@ -42,7 +42,9 @@ const light ={
   nextIconFill: '#495057',
   //video
   videoTitleColor: '#000000',
-  videoMessageColor: '#495057',
+  cardDetailMessage: '#495057',
+  videoCategoryColor: '#adb5bd',
+  videoCategoryBorderColor: '#adb5bd',
 };
 
 const dark = {
@@ -87,7 +89,9 @@ const dark = {
   nextIconFill: '#f8f9fa',
   //video
   videoTitleColor: '#f8f9fa',
-  videoMessageColor: '#adb5bd',
+  cardDetailMessage: '#adb5bd',
+  videoCategoryColor: '#495057',
+  videoCategoryBorderColor: '#495057',
 };
 
 const palette = {light, dark};

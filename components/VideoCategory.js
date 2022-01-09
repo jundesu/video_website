@@ -1,20 +1,17 @@
 import styled from "@emotion/styled";
-import { useContext, useState, useRef, useEffect } from "react";
+import { useContext, useRef } from "react";
 import { ThemeContext } from "../theme/palette";
 import LeftArrow from "../svgs/leftArrow_icon.svg";
 import RightArrow from "../svgs/rightArrow_icon.svg";
-
 
 const ScrollContainer = styled.div`
   width: 100%;
   display: flex;
   border: 1px solid;
   border-color: ${({borderColor}) => borderColor} ;
-
   position: sticky;
   top: 0;
   left: 0;
-  
 `;
 
 const ArrowBtn = styled.button`
@@ -23,7 +20,6 @@ const ArrowBtn = styled.button`
   border: none;
   padding: 0;
   margin: 0;
-  border: none;
 `;
 
 const PreviousIcon = styled(LeftArrow)`
@@ -40,7 +36,6 @@ const NextIcon = styled(RightArrow)`
 
 const FilterBar = styled.ul`
   list-style: none;
-
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -52,7 +47,6 @@ const FilterBar = styled.ul`
   &::-webkit-scrollbar {
     display: none;
   }
-
 `;
 
 const Category = styled.li`
@@ -64,7 +58,6 @@ const Category = styled.li`
   padding: 10px 20px;
   margin-right: 20px;
   text-transform: capitalize;
-
 `;
 
 function VideoCategory ({uniqueCategories, onChangeCategory, selectedCategory}) {
@@ -72,29 +65,30 @@ function VideoCategory ({uniqueCategories, onChangeCategory, selectedCategory}) 
 
   const selectedAll = selectedCategory === 'all';
 
-  const test = useRef();
+  const filterBarRef = useRef();
   
   const handleScrollNext = () => {
-    const element = test.current;
+    const element = filterBarRef.current;
     element.scrollLeft += 200
   };
-  const handleScrollPre = () => {
-    const element = test.current;
+  
+  const handleScrollPrev = () => {
+    const element = filterBarRef.current;
     element.scrollLeft -= 200
   };
 
-
   return (
     <ScrollContainer borderColor={theme.scrollContainerBorderColor}>
-      <ArrowBtn backgroundColor={theme.arrowBtnBackgroundColor} onClick={handleScrollPre}>
+
+      <ArrowBtn backgroundColor={theme.arrowBtnBackgroundColor} onClick={handleScrollPrev}>
         <PreviousIcon fill={theme.previousIconFill}/>
       </ArrowBtn>
-      <FilterBar background={theme.filterBarBackgroundColorl} ref={test}>
+
+      <FilterBar background={theme.filterBarBackgroundColorl} ref={filterBarRef}>
         <Category onClick={() => {onChangeCategory('all')}} 
           color={selectedAll ? theme.selectedCategoryColor : theme.categoryColor}
           backgroundColor={selectedAll ? theme.selectedCategoryBackgroundColor : theme.categoryBackgroundColor}
           borderColor={selectedAll ? theme.selectedCategoryBorderColor : theme.categoryBorderColor}
-
         >
           all
         </Category>
@@ -109,16 +103,17 @@ function VideoCategory ({uniqueCategories, onChangeCategory, selectedCategory}) 
               color={selected ? theme.selectedCategoryColor : theme.categoryColor}
               backgroundColor={selected ? theme.selectedCategoryBackgroundColor : theme.categoryBackgroundColor}
               borderColor={selected ? theme.selectedCategoryBorderColor : theme.categoryBorderColor}
-
             >
               {tagName}
             </Category>
           )
         })}
       </FilterBar>
+
       <ArrowBtn backgroundColor={theme.arrowBtnBackgroundColor} onClick={handleScrollNext}>
         <NextIcon fill={theme.nextIconFill} />
       </ArrowBtn>
+      
     </ScrollContainer>
   );
 }
