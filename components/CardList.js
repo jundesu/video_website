@@ -2,12 +2,11 @@ import styled from "@emotion/styled";
 import { useContext } from "react";
 import { ThemeContext } from "../theme/palette";
 
-const GridLayout = styled.ul`
+const Container = styled.ul`
   list-style: none;
   padding: 20px;
   margin: 0 0 50px 0;
   width: 100%;
-
   overflow-y: scroll;
 
   display: grid;
@@ -33,7 +32,7 @@ const GridLayout = styled.ul`
   }
 `;
 
-const Video = styled.li`
+const Card = styled.li`
   width: 100%;
   height: 100%;
 
@@ -47,10 +46,9 @@ const Thumbnail = styled.img`
   object-fit: contain;
   width: 100%;
   height: 45%;
-
 `;
 
-const VideoDetails = styled.div`
+const CardDetail = styled.div`
     display: flex;
     flex-direction: row;
     margin-top: 10px;
@@ -66,7 +64,7 @@ const ChannelIcon = styled.img`
 
 `;
 
-const VideoMessage = styled.section`
+const CardDetailMessage = styled.section`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -101,20 +99,20 @@ const VideoTitle = styled.h3`
   overflow: hidden; 
 `;
 
-function GridView({filteredVideos}) {
+function CardList({filteredVideos}) {
   const {theme} = useContext(ThemeContext);
 
   return (
-      <GridLayout>
+      <Container>
         {filteredVideos.map((video, index) => {
           return (
-            <Video key={index}>
+            <Card key={index}>
               <Thumbnail src={video.thumbnailUrl} alt="thumbnail" />
               
-              <VideoDetails>
+              <CardDetail>
                 <ChannelIcon src={video.channelIcon}/>
-                <VideoMessage 
-                  color={theme.videoMessageColor} 
+                <CardDetailMessage 
+                  color={theme.cardDetailMessage} 
                   videoCategoryColor={theme.videoCategoryColor} 
                   videoCategoryBorderColor={theme.videoCategoryBorderColor}
                 >
@@ -122,16 +120,15 @@ function GridView({filteredVideos}) {
                   <h4>{video.channelTitle}</h4>
                   <h4>{video.viewCount} views</h4>
                   <span>{video.category}</span>
-                </VideoMessage>
-              </VideoDetails>
+                </CardDetailMessage>
+              </CardDetail>
                 
-            </Video>
+            </Card>
           )
         })}
-      </GridLayout>  
+      </Container>  
   );
 }
-
-export default GridView; 
+export default CardList; 
 
 

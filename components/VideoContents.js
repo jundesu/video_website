@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { useContext } from "react";
 import { ThemeContext } from "../theme/palette";
 import VideoCategory from "./VideoCategory";
-import Layout from "./Layout";
+import CardList from "./CardList";
 
 const Contents = styled.section`
   width: 100%;
@@ -28,7 +28,7 @@ function VideoContents({videos, filteredVideos, onChangeCategory, selectedCatego
         onChangeCategory={onChangeCategory}
         selectedCategory={selectedCategory}
       />
-        <Layout filteredVideos={filteredVideos} />
+        <CardList filteredVideos={filteredVideos} />
     </Contents>
   );
 }
