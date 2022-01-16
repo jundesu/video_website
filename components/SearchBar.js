@@ -1,9 +1,8 @@
 import styled from "@emotion/styled";
-import SearchImg from "../svgs/search_icon.svg"; 
-import ClearImg from "../svgs/clear_icon.svg"
 import { useContext, useState } from "react";
 import { ThemeContext } from "../theme/palette";
 import SearchButton from "./SearchButtton";
+import ClearImg from "../svgs/clear_icon.svg"
 
 const SearchBox = styled.div`
   display: flex;
@@ -52,11 +51,10 @@ const ClearBtn = styled.button`
   border: none;
   padding: 0;
   background-color: ${({backgroundColor}) => backgroundColor};
-  
+  visibility: ${({clearIconDisplay}) => clearIconDisplay ? 'visible' : 'hidden'};
 `;
 
 const ClearIcon = styled(ClearImg)`
-  visibility: ${({clearIconDisplay}) => clearIconDisplay ? 'visible' : 'hidden'};
   width: 50%;
   height: 50%;
   fill: #6c757d;
@@ -72,9 +70,9 @@ function SearchBar ({onQuery}) {
     setClearIconDisplay(event.target.value.length > 0);
   };
 
-  const ClearInputValue = () => {
+  const clearInputValue = () => {
     setInputValue('');
-    console.log(inputValue)
+    setClearIconDisplay(false);
   };
   
   return (
@@ -91,10 +89,11 @@ function SearchBar ({onQuery}) {
         />
       <ClearBtn 
         type="button" 
-        onClick={ClearInputValue} 
+        onClick={clearInputValue} 
         backgroundColor={theme.clearBtnBackgroundColor}
+        clearIconDisplay={clearIconDisplay}
       >
-        <ClearIcon clearIconDisplay={clearIconDisplay}/>
+        <ClearIcon/>
       </ClearBtn>
       <SearchButton onClick={() => onQuery(inputValue)}/>
     </SearchBox>

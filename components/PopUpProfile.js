@@ -59,25 +59,24 @@ const Account = styled.div`
 `;
 const ManagementLink = styled.a`
   width: 100%;
-  height: 10%;
   text-decoration: none;
   color: #0a9396;
   font-size: 2rem;
 `;
 
 const DarkModeLabel = styled.label`
-    width: 100%;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 
   & > input {
     opacity: 0;
     width: 0;
     height: 0;
   }
-
 `;
+
 const DarkModeIcon = styled(DarkImg)`
   width: 25px;
   height: 25px;
@@ -115,7 +114,6 @@ const Slider = styled.span`
   }
 `;
 
-
 const SignOut = styled.a`
   width: 100%;
   text-decoration: none;
@@ -124,10 +122,6 @@ const SignOut = styled.a`
   font-weight: 300;
   display: flex;
   align-items: center;
-
-  & > span {
-    margin-left: 10px;
-  }
 `;
 
 const SignOutIcon = styled(SignOutImg)`
@@ -161,7 +155,6 @@ function PopUpProfile({userEmail, profile}){
         <SignOutIcon stroke={theme.signOutIconColor}/>
         <Text color={theme.textColor}>Sign out</Text>
       </SignOut>
-
     </PopupContainer>
   );
 

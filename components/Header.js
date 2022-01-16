@@ -1,12 +1,11 @@
 import styled from "@emotion/styled";
-import PopUpProfile from "./PopUpProfile";
 import { useContext, useEffect, useRef, useState } from "react";
-import AvatarImg from "../svgs/avatar_icon.svg";
 import { ThemeContext } from "../theme/palette";
 import SearchBar from "./SearchBar";
 import MobileSearchBar from "./MobileSearchBar";
 import SearchButton from "./SearchButtton";
-
+import PopUpProfile from "./PopUpProfile";
+import AvatarImg from "../svgs/avatar_icon.svg";
 
 const Container = styled.header`
   position: fixed;
@@ -119,7 +118,6 @@ function Header({userEmail, onQuery, collapse}) {
         <SearchBar onQuery={onQuery} />
         <SearchBtnIcon onClick={() => setExpand(true)}/>
         {expand && (<MobileSearchBar onQuery={onQuery} previousPage={previousPage} />)}
-        
 
         <User ref={node}>
           <AvatarBtn type="button" onClick={() => setOpen(prev => !prev)} >
