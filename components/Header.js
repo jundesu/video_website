@@ -33,6 +33,7 @@ const Logo = styled.a`
   font-weight: 900;
   color: #fca311;
   text-decoration: none;
+  text-transform: uppercase;
 
   @media(max-width: 500px) {
     font-size: 2.5rem;
@@ -80,13 +81,13 @@ async function fetchProfile() {
 }
 
 function Header({userEmail, onQuery, collapse}) {
-  const [open, setOpen] = useState(false);
-  const node = useRef();
   const [profile, setProfile] = useState({});
-  
-  const {theme} = useContext(ThemeContext);
+  const [open, setOpen] = useState(false);
+  const [expand, setExpand] = useState(false);
 
-  const [expand, setExpand] = useState(false); 
+  const node = useRef();
+
+  const {theme} = useContext(ThemeContext);
 
   const goBack = () => {
     setExpand(false);
@@ -114,19 +115,19 @@ function Header({userEmail, onQuery, collapse}) {
 
   return (
     <Container backgroundColor={theme.headerBackgroundColor} collapse={collapse}>
-        <Logo href="/home">LOGO</Logo>
-        <SearchBar onQuery={onQuery} />
-        <SearchBtnIcon onClick={() => setExpand(true)}/>
+      <Logo href="/home">logo</Logo>
+      <SearchBar onQuery={onQuery} />
+      <SearchBtnIcon onClick={() => setExpand(true)}/>
         {expand && (<MobileSearchBar onQuery={onQuery} goBack={goBack} />)}
 
-        <User ref={node}>
-          <AvatarBtn type="button" onClick={() => setOpen(prev => !prev)} >
-            <AvatarIcon/>
-          </AvatarBtn>
-          {open && (
-              <PopUpProfile userEmail={userEmail} profile={profile}/>
-          )}
-        </User>
+      <User ref={node}>
+        <AvatarBtn type="button" onClick={() => setOpen(prev => !prev)} >
+          <AvatarIcon/>
+        </AvatarBtn>
+        {open && (
+          <PopUpProfile userEmail={userEmail} profile={profile}/>
+        )}
+      </User>
     </Container>
   );
 }

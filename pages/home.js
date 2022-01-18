@@ -71,7 +71,7 @@ function Home () {
         if(inputValue === '') {
           return true
         }
-        else if(video.title.toLowerCase().includes(inputValue.toLowerCase())) {
+        else if(video.title.toLowerCase().includes(inputValue.toLowerCase()) || video.channelTitle.toLowerCase().includes(inputValue.toLowerCase())) {
           return true
         }
         return false;
