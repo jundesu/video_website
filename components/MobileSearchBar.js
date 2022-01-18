@@ -67,11 +67,10 @@ const ClearBtn = styled.button`
   padding: 0;
   background-color: ${({backgroundColor}) => backgroundColor};
   border-radius: 50%;
-  
+  visibility: ${({clearIconDisplay}) => clearIconDisplay ? 'visible' : 'hidden'};
 `;
 
 const ClearIcon = styled(ClearImg)`
-  visibility: ${({clearIconDisplay}) => clearIconDisplay ? 'visible' : 'hidden'};
   width: 50%;
   height: 50%;
   fill: #adb5bd;
@@ -81,7 +80,7 @@ const ExpandSearchBtn = styled(SearchButton)`
   border-radius: 50%;
 `;
 
-function MobileSearchBar ({onQuery, previousPage}) {
+function MobileSearchBar ({onQuery, goBack}) {
   const {theme} = useContext(ThemeContext);
   const [inputValue, setInputValue] = useState('');
   const [clearIconDisplay, setClearIconDisplay] = useState(false);
@@ -93,12 +92,12 @@ function MobileSearchBar ({onQuery, previousPage}) {
 
   const clearInputValue = () => {
     setInputValue('');
-    console.log(inputValue)
+    setClearIconDisplay(false);
   };
   
   return (
     <SearchBox borderColor={theme.searchBarBorderColor} backgroundColor={theme.mobileSearchBoxBackgroundColor}>
-      <BackBtn onClick={previousPage}>
+      <BackBtn onClick={goBack}>
         <BackIcon fill={theme.backIconFill} />
       </BackBtn>
       <label htmlFor="search"></label>
@@ -115,8 +114,9 @@ function MobileSearchBar ({onQuery, previousPage}) {
         type="button" 
         onClick={clearInputValue} 
         backgroundColor={theme.clearBtnBackgroundColor}
+        clearIconDisplay={clearIconDisplay}
       >
-        <ClearIcon clearIconDisplay={clearIconDisplay}/>
+        <ClearIcon />
       </ClearBtn>
       <ExpandSearchBtn onClick={() => onQuery(inputValue)}/>
     </SearchBox>
