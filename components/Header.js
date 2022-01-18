@@ -88,7 +88,7 @@ function Header({userEmail, onQuery, collapse}) {
 
   const [expand, setExpand] = useState(false); 
 
-  const previousPage = () => {
+  const goBack = () => {
     setExpand(false);
   };
 
@@ -117,7 +117,7 @@ function Header({userEmail, onQuery, collapse}) {
         <Logo href="/home">LOGO</Logo>
         <SearchBar onQuery={onQuery} />
         <SearchBtnIcon onClick={() => setExpand(true)}/>
-        {expand && (<MobileSearchBar onQuery={onQuery} previousPage={previousPage} />)}
+        {expand && (<MobileSearchBar onQuery={onQuery} goBack={goBack} />)}
 
         <User ref={node}>
           <AvatarBtn type="button" onClick={() => setOpen(prev => !prev)} >
