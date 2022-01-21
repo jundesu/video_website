@@ -18,11 +18,7 @@ const SubsBtn = styled.button`
   width: 100%;
   height: 60px;
   background-color: ${({backgroundColor}) => backgroundColor};
-  align-items: center;
-
-  display: column;
   padding: 0px 5px 0px 5px;
-
   position: sticky;
   top: 0;
 
@@ -31,23 +27,20 @@ const SubsBtn = styled.button`
   }
 `;
 
-const SubsTitle = styled.h1`
-  text-transform: uppercase;
-  color: ${({subsTitleColor}) => subsTitleColor};
-  font-size: 1.5rem;
-  margin: 0 0 0 15px;
-  font-weight: 500;
-
-  font-size: 1rem;
-  margin: 0;
-`;
-
 const SubsIcon = styled(SubsImg)`
   width: 30px; 
   height: 30px;
   path {
     fill: ${({fill}) => fill};
   }
+`;
+
+const SubsTitle = styled.h1`
+  text-transform: uppercase;
+  color: ${({subsTitleColor}) => subsTitleColor};
+  font-weight: 500;
+  font-size: 1rem;
+  margin: 0;
 `;
 
 function CollapsedSidebar({toggleCollapse}) {

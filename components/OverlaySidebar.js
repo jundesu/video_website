@@ -1,8 +1,4 @@
 import styled from "@emotion/styled";
-import Sidebar from "./Sidebar";
-import { useEffect, useState, useContext, useRef } from "react";
-import { ThemeContext } from "../theme/palette";
-
 import ExpandedSidebar from "./ExpandedSidebar";
 
 const Overlay = styled.div`

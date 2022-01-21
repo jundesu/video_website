@@ -4,7 +4,6 @@ import { ThemeContext } from "../theme/palette";
 import SubsImg from "../svgs/subs_icon.svg";
 import CollapseImg from "../svgs/clear_icon.svg";
 
-
 const Subscriptions = styled.div`
   width: 250px;
   height: 100%;
@@ -14,7 +13,6 @@ const Subscriptions = styled.div`
   @media(max-width: 500px) {
     width: 100%;
   }
-
 `;
 
 const SubsBtn = styled.button`
@@ -22,11 +20,9 @@ const SubsBtn = styled.button`
   width: 100%;
   height: 60px;
   background-color: ${({backgroundColor}) => backgroundColor};
-  align-items: center;
-
   display: flex;
+  align-items: center;
   padding: 0 15px 0 15px;
-
   position: sticky;
   top: 0;
 
@@ -45,9 +41,6 @@ const SubsTitle = styled.h1`
   font-size: 1.5rem;
   margin: 0 0 0 15px;
   font-weight: 500;
-
-  font-size: 1.5rem;
-  margin: 0 0 0 15px;
 `;
 
 const SubsIcon = styled(SubsImg)`
@@ -63,7 +56,6 @@ const CollapseIcon = styled(CollapseImg)`
   height: 20px;
   margin-left: auto;
   fill: #6c757d;
-
 `;
 
 const ChannelList = styled.ul`
@@ -99,6 +91,7 @@ const ChannelLink = styled.a`
     padding: 0 40px;
   }
 `;
+
 const ChannelTitle = styled.h2`
   color: ${({color}) => color};
   font-size: 1.8rem;
