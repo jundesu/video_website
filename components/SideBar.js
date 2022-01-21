@@ -1,7 +1,4 @@
 import styled from "@emotion/styled";
-import { useContext } from "react";
-import { ThemeContext } from "../theme/palette";
-
 import ExpandedSidebar from "./ExpandedSidebar";
 import CollapsedSidebar from "./CollapsedSidebar";
 

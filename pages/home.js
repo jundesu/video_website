@@ -3,14 +3,12 @@ import styled from "@emotion/styled";
 import { useRouter } from 'next/router';
 import { useState, useEffect } from "react";
 import palette, {ThemeContext} from "../theme/palette";
-
 import {useCurrentWidth} from "../utils/hooks";
 
 import Header from "../components/Header";
 import VideoContents from "../components/VideoContents";
 import Sidebar from "../components/Sidebar";
 import OverlaySidebar from "../components/OverlaySidebar";
-
 
 const HomePage = styled.div`
   width: 100vw;
@@ -58,8 +56,8 @@ function Home () {
   const [selectedCategory, setSelectedCategory] = useState('all');
 
 //subscription 
-  const [channels, setChannel] = useState([]);
-  const [collapse, setCollapse] = useState(false);
+  const [channels, setChannels] = useState([]);
+  const [collapse, setCollapse] = useState(true);
   const [displayOverlay, setDisplayOverlay] = useState(false);
   const width = useCurrentWidth();
 
@@ -108,7 +106,7 @@ function Home () {
     })
 
     fetchChannelList().then((channels) => {
-      setChannel(channels);
+      setChannels(channels);
     })
   }, []);
 
@@ -135,8 +133,6 @@ function Home () {
               channels={channels} 
               collapse={collapse} 
               toggleCollapse={handleSubscriptionsBtn}
-
-              // toggleCollapse={() => setCollapse(prev => !prev)}
             />
 
             <VideoContents 
