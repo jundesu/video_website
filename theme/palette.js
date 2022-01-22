@@ -96,12 +96,12 @@ const dark = {
 
 const palette = {light, dark};
 
-export const ThemeContext = React.createContext({
+const ThemeContext = React.createContext({
   isDark: false,
-  theme: light,
+  theme: palette.light,
   toggleTheme: () => {},
 });
 
 export default palette;
 
-
+export {ThemeContext};

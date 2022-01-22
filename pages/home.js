@@ -45,9 +45,11 @@ async function fetchChannelList () {
 
 function Home () {
   const router = useRouter();
+
+  //theme
   const [isDark, setIsDark] = useState(false);
   const theme = isDark ? palette.dark : palette.light;
-  const toggleTheme = () => {setIsDark((prev)=> !prev )};
+  const toggleTheme = () => setIsDark((prev) => !prev);
   const defaultTheme = {isDark, theme, toggleTheme};
 
 // video
