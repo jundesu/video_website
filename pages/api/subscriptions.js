@@ -1,4 +1,4 @@
-import * as faker from 'faker';
+import * as faker from '@faker-js/faker';
 
 export default function handler(req, res) {
   const numSubscriptions = 50;
