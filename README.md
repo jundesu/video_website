@@ -21,10 +21,12 @@ There are two key features:
 - The email and password are both required. 
 - I use built-in HTML5 form validation to verify input values. The page will be redirected to the home page by Next.js router after clicking the login button.
 - Forgot password link, social media buttons and sign up link are just mockups. 
+![login](https://user-images.githubusercontent.com/87522693/151519808-af2deefc-fc12-4fbd-a9c0-139f237de784.png)
 
 ### Home 
 The homepage is composed of these components: profile, search bar, sidebar, category and card list.
-<IMG>
+![home_page](https://user-images.githubusercontent.com/87522693/151519721-37661d6f-15d1-4a58-90f7-9f3e598b28d9.png)
+![home_page_dark](https://user-images.githubusercontent.com/87522693/151519893-73dd46fa-1c11-48ef-996a-38824cf53181.png)
 
 ### Profile
 - Email: email is from the input value of the login page that is stored in Next.js router object.
