@@ -2,7 +2,7 @@
 I learn the frontend skills by building a YouTube clone with React.js. This website is responsive and supporting dark mode.
 
 ## Getting Started
-Install and run :
+Install and run:
 ```
 npm install
 npm run dev
@@ -12,7 +12,7 @@ In order to create a fake API easily, I create this project by [Next.js](https:/
 
 ## Features
 There are two key features: 
-1. **Resoposive**. I design my project with the mobile-first mindset to make it responsive on mobile, tablet and desktop.
+1. **Responsive**. I design my project with the mobile-first mindset to make it responsive on mobile, tablet and desktop.
 2. **Dark mode**.
 
 ## Components
@@ -28,9 +28,9 @@ The homepage is composed of these components: profile, search bar, sidebar, cate
 
 ### Profile
 - Email: email is from the input value of the login page that is stored in Next.js router object.
-- Manage your account link : It's just a mockup.
-- Dark mode toggle button: The color palette theme is defined in React.js `Context`. Instead of pure dark, I use dark gray as background color since light text on dark gray background has less contrast. It reduces eye strain and avoids looking jarry. 
-- Sign out link : It redirects to the login page.
+- Manage your account link: It's just a mockup.
+- Dark mode toggle button: The color palette theme is defined in React.js `Context`. Instead of pure dark, I use dark gray as background color since light text on dark gray background has less contrast. It reduces eye strain and avoids looking jarring. 
+- Sign out link: It redirects to the login page.
 
 ### Search Bar
 - Search by title and channel name of the videos.
