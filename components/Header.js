@@ -68,9 +68,10 @@ const User = styled.div`
 const SearchBtnIcon = styled(SearchButton)`
   margin: 0 20px 0 auto; 
   border-radius: 50%;
+  display: none;
 
-  @media(min-width: 500px){
-    display: none;
+  @media(max-width: 500px){
+    display: block;
   }
 `;
 
@@ -118,7 +119,7 @@ function Header({userEmail, onQuery, collapse}) {
       <Logo href="/home">logo</Logo>
       <SearchBar onQuery={onQuery} />
       <SearchBtnIcon onClick={() => setExpand(true)}/>
-        {expand && (<MobileSearchBar onQuery={onQuery} goBack={goBack} />)}
+      {expand && (<MobileSearchBar onQuery={onQuery} goBack={goBack} />)}
 
       <User ref={node}>
         <AvatarBtn type="button" onClick={() => setOpen(prev => !prev)} >

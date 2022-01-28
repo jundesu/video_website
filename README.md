@@ -1,34 +1,58 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# YouTube clone challenge
+I learn the frontend skills by building a YouTube clone with React.js. This website is responsive and supporting dark mode.
 
 ## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
+Install and run:
 ```
+npm install
+npm run dev
+```
+Visit `http://localhost:3000` to view my project.
+In order to create a fake API easily, I create this project by [Next.js](https://nextjs.org/docs/getting-started) and put some fake API under `pages/api/*`.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
+There are two key features: 
+1. **Responsive**. I design my project with the mobile-first mindset to make it responsive on mobile, tablet and desktop.
+2. **Dark mode**.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Components
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+### Login
+- The email and password are both required. 
+- I use built-in HTML5 form validation to verify input values. The page will be redirected to the home page by Next.js router after clicking the login button.
+- Forgot password link, social media buttons and sign up link are just mockups. 
+![login](https://user-images.githubusercontent.com/87522693/151519808-af2deefc-fc12-4fbd-a9c0-139f237de784.png)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### Home 
+The homepage is composed of these components: profile, search bar, sidebar, category and card list.
+![home_page](https://user-images.githubusercontent.com/87522693/151519721-37661d6f-15d1-4a58-90f7-9f3e598b28d9.png)
+![home_page_dark](https://user-images.githubusercontent.com/87522693/151519893-73dd46fa-1c11-48ef-996a-38824cf53181.png)
 
-## Learn More
+### Profile
+- Email: email is from the input value of the login page that is stored in Next.js router object.
+- Manage your account link: It's just a mockup.
+- Dark mode toggle button: The color palette theme is defined in React.js `Context`. Instead of pure dark, I use dark gray as background color since light text on dark gray background has less contrast. It reduces eye strain and avoids looking jarring. 
+- Sign out link: It redirects to the login page.
 
-To learn more about Next.js, take a look at the following resources:
+### Search Bar
+- Search by title and channel name of the videos.
+- A reset button to clear your input.
+- On mobile devices, the input field is hidden by default. It will be expanded when you click the search button.
+- Click the arrow button on the left side to hide the input field again. 
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Sidebar
+- The subscribed channels are listed in the sidebar.
+- The sidebar will be collapsed or expanded depending on the width of the window. In order to display completed subscriptions on tablet and mobile phone, the whole page will be overlaid with the expanded sidebar.
+- I implement `debounce` function to avoid unnecessary re-render when the user adjusts window size too frequently.
+- There's a small dot to represent unread channel events.
+- Channel links are just mockups.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Category 
+There are two ways to scroll the category list. 
+- Default scroll bar.
+- Click the arrow icons to scroll the list. They control the position by changing the `scrollLeft` value. 
 
-## Deploy on Vercel
+### Card List
+- CSS layout is set by `display: grid` for desktop and tablet view.
+- For mobile view, use `display: flex` to render 1 card per row.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

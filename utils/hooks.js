@@ -18,7 +18,7 @@ function useCurrentWidth() {
  
       timeoutId = setTimeout(() => {
         setWidth(getWidth())
-      }, 1000);
+      }, 100);
     };
     // set resize listener
     window.addEventListener('resize', resizeListener);

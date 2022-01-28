@@ -18,10 +18,6 @@ const SearchBox = styled.div`
   top: 0;
   left: 0;
   z-index: 2;
-
-  @media(min-width: 500px){
-    display: none;
-  }
 `;
 
 const BackBtn = styled.button`
