@@ -1,6 +1,8 @@
 # YouTube clone challenge
 I learn the frontend skills by building a YouTube clone with React.js. This website is responsive and supporting dark mode.
 
+Demo site: [https://video-website-chi.vercel.app/](https://video-website-chi.vercel.app/)
+
 ## Getting Started
 Install and run:
 ```
