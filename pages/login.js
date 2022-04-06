@@ -8,7 +8,7 @@ const LoginPage = styled.main`
   flex-direction: row;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom,#928DAB, #1F1C2C);
+  background: linear-gradient(to bottom, #928dab, #1f1c2c);
 
   p {
     width: 50%;
@@ -20,7 +20,7 @@ const LoginPage = styled.main`
     font-weight: 100;
   }
 
-  @media(max-width: 800px) {
+  @media (max-width: 800px) {
     flex-direction: column;
     p {
       width: 100%;
@@ -29,13 +29,12 @@ const LoginPage = styled.main`
     }
   }
 
-  @media(max-width: 500px) {
+  @media (max-width: 500px) {
     flex-direction: column;
     p {
       font-size: 2rem;
     }
   }
-
 `;
 
 const FormStyle = styled.form`
@@ -48,55 +47,54 @@ const FormStyle = styled.form`
   background-color: #ffffff;
   padding: 100px 100px;
 
-  @media(max-width: 1200px) {
+  @media (max-width: 1200px) {
     padding: 50px 50px;
   }
 
-  @media(max-width: 800px) {
+  @media (max-width: 800px) {
     width: 100%;
     padding: 20px 150px;
   }
 
-  @media(max-width: 500px) {
+  @media (max-width: 500px) {
     padding: 25px 25px;
   }
 `;
 
 const InputStyled = styled.div`
- width: 100%;
- position: relative;
-
- &::after {
-  content: '';
-  width: 0%;
-  height: 2px;
-  background: #fca311;
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  transition: all 0.4s ease;
- }
-
- &:hover::after {
   width: 100%;
- }
+  position: relative;
 
+  &::after {
+    content: '';
+    width: 0%;
+    height: 2px;
+    background: #fca311;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    transition: all 0.4s ease;
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
 `;
 
 const Label = styled.label`
   width: 100%;
-  color: #4b4e6e; 
+  color: #4b4e6e;
   font-size: 2rem;
 `;
 
 const Input = styled.input`
   display: block;
-  width: 100% ;
+  width: 100%;
   margin: 0;
   line-height: 5rem;
   outline: none;
   border-bottom: 2px solid;
-  border-color: transparent transparent #928DAB transparent;
+  border-color: transparent transparent #928dab transparent;
   border-radius: 0;
   font-size: 2rem;
 
@@ -127,7 +125,7 @@ const Submit = styled.button`
   margin: 30px 0;
   border: none;
   border-radius: 50px;
-  background-image: linear-gradient(to right, #928DAB, #1F1C2C, #928DAB);
+  background-image: linear-gradient(to right, #928dab, #1f1c2c, #928dab);
   background-size: 200%;
   background-position: right;
   transition-property: background-position;
@@ -139,15 +137,14 @@ const Submit = styled.button`
     background-position: left;
   }
 
-  @media(max-width: 500px) {
+  @media (max-width: 500px) {
     font-size: 2rem;
     line-height: 4rem;
     margin: 10px 0;
   }
-
 `;
 const SignUpText = styled.span`
-  color: #534f66; 
+  color: #534f66;
   font-size: 1.8rem;
 `;
 
@@ -161,39 +158,39 @@ const SignUpLink = styled.a`
   }
 `;
 
-function InputField({id, label, placeholder, value, onChange, required}) {
+function InputField({ id, label, placeholder, value, onChange, required }) {
   return (
-      <InputStyled>
-        <Label htmlFor={id}>{label}</Label>
-          <Input
-            value={value}
-            type={id}
-            id={id}
-            name={id}
-            placeholder={placeholder}
-            onChange={onChange} 
-            required={required}
-          /> 
-      </InputStyled>
-    );
+    <InputStyled>
+      <Label htmlFor={id}>{label}</Label>
+      <Input
+        value={value}
+        type={id}
+        id={id}
+        name={id}
+        placeholder={placeholder}
+        onChange={onChange}
+        required={required}
+      />
+    </InputStyled>
+  );
 }
 
 function Login() {
   const [email, setEmail] = useState('');
   const router = useRouter();
-  const inputFields =[
+  const inputFields = [
     {
-      label: "E-mail", 
-      id: "email",
-      placeholder: "enter your e-mail",
-      value: email, 
-      handleInputChange: e => setEmail(e.target.value),
+      label: 'E-mail',
+      id: 'email',
+      placeholder: 'enter your e-mail',
+      value: email,
+      handleInputChange: (e) => setEmail(e.target.value),
       required: true,
     },
     {
-      label:"Password", 
-      id:"password", 
-      placeholder: "enter your password",  
+      label: 'Password',
+      id: 'password',
+      placeholder: 'enter your password',
       handleInputChange: () => {},
       required: true,
     },
@@ -202,47 +199,44 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    router.push({
-      pathname:'/home',
-      query: { email: email },
-    },
-    '/home')
+    router.push(
+      {
+        pathname: '/home',
+        query: { email: email },
+      },
+      '/home'
+    );
   };
 
   return (
     <LoginPage>
       <p>Log in to your account</p>
-      
+
       <FormStyle onSubmit={handleSubmit}>
-        {
-          inputFields.map((input, index) => {
-            return (
-              <InputField
-                key={index} 
-                value={input.value} 
-                label={input.label}
-                id={input.id}
-                placeholder={input.placeholder} 
-                onChange={input.handleInputChange}
-                required={input.required}
-              />
-            )
-          })
-        }
-        
+        {inputFields.map((input, index) => {
+          return (
+            <InputField
+              key={index}
+              value={input.value}
+              label={input.label}
+              id={input.id}
+              placeholder={input.placeholder}
+              onChange={input.handleInputChange}
+              required={input.required}
+            />
+          );
+        })}
+
         <ForgotPassword href="#">Forgot password ?</ForgotPassword>
         <Submit>Log in</Submit>
         <SignUpText>or sign up using</SignUpText>
-        <ThirdParty/>
+        <ThirdParty />
         <SignUpText>
-          Don't have an account ?
-          <SignUpLink href="#">Sign up</SignUpLink>
+          Don't have an account ?<SignUpLink href="#">Sign up</SignUpLink>
         </SignUpText>
       </FormStyle>
-        
     </LoginPage>
   );
-
 }
 
 export default Login;

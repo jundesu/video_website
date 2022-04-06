@@ -1,9 +1,9 @@
-import styled from "@emotion/styled";
-import ClearImg from "../svgs/clear_icon.svg"
-import { useContext, useState } from "react";
-import { ThemeContext } from "../theme/palette";
-import LeftArrow from "../svgs/leftArrow_icon.svg";
-import SearchButton from "./SearchButtton"; 
+import styled from '@emotion/styled';
+import ClearImg from '../svgs/clear_icon.svg';
+import { useContext, useState } from 'react';
+import { ThemeContext } from '../theme/palette';
+import LeftArrow from '../svgs/leftArrow_icon.svg';
+import SearchButton from './SearchButtton';
 
 const SearchBox = styled.div`
   width: 100%;
@@ -11,9 +11,9 @@ const SearchBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: ${({backgroundColor}) => backgroundColor};
+  background-color: ${({ backgroundColor }) => backgroundColor};
   padding: 10px;
-  
+
   position: absolute;
   top: 0;
   left: 0;
@@ -31,7 +31,7 @@ const BackBtn = styled.button`
 const BackIcon = styled(LeftArrow)`
   width: 70%;
   height: 70%;
-  fill: ${({fill}) => fill};
+  fill: ${({ fill }) => fill};
 `;
 
 const SearchInput = styled.input`
@@ -40,7 +40,7 @@ const SearchInput = styled.input`
   outline: none;
   border: none;
   padding: 10px;
-  background-color: ${({backgroundColor}) => backgroundColor};
+  background-color: ${({ backgroundColor }) => backgroundColor};
   color: ${(color) => color};
   appearance: none;
   font-size: 2rem;
@@ -53,7 +53,6 @@ const SearchInput = styled.input`
   &::-webkit-search-cancel-button {
     -webkit-appearance: none;
   }
-
 `;
 
 const ClearBtn = styled.button`
@@ -61,9 +60,10 @@ const ClearBtn = styled.button`
   height: 50px;
   border: none;
   padding: 0;
-  background-color: ${({backgroundColor}) => backgroundColor};
+  background-color: ${({ backgroundColor }) => backgroundColor};
   border-radius: 50%;
-  visibility: ${({clearIconDisplay}) => clearIconDisplay ? 'visible' : 'hidden'};
+  visibility: ${({ clearIconDisplay }) =>
+    clearIconDisplay ? 'visible' : 'hidden'};
 `;
 
 const ClearIcon = styled(ClearImg)`
@@ -76,13 +76,13 @@ const ExpandSearchBtn = styled(SearchButton)`
   border-radius: 50%;
 `;
 
-function MobileSearchBar ({onQuery, goBack}) {
-  const {theme} = useContext(ThemeContext);
+function MobileSearchBar({ onQuery, goBack }) {
+  const { theme } = useContext(ThemeContext);
   const [inputValue, setInputValue] = useState('');
   const [clearIconDisplay, setClearIconDisplay] = useState(false);
 
   const handleInputeValue = (event) => {
-    setInputValue(event.target.value); 
+    setInputValue(event.target.value);
     setClearIconDisplay(event.target.value.length > 0);
   };
 
@@ -90,31 +90,34 @@ function MobileSearchBar ({onQuery, goBack}) {
     setInputValue('');
     setClearIconDisplay(false);
   };
-  
+
   return (
-    <SearchBox borderColor={theme.searchBarBorderColor} backgroundColor={theme.mobileSearchBoxBackgroundColor}>
+    <SearchBox
+      borderColor={theme.searchBarBorderColor}
+      backgroundColor={theme.mobileSearchBoxBackgroundColor}
+    >
       <BackBtn onClick={goBack}>
         <BackIcon fill={theme.backIconFill} />
       </BackBtn>
       <label htmlFor="search"></label>
-      <SearchInput 
-        type="search" 
-        id="search" 
-        placeholder="Search..." 
-        backgroundColor={theme.searchInputBackgroundColor} 
+      <SearchInput
+        type="search"
+        id="search"
+        placeholder="Search..."
+        backgroundColor={theme.searchInputBackgroundColor}
         color={theme.searchInputColor}
         onChange={handleInputeValue}
         value={inputValue}
-        />
-      <ClearBtn 
-        type="button" 
-        onClick={clearInputValue} 
+      />
+      <ClearBtn
+        type="button"
+        onClick={clearInputValue}
         backgroundColor={theme.clearBtnBackgroundColor}
         clearIconDisplay={clearIconDisplay}
       >
         <ClearIcon />
       </ClearBtn>
-      <ExpandSearchBtn onClick={() => onQuery(inputValue)}/>
+      <ExpandSearchBtn onClick={() => onQuery(inputValue)} />
     </SearchBox>
   );
 }

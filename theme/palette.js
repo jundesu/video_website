@@ -1,12 +1,12 @@
-import React from "react";
+import React from 'react';
 
-const light ={
+const light = {
   // header
-  headerBackgroundColor:'#ffffff',
+  headerBackgroundColor: '#ffffff',
   // search bar
-  searchBarBorderColor:'#e9ecef',
+  searchBarBorderColor: '#e9ecef',
   searchInputBackgroundColor: '#ffffff',
-  searchInputColor:'#000000',
+  searchInputColor: '#000000',
   clearBtnBackgroundColor: '#ffffff',
   searchBtnHoverColor: '#e9ecef',
   searchIconFill: '#000000',
@@ -18,7 +18,7 @@ const light ={
   nameColor: '#000000',
   darkModeIconColor: '#000000',
   signOutIconColor: '#000000',
-  textColor:'#000000',
+  textColor: '#000000',
   // sidebar
   sidebarMenuBackgroundColor: '#ffffff',
   subsBtnBackgroundColor: '#ffffff',
@@ -33,8 +33,8 @@ const light ={
   filterBarBackgroundColorl: '#ffffff',
   categoryColor: '#000000',
   selectedCategoryColor: '#ffffff',
-  categoryBackgroundColor:'#f8f9fa',
-  selectedCategoryBackgroundColor:'#000000',
+  categoryBackgroundColor: '#f8f9fa',
+  selectedCategoryBackgroundColor: '#000000',
   categoryBorderColor: '#ced4da',
   selectedCategoryBorderColor: '#000000',
   arrowBtnBackgroundColor: '#ffffff',
@@ -48,12 +48,12 @@ const light ={
 };
 
 const dark = {
-    // header
-  headerBackgroundColor:'#1a1a1a',
+  // header
+  headerBackgroundColor: '#1a1a1a',
   // search bar
   searchBarBorderColor: '#2c2c2c',
   searchInputBackgroundColor: '#000000',
-  searchInputColor:'#dee2e6',
+  searchInputColor: '#dee2e6',
   clearBtnBackgroundColor: '#000000',
   searchBtnHoverColor: '#343a40',
   searchIconFill: '#ffffff',
@@ -65,7 +65,7 @@ const dark = {
   nameColor: '#f8f9fa',
   darkModeIconColor: '#f8f9fa',
   signOutIconColor: '#f8f9fa',
-  textColor:'#f8f9fa',
+  textColor: '#f8f9fa',
   // sidebar
   sidebarMenuBackgroundColor: '#2c2c2c',
   subsBtnBackgroundColor: '#2c2c2c',
@@ -80,8 +80,8 @@ const dark = {
   filterBarBackgroundColorl: '#1a1a1a',
   categoryColor: '#f8f9fa',
   selectedCategoryColor: '#000000',
-  categoryBackgroundColor:'#2c2c2c',
-  selectedCategoryBackgroundColor:'#e9ecef',
+  categoryBackgroundColor: '#2c2c2c',
+  selectedCategoryBackgroundColor: '#e9ecef',
   categoryBorderColor: '#495057',
   selectedCategoryBorderColor: '#e9ecef',
   arrowBtnBackgroundColor: '#1a1a1a',
@@ -94,7 +94,7 @@ const dark = {
   videoCategoryBorderColor: '#495057',
 };
 
-const palette = {light, dark};
+const palette = { light, dark };
 
 const ThemeContext = React.createContext({
   isDark: false,
@@ -104,4 +104,4 @@ const ThemeContext = React.createContext({
 
 export default palette;
 
-export {ThemeContext};
+export { ThemeContext };

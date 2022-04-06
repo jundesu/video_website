@@ -1,10 +1,7 @@
-import Login from "./login";
+import Login from './login';
 
-function App () {
-
-  return (    
-      <Login/>
-  );
+function App() {
+  return <Login />;
 }
 
 export default App;
