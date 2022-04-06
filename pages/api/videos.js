@@ -1,9 +1,9 @@
-import {faker} from '@faker-js/faker';
+import { faker } from '@faker-js/faker';
 
 export default function handler(req, res) {
   const numVideos = 25;
-  let videos = []
-  for (let i = 0; i < numVideos;i++) {
+  let videos = [];
+  for (let i = 0; i < numVideos; i++) {
     videos.push({
       thumbnailUrl: faker.image.image(640, 480),
       title: faker.lorem.sentence(),
@@ -11,9 +11,9 @@ export default function handler(req, res) {
       channelIcon: faker.image.image(640, 480),
       channelTitle: faker.name.title(),
       viewCount: faker.datatype.number(),
-      category: faker.commerce.department()
-    })
+      category: faker.commerce.department(),
+    });
   }
 
-  res.status(200).json(videos)
+  res.status(200).json(videos);
 }

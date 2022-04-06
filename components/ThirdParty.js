@@ -1,21 +1,19 @@
 import styled from '@emotion/styled';
-import AppleImg from "../svgs/apple_icon.svg";
-import FacebookImg from "../svgs/facebook_icon.svg";
-import GoogleImg from "../svgs/google_icon.svg";
-
+import AppleImg from '../svgs/apple_icon.svg';
+import FacebookImg from '../svgs/facebook_icon.svg';
+import GoogleImg from '../svgs/google_icon.svg';
 
 const ThirdPartyStyle = styled.section`
   display: flex;
   justify-content: space-between;
   width: 50%;
 
-  @media(max-width: 1200px) {
+  @media (max-width: 1200px) {
     width: 70%;
   }
-  @media(max-width: 800px) {
+  @media (max-width: 800px) {
     width: 50%;
   }
-
 `;
 
 const Social = styled.button`
@@ -26,7 +24,7 @@ const Social = styled.button`
   border: none;
   padding: 0;
 
-  @media(max-width: 500px) {
+  @media (max-width: 500px) {
     width: 40px;
     height: 40px;
   }
@@ -46,17 +44,16 @@ const GoogleIcon = styled(GoogleImg)`
 `;
 
 function ThirdParty() {
-
   return (
     <ThirdPartyStyle>
       <Social>
-        <AppleIcon/>
+        <AppleIcon />
       </Social>
       <Social>
-        <FacebookIcon/>
+        <FacebookIcon />
       </Social>
       <Social>
-        <GoogleIcon/>
+        <GoogleIcon />
       </Social>
     </ThirdPartyStyle>
   );
