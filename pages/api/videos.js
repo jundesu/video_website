@@ -1,7 +1,7 @@
-import * as faker from '@faker-js/faker';
+import {faker} from '@faker-js/faker';
 
 export default function handler(req, res) {
-  const numVideos = 50;
+  const numVideos = 25;
   let videos = []
   for (let i = 0; i < numVideos;i++) {
     videos.push({

@@ -52,7 +52,7 @@ const CardDetail = styled.div`
     display: flex;
     flex-direction: row;
     margin-top: 10px;
-
+    
 `;
 
 const ChannelIcon = styled.img`
@@ -69,6 +69,7 @@ const CardDetailMessage = styled.section`
   flex-direction: column;
   align-items: flex-start;
   margin-left: 15px;
+  width: calc(100% - 40px);
 
   & > h4 {
     color: ${({color}) => color};

@@ -86,7 +86,7 @@ function Header({userEmail, onQuery, collapse}) {
   const [open, setOpen] = useState(false);
   const [expand, setExpand] = useState(false);
 
-  const node = useRef();
+  const userReference = useRef();
 
   const {theme} = useContext(ThemeContext);
 
@@ -94,8 +94,8 @@ function Header({userEmail, onQuery, collapse}) {
     setExpand(false);
   };
 
-  const handleClickoutside = (e) => {
-    if(node.current.contains(e.target)){
+  const handleClickOutside = (e) => {
+    if(userReference.current.contains(e.target)){
       return
     }
     setOpen(false);
@@ -103,9 +103,10 @@ function Header({userEmail, onQuery, collapse}) {
 
   useEffect(() => {
     if(open){
-      document.addEventListener("click", handleClickoutside);
+      document.addEventListener("click", handleClickOutside);
+      return () => {document.removeEventListener("click", handleClickOutside)}
     }
-    return () => {document.removeEventListener("click", handleClickoutside)}
+    
   }, [open]);
 
   useEffect(() => {
@@ -121,7 +122,7 @@ function Header({userEmail, onQuery, collapse}) {
       <SearchBtnIcon onClick={() => setExpand(true)}/>
       {expand && (<MobileSearchBar onQuery={onQuery} goBack={goBack} />)}
 
-      <User ref={node}>
+      <User ref={userReference}>
         <AvatarBtn type="button" onClick={() => setOpen(prev => !prev)} >
           <AvatarIcon/>
         </AvatarBtn>
