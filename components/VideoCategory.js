@@ -58,6 +58,7 @@ const Category = styled.li`
   padding: 10px 20px;
   margin-right: 20px;
   text-transform: capitalize;
+  cursor: pointer;
 `;
 
 function VideoCategory({
