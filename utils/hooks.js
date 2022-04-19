@@ -2,17 +2,13 @@ import { useEffect, useState } from 'react';
 
 function useCurrentWidth() {
   const getWidth = () => window.innerWidth;
-
   // save current window width in the state object
   let [width, setWidth] = useState(0);
 
-  // in this case useEffect will execute only once because
-  // it does not have any dependencies.
   useEffect(() => {
     setWidth(getWidth());
-    // timeoutId for debounce mechanism
-    let timeoutId = null;
-    const resizeListener = () => {
+    let timeoutId;
+    const handleResize = () => {
       // prevent execution of previous setTimeout
       clearTimeout(timeoutId);
 
@@ -21,11 +17,11 @@ function useCurrentWidth() {
       }, 100);
     };
     // set resize listener
-    window.addEventListener('resize', resizeListener);
-
+    window.addEventListener('resize', handleResize);
     // clean up function
     return () => {
-      window.removeEventListener('resize', resizeListener);
+      window.removeEventListener('resize', handleResize);
+      clearTimeout(timeoutId);
     };
   }, []);
 
