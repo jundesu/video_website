@@ -132,7 +132,7 @@ function ExpandedSidebar({ channels, toggleCollapse }) {
         {channels.map((channel, index) => {
           return (
             <li key={index}>
-              <ChannelLink href="/home">
+              <ChannelLink href="#">
                 <img src={channel.channelIcon} alt="channel image" />
                 <ChannelTitle color={theme.channelTitleColor}>
                   {channel.channelTitle}
