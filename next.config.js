@@ -8,4 +8,7 @@ module.exports = {
     });
     return config;
   },
+  images: {
+    domains: ['loremflickr.com','https://picsum.photos','https://lorempixel.com','https://source.unsplash.com'],
+  },
 };

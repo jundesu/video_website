@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { useContext } from 'react';
 import { ThemeContext } from '../theme/palette';
+import Image from 'next/image'
 
 const Container = styled.ul`
   list-style: none;
@@ -41,12 +42,11 @@ const Card = styled.li`
   }
 `;
 
-const Thumbnail = styled.img`
+const Thumbnail = styled.div`
   background-color: #000000;
-  object-fit: contain;
-  width: 100%;
-  height: 45%;
 `;
+
+
 
 const CardDetail = styled.div`
   display: flex;
@@ -103,11 +103,12 @@ function CardList({ filteredVideos }) {
 
   return (
     <Container>
-      {filteredVideos.map((video, index) => {
+      {filteredVideos.map((video) => {
         return (
-          <Card key={index}>
-            <Thumbnail src={video.thumbnailUrl} alt="thumbnail" />
-
+          <Card key={video.channelId}> 
+            <Thumbnail>
+              <Image src={video.thumbnailUrl} alt="thumbnail" width={640} height={480}/>
+            </Thumbnail>
             <CardDetail>
               <ChannelIcon src={video.channelIcon} />
               <CardDetailMessage
