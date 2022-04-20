@@ -34,8 +34,7 @@ const NextIcon = styled(RightArrow)`
   fill: ${({ fill }) => fill};
 `;
 
-const FilterBar = styled.ul`
-  list-style: none;
+const FilterBar = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -49,7 +48,7 @@ const FilterBar = styled.ul`
   }
 `;
 
-const Category = styled.li`
+const Category = styled.button`
   font-size: 1.5rem;
   color: ${({ color }) => color};
   background-color: ${({ backgroundColor }) => backgroundColor};
@@ -58,7 +57,6 @@ const Category = styled.li`
   padding: 10px 20px;
   margin-right: 20px;
   text-transform: capitalize;
-  cursor: pointer;
 `;
 
 function VideoCategory({
